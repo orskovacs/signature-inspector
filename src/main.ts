@@ -8,15 +8,15 @@ import '@material/web/dialog/dialog.js';
 import '@material/web/list/list.js';
 import '@material/web/list/list-item.js';
 import '@material/web/tabs/primary-tab.js';
-import './style.css'
-import '../../signature-field/dist/src/signature-field.js';
-
 import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
 import {
   argbFromHex,
   themeFromSourceColor,
   applyTheme,
 } from '@material/material-color-utilities';
+import 'signature-field/signature-field.js';
+// import '../../signature-field/dist/src/signature-field.js';
+import './style.css'
 
 function applyCustomTheme() {
   if (typescaleStyles.styleSheet)
