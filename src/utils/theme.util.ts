@@ -25,9 +25,11 @@ export function applyCustomTheme() {
   const systemDarkMedia = window.matchMedia('(prefers-color-scheme: dark)')
   const theme = generateTheme()
 
-  applyTheme(theme, { target: document.body, dark: systemDarkMedia.matches })
+  // applyTheme(theme, { target: document.body, dark: systemDarkMedia.matches })
 
-  systemDarkMedia.addEventListener('change', () => {
-    applyTheme(theme, { target: document.body, dark: systemDarkMedia.matches })
-  })
+  // systemDarkMedia.addEventListener('change', (e) => {
+  //   applyTheme(theme, { target: document.body, dark: e.matches })
+  // })
+
+  applyTheme(theme, { target: document.body })
 }
