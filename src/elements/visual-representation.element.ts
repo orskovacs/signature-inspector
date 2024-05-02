@@ -11,7 +11,17 @@ export class VisualRepresentationElement extends LitElement {
   @consume({ context: signaturesContext, subscribe: true })
   private signatures!: SignatureData[]
 
+  private get visibleSignatures(): SignatureData[] {
+    return this.signatures.filter((s) => s.visible)
+  }
+
   render() {
-    return html`<span>${this.signatures.filter((s) => s.visible).length}</span>`
+    return html`<div>${this.visibleSignatures.length}</div>
+      ${this.visibleSignatures.map(
+        (s) =>
+          html`<div .style="background-color: #${s.colorHex}">
+            ${s.colorHex}
+          </div>`
+      )}`
   }
 }

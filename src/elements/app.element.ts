@@ -4,11 +4,13 @@ import { customElement, state } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
   PushSignatureEvent,
+  SetSignatureColorEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
   SignatureData,
   signaturesContext,
 } from '../contexts/signatures.context'
+import { getRandomColorHex } from '../utils/color.util'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -32,11 +34,14 @@ export class AppElement extends LitElement {
       ShowAllSignaturesEvent.key,
       this.handleShowAllSignaturesEvent
     )
+    this.addEventListener(
+      SetSignatureColorEvent.key,
+      this.handleSetSignatureColorEvent
+    )
   }
 
   render() {
     return html`<h1>Signature Inspector</h1>
-      <signature-loader-element></signature-loader-element>
       <signature-list-element></signature-list-element>
       <visualizer-element></visualizer-element>`
   }
@@ -44,7 +49,7 @@ export class AppElement extends LitElement {
   private handlePushSignatureEvent(e: PushSignatureEvent): void {
     this.signatures = [
       ...this.signatures,
-      { signature: e.detail, visible: true },
+      { signature: e.detail, visible: true, colorHex: getRandomColorHex() },
     ]
   }
 
@@ -63,6 +68,12 @@ export class AppElement extends LitElement {
 
   private handleShowAllSignaturesEvent(_e: HideAllSignaturesEvent): void {
     this.signatures.forEach((s) => (s.visible = true))
+    this.signatures = [...this.signatures]
+  }
+
+  private handleSetSignatureColorEvent(e: SetSignatureColorEvent): void {
+    const signature = this.signatures[e.detail.signatureIndex]
+    signature.colorHex = e.detail.colorHex
     this.signatures = [...this.signatures]
   }
 }

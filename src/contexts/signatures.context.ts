@@ -1,7 +1,11 @@
 import { createContext } from '@lit/context'
 import { Signature } from 'signature-field'
 
-export type SignatureData = { signature: Signature; visible: boolean }
+export type SignatureData = {
+  signature: Signature
+  visible: boolean
+  colorHex: string
+}
 
 export const signaturesContext = createContext<Array<SignatureData>>(
   Symbol('signatures-context')
@@ -56,11 +60,27 @@ export class ShowAllSignaturesEvent extends CustomEvent<void> {
   }
 }
 
+export class SetSignatureColorEvent extends CustomEvent<{
+  signatureIndex: number
+  colorHex: string
+}> {
+  public static readonly key = 'set-signature-color'
+
+  constructor(signatureIndex: number, colorHex: string) {
+    super(SetSignatureColorEvent.key, {
+      bubbles: true,
+      composed: true,
+      detail: { signatureIndex, colorHex },
+    })
+  }
+}
+
 type CustomEventMap = {
   [PushSignatureEvent.key]: PushSignatureEvent
   [SetSignatureVisibilityEvent.key]: SetSignatureVisibilityEvent
   [HideAllSignaturesEvent.key]: HideAllSignaturesEvent
   [ShowAllSignaturesEvent.key]: ShowAllSignaturesEvent
+  [SetSignatureColorEvent.key]: SetSignatureColorEvent
 }
 
 declare global {
