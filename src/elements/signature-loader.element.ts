@@ -1,9 +1,13 @@
 import { LitElement, html } from 'lit'
-import { customElement, query } from 'lit/decorators.js'
+import { customElement, query, state } from 'lit/decorators.js'
 import { MdDialog } from '@material/web/dialog/dialog.ts'
 import { SignatureField } from 'signature-field'
-import { PushSignatureEvent } from '../contexts/signatures.context'
+import {
+  PushSignatureEvent,
+  PushSignaturesEvent,
+} from '../contexts/signatures.context'
 import { getMockSignature } from '../mock/signatures.mock'
+import { parseSignaturesFile } from '../utils/signature-parser.util'
 
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
@@ -15,6 +19,9 @@ export class SignatureLoaderElement extends LitElement {
 
   @query('signature-field')
   private signatureField!: SignatureField
+
+  @query('#signatures-file')
+  private signaturesFileInput!: HTMLInputElement | null
 
   render() {
     return html`<md-filled-button
@@ -80,6 +87,21 @@ export class SignatureLoaderElement extends LitElement {
             }}"
           >
             Add mock
+          </md-filled-button>
+          <md-filled-button
+            @click="${async () => {
+              if (this.signaturesFileInput === null) return
+
+              const file = this.signaturesFileInput.files?.item(0)
+              if (file === null || file === undefined) return
+
+              this.signaturesFileInput.value = ''
+
+              const signatures = await parseSignaturesFile(file)
+              this.dispatchEvent(new PushSignaturesEvent(signatures))
+            }}"
+          >
+            Import from file
           </md-filled-button>
           <md-text-button form="signature-import-dialog-form">
             Close

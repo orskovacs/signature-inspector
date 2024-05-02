@@ -23,6 +23,18 @@ export class PushSignatureEvent extends CustomEvent<Signature> {
   }
 }
 
+export class PushSignaturesEvent extends CustomEvent<Signature[]> {
+  public static readonly key = 'push-signatures'
+
+  constructor(signatures: Signature[]) {
+    super(PushSignaturesEvent.key, {
+      bubbles: true,
+      composed: true,
+      detail: signatures,
+    })
+  }
+}
+
 export class SetSignatureVisibilityEvent extends CustomEvent<{
   signatureIndex: number
   visibility: boolean
@@ -102,6 +114,7 @@ export class RemoveAllSignaturesEvent extends CustomEvent<void> {
 
 type CustomEventMap = {
   [PushSignatureEvent.key]: PushSignatureEvent
+  [PushSignaturesEvent.key]: PushSignaturesEvent
   [SetSignatureVisibilityEvent.key]: SetSignatureVisibilityEvent
   [HideAllSignaturesEvent.key]: HideAllSignaturesEvent
   [ShowAllSignaturesEvent.key]: ShowAllSignaturesEvent

@@ -4,6 +4,7 @@ import { customElement, state } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
   PushSignatureEvent,
+  PushSignaturesEvent,
   RemoveAllSignaturesEvent,
   RemoveSignatureEvent,
   SetSignatureColorEvent,
@@ -44,6 +45,10 @@ export class AppElement extends LitElement {
 
     this.addEventListener(PushSignatureEvent.key, this.handlePushSignatureEvent)
     this.addEventListener(
+      PushSignaturesEvent.key,
+      this.handlePushSignaturesEvent
+    )
+    this.addEventListener(
       SetSignatureVisibilityEvent.key,
       this.handleSetSignatureVisibilityEvent
     )
@@ -81,6 +86,17 @@ export class AppElement extends LitElement {
     this.signatures = [
       ...this.signatures,
       { signature: e.detail, visible: true, colorHex: getRandomColorHex() },
+    ]
+  }
+
+  private handlePushSignaturesEvent(e: PushSignaturesEvent): void {
+    this.signatures = [
+      ...this.signatures,
+      ...e.detail.map((s) => ({
+        signature: s,
+        visible: true,
+        colorHex: getRandomColorHex(),
+      })),
     ]
   }
 

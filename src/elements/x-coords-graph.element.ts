@@ -11,14 +11,13 @@ export class XCoordsGraphElement extends LitElement {
 }
 
 function setupChart() {
-  return ref((instance) => {
-    if (!instance) {
+  return ref((element) => {
+    if (!element) {
       return
     }
 
-    const div = instance as HTMLDivElement
     google.charts.setOnLoadCallback(() => {
-      const chart = new google.visualization.LineChart(div)
+      const chart = new google.visualization.LineChart(element)
       const { data, options } = getMockChartData()
       chart.draw(data, options)
     })
