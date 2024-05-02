@@ -33,15 +33,6 @@ export class SignatureLoaderElement extends LitElement {
         Import
       </md-filled-button>
 
-      <md-filled-button
-        @click="${() => {
-          const event = new PushSignatureEvent(getMockSignature())
-          this.dispatchEvent(event)
-        }}"
-      >
-        Add mock
-      </md-filled-button>
-
       <md-dialog id="signature-input-dialog">
         <div slot="headline">Signature Input</div>
         <form slot="content" id="signature-input-dialog-form" method="dialog">
@@ -82,6 +73,14 @@ export class SignatureLoaderElement extends LitElement {
           />
         </form>
         <div slot="actions">
+          <md-filled-button
+            @click="${() => {
+              const event = new PushSignatureEvent(getMockSignature())
+              this.dispatchEvent(event)
+            }}"
+          >
+            Add mock
+          </md-filled-button>
           <md-text-button form="signature-import-dialog-form">
             Close
           </md-text-button>
