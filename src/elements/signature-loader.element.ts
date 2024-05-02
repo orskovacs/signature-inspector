@@ -2,6 +2,8 @@ import { LitElement, html } from 'lit'
 import { customElement, query } from 'lit/decorators.js'
 import { MdDialog } from '@material/web/dialog/dialog.ts'
 import { SignatureField } from 'signature-field'
+import { PushSignatureEvent } from '../contexts/signatures.context'
+import { getMockSignature } from '../mock/signatures.mock'
 
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
@@ -29,6 +31,15 @@ export class SignatureLoaderElement extends LitElement {
         }}"
       >
         Import
+      </md-filled-button>
+
+      <md-filled-button
+        @click="${() => {
+          const event = new PushSignatureEvent(getMockSignature())
+          this.dispatchEvent(event)
+        }}"
+      >
+        Add mock
       </md-filled-button>
 
       <md-dialog id="signature-input-dialog">
