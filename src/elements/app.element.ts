@@ -17,9 +17,21 @@ import { getRandomColorHex } from '../utils/color.util'
 @customElement('app-element')
 export class AppElement extends LitElement {
   static styles = css`
+    :host {
+      height: 100%;
+      display: block;
+    }
+
     h1 {
       font-family: var(--md-ref-typeface-brand);
       margin-inline: 16px;
+    }
+
+    main {
+      height: calc(100% - 90px);
+      display: grid;
+      align-items: start;
+      grid-template-rows: 40% 60%;
     }
   `
 
@@ -59,8 +71,10 @@ export class AppElement extends LitElement {
 
   render() {
     return html`<h1>Signature Inspector</h1>
-      <signature-list-element></signature-list-element>
-      <visualizer-element></visualizer-element>`
+      <main>
+        <signature-list-element></signature-list-element>
+        <visualizer-element></visualizer-element>
+      </main>`
   }
 
   private handlePushSignatureEvent(e: PushSignatureEvent): void {

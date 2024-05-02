@@ -15,6 +15,11 @@ import { consume } from '@lit/context'
 @customElement('signature-list-element')
 export class SignatureListElement extends LitElement {
   static styles = css`
+    :host {
+      height: 100%;
+      overflow: auto;
+    }
+
     div[slot='start'],
     div[slot='end'] {
       display: contents;
@@ -94,11 +99,10 @@ export class SignatureListElement extends LitElement {
       <md-divider></md-divider>
       ${this.signatures.length === 0
         ? html`<md-list-item>
-              <div style="font-style: oblique;">
-                Draw or import some signatures using the buttons above!
-              </div>
-            </md-list-item>
-            <md-divider></md-divider>`
+            <div style="font-style: oblique;">
+              Draw or import some signatures using the buttons above!
+            </div>
+          </md-list-item>`
         : nothing}
       ${this.signatures.map((s, i) => {
         return this.getItemTemplate(s, i)
