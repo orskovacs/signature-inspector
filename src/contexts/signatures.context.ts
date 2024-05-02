@@ -75,12 +75,39 @@ export class SetSignatureColorEvent extends CustomEvent<{
   }
 }
 
+export class RemoveSignatureEvent extends CustomEvent<{
+  signatureIndex: number
+}> {
+  public static readonly key = 'remove-signature'
+
+  constructor(signatureIndex: number) {
+    super(RemoveSignatureEvent.key, {
+      bubbles: true,
+      composed: true,
+      detail: { signatureIndex },
+    })
+  }
+}
+
+export class RemoveAllSignaturesEvent extends CustomEvent<void> {
+  public static readonly key = 'remove-all-signatures'
+
+  constructor() {
+    super(RemoveAllSignaturesEvent.key, {
+      bubbles: true,
+      composed: true,
+    })
+  }
+}
+
 type CustomEventMap = {
   [PushSignatureEvent.key]: PushSignatureEvent
   [SetSignatureVisibilityEvent.key]: SetSignatureVisibilityEvent
   [HideAllSignaturesEvent.key]: HideAllSignaturesEvent
   [ShowAllSignaturesEvent.key]: ShowAllSignaturesEvent
   [SetSignatureColorEvent.key]: SetSignatureColorEvent
+  [RemoveSignatureEvent.key]: RemoveSignatureEvent
+  [RemoveAllSignaturesEvent.key]: RemoveAllSignaturesEvent
 }
 
 declare global {

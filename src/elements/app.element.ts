@@ -4,6 +4,8 @@ import { customElement, state } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
   PushSignatureEvent,
+  RemoveAllSignaturesEvent,
+  RemoveSignatureEvent,
   SetSignatureColorEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
@@ -37,6 +39,14 @@ export class AppElement extends LitElement {
     this.addEventListener(
       SetSignatureColorEvent.key,
       this.handleSetSignatureColorEvent
+    )
+    this.addEventListener(
+      RemoveSignatureEvent.key,
+      this.handleRemoveSignatureEvent
+    )
+    this.addEventListener(
+      RemoveAllSignaturesEvent.key,
+      this.handleRemoveAllSignaturesEvent
     )
   }
 
@@ -75,5 +85,15 @@ export class AppElement extends LitElement {
     const signature = this.signatures[e.detail.signatureIndex]
     signature.colorHex = e.detail.colorHex
     this.signatures = [...this.signatures]
+  }
+
+  private handleRemoveSignatureEvent(e: RemoveSignatureEvent): void {
+    const signaturesCopy = this.signatures.slice()
+    signaturesCopy.splice(e.detail.signatureIndex, 1)
+    this.signatures = [...signaturesCopy]
+  }
+
+  private handleRemoveAllSignaturesEvent(_e: RemoveAllSignaturesEvent): void {
+    this.signatures = []
   }
 }

@@ -2,6 +2,8 @@ import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
+  RemoveAllSignaturesEvent,
+  RemoveSignatureEvent,
   SetSignatureColorEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
@@ -74,7 +76,12 @@ export class SignatureListElement extends LitElement {
           ></md-checkbox>
         </div>
         <div slot="end">
-          <md-filled-tonal-button ?disabled=${this.signatures.length === 0}>
+          <md-filled-tonal-button
+            ?disabled=${this.signatures.length === 0}
+            @click=${() => {
+              this.dispatchEvent(new RemoveAllSignaturesEvent())
+            }}
+          >
             Delete All
             <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
               <path
@@ -130,7 +137,11 @@ export class SignatureListElement extends LitElement {
               </div>
             </span>
           </label>
-          <md-filled-tonal-button>
+          <md-filled-tonal-button
+            @click=${() => {
+              this.dispatchEvent(new RemoveSignatureEvent(index))
+            }}
+          >
             Delete
             <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
               <path
