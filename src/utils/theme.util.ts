@@ -7,7 +7,7 @@ import {
 import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js'
 
 function generateTheme(): Theme {
-  const theme = themeFromSourceColor(argbFromHex('#f82506'), [
+  const theme = themeFromSourceColor(argbFromHex('#153448'), [
     {
       name: 'custom-1',
       value: argbFromHex('#ff0000'),
@@ -25,11 +25,9 @@ export function applyCustomTheme() {
   const systemDarkMedia = window.matchMedia('(prefers-color-scheme: dark)')
   const theme = generateTheme()
 
-  // applyTheme(theme, { target: document.body, dark: systemDarkMedia.matches })
+  applyTheme(theme, { target: document.body, dark: systemDarkMedia.matches })
 
-  // systemDarkMedia.addEventListener('change', (e) => {
-  //   applyTheme(theme, { target: document.body, dark: e.matches })
-  // })
-
-  applyTheme(theme, { target: document.body })
+  systemDarkMedia.addEventListener('change', (e) => {
+    applyTheme(theme, { target: document.body, dark: e.matches })
+  })
 }

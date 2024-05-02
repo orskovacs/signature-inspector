@@ -1,5 +1,5 @@
 import { provide } from '@lit/context'
-import { LitElement, html } from 'lit'
+import { LitElement, css, html } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
@@ -16,6 +16,13 @@ import { getRandomColorHex } from '../utils/color.util'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
+  static styles = css`
+    h1 {
+      font-family: var(--md-ref-typeface-brand);
+      margin-inline: 16px;
+    }
+  `
+
   @provide({ context: signaturesContext })
   @state()
   private signatures: SignatureData[] = []

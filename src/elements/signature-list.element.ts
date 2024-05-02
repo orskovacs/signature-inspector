@@ -1,4 +1,4 @@
-import { LitElement, css, html } from 'lit'
+import { LitElement, css, html, nothing } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
@@ -92,6 +92,14 @@ export class SignatureListElement extends LitElement {
         </div>
       </md-list-item>
       <md-divider></md-divider>
+      ${this.signatures.length === 0
+        ? html`<md-list-item>
+              <div style="font-style: oblique;">
+                Draw or import some signatures using the buttons above!
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>`
+        : nothing}
       ${this.signatures.map((s, i) => {
         return this.getItemTemplate(s, i)
       })}
