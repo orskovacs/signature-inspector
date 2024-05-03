@@ -1,10 +1,5 @@
-import { consume } from '@lit/context'
 import { LitElement, css, html, nothing } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
-import {
-  signaturesContext,
-  SignatureData,
-} from '../contexts/signatures.context'
 
 @customElement('visualizer-element')
 export class VisualizerElement extends LitElement {
@@ -65,16 +60,7 @@ export class VisualizerElement extends LitElement {
   @state()
   private activeTabIndex: number = 0
 
-  @consume({ context: signaturesContext, subscribe: true })
-  private signatures!: SignatureData[]
-
-  private get visibleSignatures(): SignatureData[] {
-    return this.signatures?.filter((s) => s.visible) ?? []
-  }
-
   render() {
-    if (this.visibleSignatures.length === 0) return nothing
-
     return html`<md-tabs>
         ${this.tabData.map(
           ([id, name], index) =>
