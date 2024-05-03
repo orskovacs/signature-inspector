@@ -1,8 +1,11 @@
 import { LitElement, html } from 'lit'
 import { customElement, query } from 'lit/decorators.js'
 import { MdDialog } from '@material/web/dialog/dialog.ts'
-import { SignatureField } from 'signature-field'
-import { PushSignaturesEvent } from '../contexts/signatures.context'
+import { Signature, SignatureField } from 'signature-field'
+import {
+  PushSignatureEvent,
+  PushSignaturesEvent,
+} from '../contexts/signatures.context'
 import { parseSignaturesFile } from '../utils/signature-parser.util'
 
 @customElement('signature-loader-element')
@@ -56,6 +59,18 @@ export class SignatureLoaderElement extends LitElement {
           >
             Clear input
           </md-outlined-button>
+          <md-filled-button
+            form="signature-input-dialog-form"
+            @click="${async () => {
+              const dataPoints = this.signatureField.dataPoints
+              this.signatureField.clear()
+              this.dispatchEvent(
+                new PushSignatureEvent(new Signature(dataPoints))
+              )
+            }}"
+          >
+            Add signature
+          </md-filled-button>
           <md-text-button form="signature-input-dialog-form">
             Close
           </md-text-button>
