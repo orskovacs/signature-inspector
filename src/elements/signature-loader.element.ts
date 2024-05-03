@@ -77,6 +77,7 @@ export class SignatureLoaderElement extends LitElement {
         </form>
         <div slot="actions">
           <md-filled-button
+            form="signature-import-dialog-form"
             @click="${async () => {
               if (this.signaturesFileInput === null) return
 
