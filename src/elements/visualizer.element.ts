@@ -10,7 +10,7 @@ import {
 export class VisualizerElement extends LitElement {
   static styles = css`
     :host {
-      height: 100%;
+      height: calc(100% - 24px);
       margin-top: 24px;
     }
 
@@ -25,24 +25,40 @@ export class VisualizerElement extends LitElement {
     [id: string, name: string, content: ReturnType<typeof html>]
   > = [
     [
-      'visual',
-      'Visual',
-      html`<visual-representation-element></visual-representation-element>`,
-    ],
-    [
       'x-coord',
       'X Coordinate',
-      html`<x-coords-graph-element></x-coords-graph-element>`,
+      html`<graph-element feature="xCoord"></graph-element>`,
     ],
     [
       'y-coord',
       'Y Coordinate',
-      html`<y-coords-graph-element></y-coords-graph-element>`,
+      html`<graph-element feature="yCoord"></graph-element>`,
     ],
     [
       'pressure',
       'Pressure',
-      html`<pressure-graph-element></pressure-graph-element>`,
+      html`<graph-element feature="pressure"></graph-element>`,
+    ],
+    [
+      'altitude-angle',
+      'Altitude Angle',
+      html`<graph-element feature="altitudeAngle"></graph-element>`,
+    ],
+    [
+      'azimuth-angle',
+      'Azimuth Angle',
+      html`<graph-element feature="azimuthAngle"></graph-element>`,
+    ],
+    [
+      'height',
+      'Height',
+      html`<graph-element feature="height"></graph-element>`,
+    ],
+    ['twist', 'Twist', html`<graph-element feature="twist"></graph-element>`],
+    [
+      'visual',
+      'Visual',
+      html`<visual-representation-element></visual-representation-element>`,
     ],
   ]
 
@@ -53,7 +69,7 @@ export class VisualizerElement extends LitElement {
   private signatures!: SignatureData[]
 
   private get visibleSignatures(): SignatureData[] {
-    return this.signatures.filter((s) => s.visible)
+    return this.signatures?.filter((s) => s.visible) ?? []
   }
 
   render() {
