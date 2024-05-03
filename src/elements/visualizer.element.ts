@@ -96,7 +96,7 @@ export class VisualizerElement extends LitElement {
             aria-labelledby="${id}-tab"
             ?hidden=${this.activeTabIndex !== index}
           >
-            ${content}
+            ${this.activeTabIndex === index ? content : nothing}
           </div>`
       )}`
   }
