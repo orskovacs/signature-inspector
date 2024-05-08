@@ -11,15 +11,12 @@ import { parseSignaturesFile } from '../utils/signature-parser.util'
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
   static styles = css`
+    :host {
+      --md-dialog-container-color: var(--md-sys-color-surface);
+    }
     .buttons {
       display: flex;
       gap: 8px;
-    }
-
-    md-dialog div[slot='headline'],
-    md-dialog form[slot='content'],
-    md-dialog div[slot='actions'] {
-      background: var(--md-sys-color-surface);
     }
   `
 
