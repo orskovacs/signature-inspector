@@ -23,18 +23,34 @@ export class AppElement extends LitElement {
       display: block;
     }
 
-    h1 {
+    .title {
       font-family: var(--md-ref-typeface-brand);
-      margin-inline: 16px;
+      padding-inline: 24px;
+      padding-block: 18px;
+      margin: 8px 0 8px 0;
     }
 
     main {
-      height: calc(100% - 90px);
+      height: calc(100% - 100px);
       display: grid;
       align-items: start;
       grid-template-rows: 40% 60%;
       grid-template-columns: 100%;
       overflow: hidden;
+      gap: 4px;
+    }
+
+    .title,
+    signature-list-element,
+    visualizer-element {
+      background: var(--md-sys-color-surface);
+      border-radius: 28px;
+    }
+
+    signature-list-element,
+    visualizer-element {
+      height: calc(100% - 2 * 18px - 8px);
+      padding: 18px;
     }
   `
 
@@ -77,7 +93,7 @@ export class AppElement extends LitElement {
   }
 
   render() {
-    return html`<h1>Signature Inspector</h1>
+    return html`<h1 class="title">Signature Inspector</h1>
       <main>
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>

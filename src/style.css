@@ -17,8 +17,8 @@ html, body {
 }
 
 body {
-  background: var(--md-sys-color-surface, #fef7ff);
-  color: var(--md-sys-color-on-surface, #1d1b20);
+  background: var(--md-sys-color-surface-variant, #fef7ff);
+  color: var(--md-sys-color-on-surface-variant, #1d1b20);
   margin-inline: auto;
 }
 
@@ -27,17 +27,17 @@ body {
 }
 
 @media only screen and (min-width: 650px) {
-  body { width: 85%; }
+  body { width: 95%; }
 }
 
 @media only screen and (min-width: 768px) {
-  body { width: 80%; }
+  body { width: 91%; }
 }
 
 @media only screen and (min-width: 992px) {
-  body { width: 75%; }
+  body { width: 87%; }
 }
 
 @media only screen and (min-width: 1200px) {
-  body { width: 70%; }
+  body { width: 82%; }
 }

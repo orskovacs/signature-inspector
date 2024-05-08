@@ -19,8 +19,8 @@ export class SignatureListElement extends LitElement {
       --md-list-item-top-space: 0;
       --md-list-item-bottom-space: 0;
 
-      height: 100%;
-      overflow: auto;
+      display: grid;
+      align-content: flex-start;
     }
 
     div[slot='start'],
@@ -32,6 +32,7 @@ export class SignatureListElement extends LitElement {
       display: flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
     }
 
     .color-input-wrapper {
@@ -41,6 +42,7 @@ export class SignatureListElement extends LitElement {
       box-sizing: border-box;
       border: 1px solid var(--md-sys-color-on-secondary-container);
       position: relative;
+      cursor: pointer;
     }
 
     .color-input-wrapper div {
@@ -51,6 +53,7 @@ export class SignatureListElement extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
 
     .color-input-wrapper input[type='color'] {
@@ -58,18 +61,30 @@ export class SignatureListElement extends LitElement {
       min-height: 200%;
       border: none;
       background: none;
+      cursor: pointer;
+    }
+
+    md-list {
+      overflow: scroll;
     }
   `
 
   @consume({ context: signaturesContext, subscribe: true })
   private signatures!: SignatureData[]
 
+  private get signaturesCount(): number {
+    return this.signatures.length
+  }
+
+  private get visibleSignaturesCount(): number {
+    return this.signatures.filter((s) => s.visible).length
+  }
+
   render() {
-    return html`<md-list>
-      <md-list-item>
-        <signature-loader-element></signature-loader-element>
+    return html` <md-list-item>
         <div slot="start">
           <md-checkbox
+            id="toggle-all-ckeckbox"
             touch-target="wrapper"
             ?disabled=${this.signatures.length === 0}
             ?checked=${this.signatures.length > 0 &&
@@ -82,8 +97,13 @@ export class SignatureListElement extends LitElement {
               else this.dispatchEvent(new ShowAllSignaturesEvent())
             }}
           ></md-checkbox>
+          <label for="toggle-all-ckeckbox">
+            ${this.visibleSignaturesCount} / ${this.signaturesCount} signatures
+            visible
+          </label>
         </div>
         <div slot="end">
+          <signature-loader-element></signature-loader-element>
           <md-filled-tonal-button
             ?disabled=${this.signatures.length === 0}
             @click=${() => {
@@ -100,71 +120,71 @@ export class SignatureListElement extends LitElement {
         </div>
       </md-list-item>
       <md-divider></md-divider>
-      ${this.signatures.length === 0
-        ? html`<md-list-item>
-            <div style="font-style: oblique;">
-              Draw or import some signatures using the buttons above!
-            </div>
-          </md-list-item>`
-        : nothing}
-      ${this.signatures.map((s, i) => {
-        return this.getItemTemplate(s, i)
-      })}
-    </md-list>`
+      <md-list>
+        ${this.signatures.length === 0
+          ? html`<md-list-item>
+              <div style="font-style: oblique;">
+                Draw or import some signatures using the buttons above!
+              </div>
+            </md-list-item>`
+          : nothing}
+        ${this.signatures.map((s, i) => {
+          return this.getItemTemplate(s, i)
+        })}
+      </md-list>`
   }
 
   private getItemTemplate = (s: SignatureData, index: number) =>
     html`<md-list-item>
-        <span>${new Date(s.signature.creationTimeStamp).toLocaleString()}</span>
-        <div slot="start">
-          <md-checkbox
-            touch-target="wrapper"
-            ?checked=${s.visible}
-            @click=${() => {
-              this.dispatchEvent(
-                new SetSignatureVisibilityEvent(index, !s.visible)
-              )
-            }}
-          ></md-checkbox>
-        </div>
-        <div slot="end">
-          <label
-            class="color-input-label"
-            .id="hex-${index}"
-            .for="color-input-${index}"
-          >
-            <span class="label">Signature colour</span>
-            <span class="color-input-wrapper">
-              <div>
-                <input
-                  type="color"
-                  .id="color-input-${index}"
-                  .value="#${s.colorHex}"
-                  @input=${(e: Event) => {
-                    if (!(e.target instanceof HTMLInputElement)) return
+      <span>${new Date(s.signature.creationTimeStamp).toLocaleString()}</span>
+      <div slot="start">
+        <md-checkbox
+          touch-target="wrapper"
+          ?checked=${s.visible}
+          @click=${() => {
+            this.dispatchEvent(
+              new SetSignatureVisibilityEvent(index, !s.visible)
+            )
+          }}
+        ></md-checkbox>
+      </div>
+      <div slot="end">
+        <label
+          class="color-input-label"
+          .id="hex-${index}"
+          .for="color-input-${index}"
+        >
+          <span class="label">Signature colour</span>
+          <span class="color-input-wrapper">
+            <div>
+              <input
+                type="color"
+                .id="color-input-${index}"
+                .value="#${s.colorHex}"
+                @input=${(e: Event) => {
+                  if (!(e.target instanceof HTMLInputElement)) return
 
-                    const newColor = e.target.value.slice(1)
-                    this.dispatchEvent(
-                      new SetSignatureColorEvent(index, newColor)
-                    )
-                  }}
-                />
-              </div>
-            </span>
-          </label>
-          <md-filled-tonal-button
-            @click=${() => {
-              this.dispatchEvent(new RemoveSignatureEvent(index))
-            }}
-          >
-            Delete
-            <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
-              <path
-                d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+                  const newColor = e.target.value.slice(1)
+                  this.dispatchEvent(
+                    new SetSignatureColorEvent(index, newColor)
+                  )
+                }}
               />
-            </svg>
-          </md-filled-tonal-button>
-        </div>
-      </md-list-item>
-      <md-divider></md-divider>`
+            </div>
+          </span>
+        </label>
+        <md-filled-tonal-button
+          @click=${() => {
+            this.dispatchEvent(new RemoveSignatureEvent(index))
+          }}
+        >
+          Delete
+          <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
+            <path
+              d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+            />
+          </svg>
+        </md-filled-tonal-button>
+      </div>
+    </md-list-item>`
 }

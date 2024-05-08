@@ -4,11 +4,6 @@ import { customElement, state } from 'lit/decorators.js'
 @customElement('visualizer-element')
 export class VisualizerElement extends LitElement {
   static styles = css`
-    :host {
-      height: calc(100% - 24px);
-      margin-top: 24px;
-    }
-
     div[role='tabpanel'] {
       height: calc(100% - 48px);
       overflow: auto;
