@@ -16,6 +16,9 @@ import { consume } from '@lit/context'
 export class SignatureListElement extends LitElement {
   static styles = css`
     :host {
+      --md-list-item-top-space: 0;
+      --md-list-item-bottom-space: 0;
+
       height: 100%;
       overflow: auto;
     }

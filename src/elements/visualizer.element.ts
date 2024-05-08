@@ -14,6 +14,12 @@ export class VisualizerElement extends LitElement {
       overflow: auto;
       margin-inline: 16px;
     }
+
+    md-tabs {
+      display: flex;
+      overflow: auto;
+      scrollbar-width: none;
+    }
   `
 
   private readonly tabData: ReadonlyArray<

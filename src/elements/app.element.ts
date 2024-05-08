@@ -33,6 +33,8 @@ export class AppElement extends LitElement {
       display: grid;
       align-items: start;
       grid-template-rows: 40% 60%;
+      grid-template-columns: 100%;
+      overflow: hidden;
     }
   `
 
