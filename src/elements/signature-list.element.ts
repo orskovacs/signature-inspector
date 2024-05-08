@@ -114,7 +114,7 @@ export class SignatureListElement extends LitElement {
               else this.dispatchEvent(new ShowAllSignaturesEvent())
             }}
           ></md-checkbox>
-          <label for="toggle-all-ckeckbox">
+          <label>
             ${this.visibleSignaturesCount} / ${this.signaturesCount} signatures
             visible
           </label>
