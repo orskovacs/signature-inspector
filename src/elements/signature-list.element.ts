@@ -67,6 +67,23 @@ export class SignatureListElement extends LitElement {
     md-list {
       overflow: scroll;
     }
+
+    md-list::after {
+      content: ' ';
+      min-height: 40px;
+      position: sticky;
+      bottom: -8px;
+      background: -webkit-linear-gradient(
+        bottom,
+        var(--md-sys-color-surface, #fef7ff),
+        transparent 40px
+      );
+      background: linear-gradient(
+        0,
+        var(--md-sys-color-surface, #fef7ff),
+        transparent 40px
+      );
+    }
   `
 
   @consume({ context: signaturesContext, subscribe: true })
