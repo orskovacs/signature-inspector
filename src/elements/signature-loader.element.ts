@@ -1,5 +1,5 @@
-import { LitElement, css, html } from 'lit'
-import { customElement, query } from 'lit/decorators.js'
+import { LitElement, css, html, nothing } from 'lit'
+import { customElement, query, state } from 'lit/decorators.js'
 import { MdDialog } from '@material/web/dialog/dialog.ts'
 import { Signature, SignatureField } from 'signature-field'
 import {
@@ -20,6 +20,16 @@ export class SignatureLoaderElement extends LitElement {
     }
   `
 
+  private readonly parsers: ReadonlyArray<{
+    name: string
+    parser: (file: File) => Signature[] | Promise<Signature[]>
+  }> = [
+    {
+      name: 'signatures file',
+      parser: parseSignaturesFile,
+    },
+  ]
+
   @query('#signature-input-dialog')
   private inputDialog!: MdDialog
 
@@ -31,6 +41,12 @@ export class SignatureLoaderElement extends LitElement {
 
   @query('#signatures-file')
   private signaturesFileInput!: HTMLInputElement | null
+
+  @query('#parser-selector')
+  private parserSelector!: HTMLSelectElement | null
+
+  @state()
+  private error: any = undefined
 
   render() {
     return html`<div class="buttons">
@@ -111,25 +127,54 @@ export class SignatureLoaderElement extends LitElement {
             name="signatures"
             accept="text/json"
           />
+          <select id="parser-selector">
+            ${this.parsers.map(
+              (p, index) => html`<option value="${index}">${p.name}</option>`
+            )}
+          </select>
+          ${this.error === undefined
+            ? nothing
+            : html`<div class="error-conatiner">
+                <div class="error-details">${this.error}</div>
+              </div>`}
         </form>
         <div slot="actions">
           <md-filled-button
-            form="signature-import-dialog-form"
             @click="${async () => {
-              if (this.signaturesFileInput === null) return
+              if (
+                this.signaturesFileInput === null ||
+                this.parserSelector === null
+              )
+                return
 
               const file = this.signaturesFileInput.files?.item(0)
               if (file === null || file === undefined) return
 
-              this.signaturesFileInput.value = ''
+              this.error = undefined
 
-              const signatures = await parseSignaturesFile(file)
-              this.dispatchEvent(new PushSignaturesEvent(signatures))
+              try {
+                const parser =
+                  this.parsers[Number.parseInt(this.parserSelector.value)]
+                    .parser
+                const signatures = await parser(file)
+                this.signaturesFileInput.value = ''
+                this.dispatchEvent(new PushSignaturesEvent(signatures))
+              } catch (error) {
+                this.error = error
+              }
             }}"
           >
             Import from file
           </md-filled-button>
-          <md-text-button form="signature-import-dialog-form">
+          <md-text-button
+            form="signature-import-dialog-form"
+            @click="${() => {
+              if (this.signaturesFileInput === null) return
+
+              this.signaturesFileInput.value = ''
+              this.error = undefined
+            }}"
+          >
             Close
           </md-text-button>
         </div>
