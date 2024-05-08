@@ -23,11 +23,20 @@ export class AppElement extends LitElement {
       display: block;
     }
 
-    .title {
+    .heading {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
       font-family: var(--md-ref-typeface-brand);
       padding-inline: 24px;
       padding-block: 18px;
       margin: 8px 0 8px 0;
+    }
+
+    .heading h1 {
+      margin: 0;
     }
 
     main {
@@ -40,7 +49,7 @@ export class AppElement extends LitElement {
       gap: 4px;
     }
 
-    .title,
+    .heading,
     signature-list-element,
     visualizer-element {
       background: var(--md-sys-color-surface);
@@ -93,7 +102,11 @@ export class AppElement extends LitElement {
   }
 
   render() {
-    return html`<h1 class="title">Signature Inspector</h1>
+    return html`<div class="heading">
+        <h1>Signature Inspector</h1>
+        <signature-loader-element></signature-loader-element>
+      </div>
+
       <main>
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>

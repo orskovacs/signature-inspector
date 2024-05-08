@@ -103,7 +103,6 @@ export class SignatureListElement extends LitElement {
           </label>
         </div>
         <div slot="end">
-          <signature-loader-element></signature-loader-element>
           <md-filled-tonal-button
             ?disabled=${this.signatures.length === 0}
             @click=${() => {
