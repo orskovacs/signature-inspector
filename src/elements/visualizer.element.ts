@@ -46,12 +46,6 @@ export class VisualizerElement extends LitElement {
       html`<graph-element feature="azimuthAngle"></graph-element>`,
     ],
     [
-      'height',
-      'Height',
-      html`<graph-element feature="height"></graph-element>`,
-    ],
-    ['twist', 'Twist', html`<graph-element feature="twist"></graph-element>`],
-    [
       'visual',
       'Visual',
       html`<visual-representation-element></visual-representation-element>`,
