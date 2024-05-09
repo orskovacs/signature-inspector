@@ -6,7 +6,8 @@ import {
   PushSignatureEvent,
   PushSignaturesEvent,
 } from '../contexts/signatures.context'
-import { parseSignaturesFile } from '../utils/signature-parser.util'
+import { SignatureParser } from '../parsers/signature-parser'
+import { SignaturesFileParser } from '../parsers/signatures-file-parser'
 
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
@@ -22,11 +23,11 @@ export class SignatureLoaderElement extends LitElement {
 
   private readonly parsers: ReadonlyArray<{
     name: string
-    parser: (file: File) => Signature[] | Promise<Signature[]>
+    parser: SignatureParser
   }> = [
     {
       name: 'signatures file',
-      parser: parseSignaturesFile,
+      parser: new SignaturesFileParser(),
     },
   ]
 
@@ -156,7 +157,7 @@ export class SignatureLoaderElement extends LitElement {
                 const parser =
                   this.parsers[Number.parseInt(this.parserSelector.value)]
                     .parser
-                const signatures = await parser(file)
+                const signatures = await parser.parse(file)
                 this.signaturesFileInput.value = ''
                 this.dispatchEvent(new PushSignaturesEvent(signatures))
               } catch (error) {
