@@ -140,35 +140,7 @@ export class SignatureLoaderElement extends LitElement {
               </div>`}
         </form>
         <div slot="actions">
-          <md-filled-button
-            @click="${async () => {
-              if (
-                this.signaturesFileInput === null ||
-                this.parserSelector === null
-              )
-                return
-
-              const files = this.signaturesFileInput.files
-              if (files === null) return
-
-              this.error = undefined
-
-              try {
-                const signatures: Signature[] = []
-                for (let i = 0; i < files.length; i++) {
-                  const parser =
-                    this.parsers[Number.parseInt(this.parserSelector.value)]
-                      .parser
-                  const signature = await parser.parse(files.item(i)!)
-                  signatures.push(...signature)
-                }
-                this.signaturesFileInput.value = ''
-                this.dispatchEvent(new PushSignaturesEvent(signatures))
-              } catch (error) {
-                this.error = error
-              }
-            }}"
-          >
+          <md-filled-button @click="${this.handleImportButtonClick}">
             Import from file
           </md-filled-button>
           <md-text-button
@@ -184,5 +156,29 @@ export class SignatureLoaderElement extends LitElement {
           </md-text-button>
         </div>
       </md-dialog>`
+  }
+
+  private async handleImportButtonClick() {
+    if (this.signaturesFileInput === null || this.parserSelector === null)
+      return
+
+    const files = this.signaturesFileInput.files
+    if (files === null) return
+
+    this.error = undefined
+
+    try {
+      const signatures: Signature[] = []
+      for (let i = 0; i < files.length; i++) {
+        const parser =
+          this.parsers[Number.parseInt(this.parserSelector.value)].parser
+        const signature = await parser.parse(files.item(i)!)
+        signatures.push(...signature)
+      }
+      this.signaturesFileInput.value = ''
+      this.dispatchEvent(new PushSignaturesEvent(signatures))
+    } catch (error) {
+      this.error = error
+    }
   }
 }
