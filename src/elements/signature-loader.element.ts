@@ -16,9 +16,23 @@ export class SignatureLoaderElement extends LitElement {
     :host {
       --md-dialog-container-color: var(--md-sys-color-surface);
     }
+
     .buttons {
       display: flex;
       gap: 8px;
+    }
+
+    .error-conatiner {
+      background-color: var(--md-sys-color-error);
+      color: var(--md-sys-color-on-error);
+      border-radius: 28px;
+      padding-inline: 24px;
+      padding-block: 18px;
+    }
+
+    label {
+      display: inline-block;
+      margin-bottom: 12px;
     }
   `
 
@@ -125,9 +139,12 @@ export class SignatureLoaderElement extends LitElement {
         <div slot="headline">Signature Import</div>
         <form slot="content" id="signature-import-dialog-form" method="dialog">
           <label for="signatures-file">
-            Select a file that contains signatures:
+            Select one or more files to import:
           </label>
           <input type="file" id="signatures-file" name="signatures" multiple />
+          <label for="parser-selector">
+            Specify the format of the file(s) to import:
+          </label>
           <select id="parser-selector">
             ${this.parsers.map(
               (p, index) => html`<option value="${index}">${p.name}</option>`
