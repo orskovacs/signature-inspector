@@ -127,12 +127,7 @@ export class SignatureLoaderElement extends LitElement {
           <label for="signatures-file">
             Select a file that contains signatures:
           </label>
-          <input
-            type="file"
-            id="signatures-file"
-            name="signatures"
-            accept="text/json"
-          />
+          <input type="file" id="signatures-file" name="signatures" multiple />
           <select id="parser-selector">
             ${this.parsers.map(
               (p, index) => html`<option value="${index}">${p.name}</option>`
@@ -153,16 +148,20 @@ export class SignatureLoaderElement extends LitElement {
               )
                 return
 
-              const file = this.signaturesFileInput.files?.item(0)
-              if (file === null || file === undefined) return
+              const files = this.signaturesFileInput.files
+              if (files === null) return
 
               this.error = undefined
 
               try {
-                const parser =
-                  this.parsers[Number.parseInt(this.parserSelector.value)]
-                    .parser
-                const signatures = await parser.parse(file)
+                const signatures: Signature[] = []
+                for (let i = 0; i < files.length; i++) {
+                  const parser =
+                    this.parsers[Number.parseInt(this.parserSelector.value)]
+                      .parser
+                  const signature = await parser.parse(files.item(i)!)
+                  signatures.push(...signature)
+                }
                 this.signaturesFileInput.value = ''
                 this.dispatchEvent(new PushSignaturesEvent(signatures))
               } catch (error) {
