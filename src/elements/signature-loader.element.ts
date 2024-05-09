@@ -8,6 +8,7 @@ import {
 } from '../contexts/signatures.context'
 import { SignatureParser } from '../parsers/signature-parser'
 import { SignaturesFileParser } from '../parsers/signatures-file-parser'
+import { Svc2004Parser } from '../parsers/svc-2004-parser'
 
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
@@ -26,8 +27,12 @@ export class SignatureLoaderElement extends LitElement {
     parser: SignatureParser
   }> = [
     {
-      name: 'signatures file',
+      name: 'Signatures file',
       parser: new SignaturesFileParser(),
+    },
+    {
+      name: 'SVC 2004 file',
+      parser: new Svc2004Parser(),
     },
   ]
 
