@@ -6,7 +6,7 @@ import {
   signaturesContext,
 } from '../contexts/signatures.context'
 import { consume } from '@lit/context'
-import { setupSignatureChart } from '../utils/chart.util'
+import { setupSignatureFeatureChart } from '../utils/chart.util'
 import { SignatureDataPoint } from 'signature-field'
 
 @customElement('graph-element')
@@ -44,6 +44,6 @@ function setupChart(
       return
     }
 
-    setupSignatureChart(element, signatures, feature)
+    setupSignatureFeatureChart(element, signatures, feature)
   })
 }

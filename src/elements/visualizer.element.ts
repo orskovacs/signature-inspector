@@ -50,6 +50,11 @@ export class VisualizerElement extends LitElement {
       'Visual',
       html`<visual-representation-element></visual-representation-element>`,
     ],
+    [
+      'summary',
+      'Summary',
+      html`<table-summary-element></table-summary-element>`,
+    ],
   ]
 
   @state()

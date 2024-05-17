@@ -5,4 +5,4 @@ window.addEventListener('load', () => {
   applyCustomTheme()
 })
 
-google.charts.load('current', { packages: ['corechart', 'line'] })
+google.charts.load('current', { packages: ['corechart', 'line', 'table'] })

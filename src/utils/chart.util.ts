@@ -1,6 +1,6 @@
 import { SignatureData } from '../contexts/signatures.context'
 
-export function setupSignatureChart(
+export function setupSignatureFeatureChart(
   element: Element,
   signatures: SignatureData[],
   feature: keyof SignatureData['signature']['dataPoints'][number]
@@ -49,5 +49,39 @@ export function setupSignatureChart(
     }
 
     chart.draw(data, options)
+  })
+}
+
+export function setupSignatureSummaryTable(
+  element: Element,
+  signatureData: SignatureData
+) {
+  google.charts.setOnLoadCallback(() => {
+    const data = new google.visualization.DataTable()
+    data.addColumn('number', 'Timestamp')
+    data.addColumn('number', 'X Coordinate')
+    data.addColumn('number', 'Y Coordinate')
+    data.addColumn('number', 'Pressure')
+    data.addColumn('number', 'Altitude angle')
+    data.addColumn('number', 'Azimuth angle')
+
+    const rows = signatureData.signature.dataPoints.map((p) => [
+      p.timeStamp,
+      p.xCoord,
+      p.yCoord,
+      p.pressure,
+      p.altitudeAngle,
+      p.azimuthAngle,
+    ])
+    data.addRows(rows)
+
+    const options: google.visualization.TableOptions = {
+      showRowNumber: true,
+      width: '100%',
+      height: '100%',
+    }
+
+    const table = new google.visualization.Table(element)
+    table.draw(data, options)
   })
 }
