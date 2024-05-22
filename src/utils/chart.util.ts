@@ -1,9 +1,11 @@
 import { SignatureData } from '../contexts/signatures.context'
+import { getFeatureDataFromSignature, standardize } from './signature.util'
 
 export function setupSignatureFeatureChart(
   element: Element,
   signatures: SignatureData[],
-  feature: keyof SignatureData['signature']['dataPoints'][number]
+  feature: keyof SignatureData['signature']['dataPoints'][number],
+  normalizeData: boolean
 ) {
   google.charts.setOnLoadCallback(() => {
     const chart = new google.visualization.LineChart(element)
@@ -40,8 +42,11 @@ export function setupSignatureFeatureChart(
       for (let i = 0; i < rowCount; i++) {
         const rowData = [i]
         signatures.forEach((s) => {
-          const dataPoint: number | undefined =
-            s.signature.dataPoints[i]?.[feature]
+          const featureData = normalizeData
+            ? standardize(getFeatureDataFromSignature(s.signature, feature))
+            : getFeatureDataFromSignature(s.signature, feature)
+
+          const dataPoint: number | undefined = featureData[i]
           rowData.push(dataPoint)
         })
         data.addRow(rowData)
