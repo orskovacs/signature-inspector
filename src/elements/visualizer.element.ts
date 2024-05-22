@@ -1,13 +1,22 @@
+import { provide } from '@lit/context'
 import { LitElement, css, html, nothing } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
+import { normalizeDataContext } from '../contexts/normalize-data.context'
 
 @customElement('visualizer-element')
 export class VisualizerElement extends LitElement {
   static styles = css`
+    :host {
+      display: grid;
+      grid-template-rows: 48px auto;
+      grid-template-columns: auto auto;
+    }
+
     div[role='tabpanel'] {
-      height: calc(100% - 48px);
+      height: 100%;
       overflow: auto;
       margin-inline: 16px;
+      grid-column: 1 / 3;
     }
 
     md-tabs {
@@ -15,7 +24,24 @@ export class VisualizerElement extends LitElement {
       overflow: auto;
       scrollbar-width: none;
     }
+
+    label {
+      font-size: var(
+        --md-primary-tab-label-text-size,
+        var(--md-sys-typescale-title-small-size, 0.875rem)
+      );
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      margin-inline: 16px;
+      margin-left: 26px;
+      gap: 6px;
+    }
   `
+
+  @provide({ context: normalizeDataContext })
+  @state()
+  private normalizeData: boolean = false
 
   private readonly tabData: ReadonlyArray<
     [id: string, name: string, content: ReturnType<typeof html>]
@@ -61,7 +87,8 @@ export class VisualizerElement extends LitElement {
   private activeTabIndex: number = 0
 
   render() {
-    return html`<md-tabs>
+    return html`
+      <md-tabs>
         ${this.tabData.map(
           ([id, name], index) =>
             html`<md-primary-tab
@@ -74,6 +101,13 @@ export class VisualizerElement extends LitElement {
             </md-primary-tab>`
         )}
       </md-tabs>
+      <label>
+        Normalize:
+        <md-switch
+          .selected=${this.normalizeData}
+          @click=${() => (this.normalizeData = !this.normalizeData)}
+        ></md-switch>
+      </label>
       ${this.tabData.map(
         ([id, , content], index) =>
           html`<div
@@ -84,6 +118,7 @@ export class VisualizerElement extends LitElement {
           >
             ${this.activeTabIndex === index ? content : nothing}
           </div>`
-      )}`
+      )}
+    `
   }
 }

@@ -1,5 +1,5 @@
 import { LitElement, css, html } from 'lit'
-import { customElement, property, state } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 import { ref } from 'lit/directives/ref.js'
 import {
   SignatureData,
@@ -8,6 +8,7 @@ import {
 import { consume } from '@lit/context'
 import { setupSignatureFeatureChart } from '../utils/chart.util'
 import { SignatureDataPoint } from 'signature-field'
+import { normalizeDataContext } from '../contexts/normalize-data.context'
 
 @customElement('graph-element')
 export class GraphElement extends LitElement {
@@ -19,19 +20,14 @@ export class GraphElement extends LitElement {
     }
   `
 
-  constructor() {
-    super()
-    this.addEventListener('dblclick', this.handleDoubleClick)
-  }
-
   @property({ type: String })
   public feature!: keyof SignatureDataPoint
 
   @consume({ context: signaturesContext, subscribe: true })
   private signatures!: SignatureData[]
 
-  @state()
-  private normalizeData: boolean = false
+  @consume({ context: normalizeDataContext, subscribe: true })
+  public normalizeData!: boolean
 
   render() {
     return html`<div
@@ -42,10 +38,6 @@ export class GraphElement extends LitElement {
         this.normalizeData
       )}
     ></div>`
-  }
-
-  private handleDoubleClick() {
-    this.normalizeData = !this.normalizeData
   }
 }
 
