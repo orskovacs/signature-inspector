@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="EbDbaLsDtw" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
