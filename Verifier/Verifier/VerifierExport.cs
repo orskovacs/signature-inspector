@@ -5,7 +5,7 @@ using EbDbaLsDtw;
 using Newtonsoft.Json;
 using SigStat.Common.Pipeline;
 
-namespace SignatureVerifier;
+namespace Verifier;
 
 [SupportedOSPlatform("browser")]
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]

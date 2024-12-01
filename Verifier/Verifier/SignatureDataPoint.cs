@@ -1,4 +1,4 @@
-namespace SignatureVerifier;
+namespace Verifier;
 
 public record struct SignatureDataPoint(
     long TimeStamp,

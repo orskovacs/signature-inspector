@@ -1,6 +1,6 @@
 using SigStat.Common;
 
-namespace SignatureVerifier;
+namespace Verifier;
 
 public static class SignatureDataExtensions
 {

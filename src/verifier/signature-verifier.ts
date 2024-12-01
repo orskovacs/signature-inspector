@@ -1,13 +1,13 @@
-import { SignatureVerifierProxy } from '../proxy/signature-verifier-proxy.ts'
+import { VerifierProxy } from '../proxy/verifier-proxy.ts'
 import { DotnetProxy } from '../proxy/dotnet-proxy.ts'
 import { Signature } from 'signature-field'
 
 export class SignatureVerifier {
-  private readonly _proxy: Promise<SignatureVerifierProxy>
+  private readonly _proxy: Promise<VerifierProxy>
   private readonly _id: Promise<string>
 
   constructor() {
-    this._proxy = DotnetProxy.instance.signatureVerifierProxy
+    this._proxy = DotnetProxy.instance.verifierProxy
     this._id = this._proxy.then((proxy) => proxy.InitializeNewVerifier())
   }
 

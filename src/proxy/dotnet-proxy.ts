@@ -1,8 +1,8 @@
 // @ts-ignore
-import { dotnet as dotnet_ } from '../../signature-verifier/bin/Release/net8.0/browser-wasm/AppBundle/_framework/dotnet'
-import { DotnetHostBuilder } from '../../signature-verifier/bin/Release/net8.0/browser-wasm'
-import type { DotnetAssemblyExports } from './dotnet-assembly-exports.ts'
-import { SignatureVerifierProxy } from './signature-verifier-proxy.ts'
+import { dotnet as dotnet_ } from '../../verifier/Verifier/bin/Release/net8.0/browser-wasm/AppBundle/_framework/dotnet'
+import { type DotnetHostBuilder } from '../../verifier/Verifier/bin/Release/net8.0/browser-wasm/'
+import { type DotnetAssemblyExports } from './dotnet-assembly-exports.ts'
+import { VerifierProxy } from './verifier-proxy.ts'
 
 export const dotnet: DotnetHostBuilder = dotnet_
 
@@ -14,14 +14,14 @@ export class DotnetProxy {
 
   private readonly _assemblyExports: Promise<DotnetAssemblyExports>
 
-  private readonly _signatureVerifierProxy: Promise<SignatureVerifierProxy>
-  public get signatureVerifierProxy(): Promise<SignatureVerifierProxy> {
-    return this._signatureVerifierProxy
+  private readonly _verifierProxy: Promise<VerifierProxy>
+  public get verifierProxy(): Promise<VerifierProxy> {
+    return this._verifierProxy
   }
 
   private constructor() {
     this._assemblyExports = this.initializeAssemblyExports()
-    this._signatureVerifierProxy = this._assemblyExports.then(a => a.SignatureVerifier.VerifierExport)
+    this._verifierProxy = this._assemblyExports.then(a => a.Verifier.VerifierExport)
   }
 
   private async initializeAssemblyExports(): Promise<DotnetAssemblyExports> {
