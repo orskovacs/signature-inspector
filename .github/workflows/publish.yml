@@ -24,12 +24,12 @@ jobs:
     - name: Upload GitHub Pages artifact
       uses: actions/upload-pages-artifact@v3.0.1
       with:
-        name: signature-inspector-static
+        name: github-pages
         path: dist/
         
   deploy:
       environment:
-        name: signature-inspector-static
+        name: github-pages
         url: ${{ steps.deployment.outputs.page_url }}
       permissions:
         pages: write
