@@ -4,7 +4,9 @@ import {
   HideAllSignaturesEvent,
   RemoveAllSignaturesEvent,
   RemoveSignatureEvent,
-  SetSignatureColorEvent,
+  ResetTrainSignaturesEvent,
+  SetSignatureColorEvent, SetSignatureGenuinenessEvent,
+  SetSignaturesForTrainingByIndexEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
   SignatureData,
@@ -128,11 +130,34 @@ export class SignatureListElement extends LitElement {
           <md-filled-tonal-button
             ?disabled=${this.visibleSignaturesCount === 0}
             @click=${() => {
-              new SignatureVerifier()
+              this.dispatchEvent(new ResetTrainSignaturesEvent())
+              const verifier = new SignatureVerifier()
+              verifier
                 .trainUsingSignatures(
                   this.selectedSignatures.map((s) => s.signature)
                 )
-                .then()
+                .then(() => {
+                  const selectedSignaturesIndexes: number[] = []
+                  this.signatures.forEach((s, i) => {
+                    if (s.visible) {
+                      selectedSignaturesIndexes.push(i)
+                    }
+                  })
+
+                  this.dispatchEvent(
+                    new SetSignaturesForTrainingByIndexEvent(
+                      selectedSignaturesIndexes
+                    )
+                  )
+
+                  this.signatures.forEach((s, i) => {
+                    if (!s.visible) {
+                      verifier.testSignature(s.signature).then(isGenuine => {
+                        this.dispatchEvent(new SetSignatureGenuinenessEvent(i, isGenuine))
+                      })
+                    }
+                  })
+                })
             }}
           >
             Train
@@ -187,6 +212,23 @@ export class SignatureListElement extends LitElement {
         ></md-checkbox>
       </div>
       <div slot="end">
+        <md-chip-set aria-label="Training results">
+          ${s.genuineness === 'train'
+            ? html`<md-assist-chip
+                class="train"
+                label="Used for training"
+              ></md-assist-chip>`
+            : nothing}
+          ${s.genuineness === 'genuine'
+            ? html`<md-assist-chip
+                class="genuine"
+                label="Genuine"
+              ></md-assist-chip>`
+            : nothing}
+          ${s.genuineness === 'fake'
+            ? html`<md-assist-chip class="fake" label="Fake"></md-assist-chip>`
+            : nothing}
+        </md-chip-set>
         <label
           class="color-input-label"
           .id="hex-${index}"

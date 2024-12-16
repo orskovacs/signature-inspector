@@ -5,6 +5,7 @@ export type SignatureData = {
   signature: Signature
   visible: boolean
   colorHex: string
+  genuineness?: 'genuine' | 'fake' | 'train'
 }
 
 export const signaturesContext = createContext<Array<SignatureData>>(
@@ -112,6 +113,46 @@ export class RemoveAllSignaturesEvent extends CustomEvent<void> {
   }
 }
 
+export class SetSignaturesForTrainingByIndexEvent extends CustomEvent<{
+  signatureIndexes: number[]
+}> {
+  public static readonly key = 'set-signatures-for-training'
+
+  constructor(signatureIndexes: number[]) {
+    super(SetSignaturesForTrainingByIndexEvent.key, {
+      bubbles: true,
+      composed: true,
+      detail: { signatureIndexes },
+    })
+  }
+}
+
+export class ResetTrainSignaturesEvent extends CustomEvent<void> {
+  public static readonly key = 'reset-signatures'
+
+  constructor() {
+    super(ResetTrainSignaturesEvent.key, {
+      bubbles: true,
+      composed: true,
+    })
+  }
+}
+
+export class SetSignatureGenuinenessEvent extends CustomEvent<{
+  signatureIndex: number
+  isGenuine: boolean
+}> {
+  public static readonly key = 'set-signature-genuineness'
+
+  constructor(signatureIndex: number, isGenuine: boolean) {
+    super(SetSignatureGenuinenessEvent.key, {
+      bubbles: true,
+      composed: true,
+      detail: { signatureIndex, isGenuine },
+    })
+  }
+}
+
 type CustomEventMap = {
   [PushSignatureEvent.key]: PushSignatureEvent
   [PushSignaturesEvent.key]: PushSignaturesEvent
@@ -121,6 +162,9 @@ type CustomEventMap = {
   [SetSignatureColorEvent.key]: SetSignatureColorEvent
   [RemoveSignatureEvent.key]: RemoveSignatureEvent
   [RemoveAllSignaturesEvent.key]: RemoveAllSignaturesEvent
+  [SetSignaturesForTrainingByIndexEvent.key]: SetSignaturesForTrainingByIndexEvent
+  [ResetTrainSignaturesEvent.key]: ResetTrainSignaturesEvent
+  [SetSignatureGenuinenessEvent.key]: SetSignatureGenuinenessEvent
 }
 
 declare global {

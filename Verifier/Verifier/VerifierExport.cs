@@ -46,4 +46,17 @@ public static partial class VerifierExport
         
         return trainingTask;
     }
+
+    [JSExport]
+    public static Task<bool> TestSignature(string id, string signatureJson)
+    {
+        var signatureData = JsonConvert.DeserializeObject<SignatureData>(signatureJson);
+        var signers = new SignatureInspectorClientLoader([signatureData]).EnumerateSigners().ToList();
+        var signature = signers[0].Signatures[0];
+        EbDbaLsDtwVerifierItems.FeatureExtractorPipeline.Transform(signature);
+        
+        var testTask = new Task<bool>(() => Math.Abs(Classifiers[id].Test(TrainedModels[id], signature) - 1.0) < 0.001);
+        testTask.Start();
+        return testTask;
+    }
 }

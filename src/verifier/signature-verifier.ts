@@ -21,4 +21,15 @@ export class SignatureVerifier {
     let signaturesJson = JSON.stringify(signatureDataArray)
     await proxy.TrainUsingSignatures(id, signaturesJson)
   }
+
+  public async testSignature(signature: Signature): Promise<boolean> {
+    let proxy = await this._proxy
+    let id = await this._id
+    let signatureData = {
+      timeStamp: signature.creationTimeStamp,
+      dataPoints: signature.dataPoints,
+    }
+    let signatureJson = JSON.stringify(signatureData)
+    return await proxy.TestSignature(id, signatureJson)
+  }
 }
