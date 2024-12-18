@@ -18,8 +18,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        ref: ${{ github.ref }}
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
@@ -27,14 +25,14 @@ jobs:
         dotnet-version: '8.x'
 
     - run: dotnet workload restore
-      working-directory: Verifier
+      working-directory: verifier
 
     - run: dotnet build
-      working-directory: Verifier
+      working-directory: verifier
 
     - name: Publish dotnet WASM project
       run: dotnet publish
-      working-directory: Verifier
+      working-directory: verifier
 
     - name: Build static assets using Node
       uses: actions/setup-node@v4
