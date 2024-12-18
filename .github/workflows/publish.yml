@@ -24,6 +24,7 @@ jobs:
       with:
         dotnet-version: '8.x'
         cache: 'true'
+        cache-dependency-path: verifier/Verifier/packages.lock.json
     - run: dotnet build
       working-directory: verifier
 
