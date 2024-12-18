@@ -28,7 +28,7 @@ jobs:
 
     - name: Publish dotnet WASM project
       run: dotnet publish
-      working-directory: verifier
+      working-directory: ./verifier
 
     - name: Build static assets using Node
       uses: actions/setup-node@v4
