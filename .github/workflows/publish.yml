@@ -21,15 +21,14 @@ jobs:
       with:
         ref: ${{ github.ref }}
 
-    - name: Open Web Client Directory
-      working-directory: .
-      run: |
-        ls -la
-
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'
+
+    - run: dotnet workload restore
+      working-directory: Verifier
+
     - run: dotnet build
       working-directory: Verifier
 
