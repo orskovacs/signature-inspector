@@ -23,6 +23,7 @@ jobs:
       with:
         name: verifier
         repository: orskovacs/online-handwritten-signature-verification
+        github-token: ${{ secrets.VERIFIER_ARTIFACT_PAT }}
         path: ~/nuget
 
     - run: ls -a ~/nuget
