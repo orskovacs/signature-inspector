@@ -19,6 +19,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - uses: actions/download-artifact@v4
+      with:
+        name: verifier
+        repository: orskovacs/online-handwritten-signature-verification
+        path: ~/nuget
+
+    - run: ls -a ~/nuget
+
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
