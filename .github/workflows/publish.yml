@@ -22,6 +22,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
+        dotnet-version: '8.x'
         cache: 'true'
     - run: dotnet build <my project>
       working-directory: verifier
