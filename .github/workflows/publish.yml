@@ -21,7 +21,6 @@ jobs:
 
     - uses: actions/download-artifact@v4
       with:
-        name: verifier
         repository: orskovacs/online-handwritten-signature-verification
         github-token: ${{ secrets.VERIFIER_ARTIFACT_PAT }}
         run-id: ${{ github.event.workflow_run.id }}
