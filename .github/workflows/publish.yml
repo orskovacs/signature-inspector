@@ -24,11 +24,12 @@ jobs:
       with:
         dotnet-version: '8.x'
         cache: 'true'
-    - run: dotnet build <my project>
+    - run: dotnet build
       working-directory: verifier
 
     - name: Publish dotnet WASM project
       run: dotnet publish
+      working-directory: verifier
 
     - name: Build static assets using Node
       uses: actions/setup-node@v4
