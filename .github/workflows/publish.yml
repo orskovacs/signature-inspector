@@ -31,11 +31,11 @@ jobs:
       with:
         dotnet-version: '8.x'
     - run: dotnet build
-      working-directory: verifier
+      working-directory: Verifier
 
     - name: Publish dotnet WASM project
       run: dotnet publish
-      working-directory: verifier
+      working-directory: Verifier
 
     - name: Build static assets using Node
       uses: actions/setup-node@v4
