@@ -7,7 +7,10 @@ import {
   PushSignaturesEvent,
   RemoveAllSignaturesEvent,
   RemoveSignatureEvent,
+  ResetTrainSignaturesEvent,
   SetSignatureColorEvent,
+  SetSignatureGenuinenessEvent,
+  SetSignaturesForTrainingByIndexEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
   SignatureData,
@@ -99,6 +102,18 @@ export class AppElement extends LitElement {
       RemoveAllSignaturesEvent.key,
       this.handleRemoveAllSignaturesEvent
     )
+    this.addEventListener(
+      SetSignaturesForTrainingByIndexEvent.key,
+      this.handleSetSignaturesForTrainingByIndexEvent
+    )
+    this.addEventListener(
+      ResetTrainSignaturesEvent.key,
+      this.handleResetTrainingSignatures
+    )
+    this.addEventListener(
+      SetSignatureGenuinenessEvent.key,
+      this.handleSetSignatureGenuinenessEvent
+    )
   }
 
   render() {
@@ -116,7 +131,12 @@ export class AppElement extends LitElement {
   private handlePushSignatureEvent(e: PushSignatureEvent): void {
     this.signatures = [
       ...this.signatures,
-      { signature: e.detail, visible: true, colorHex: getRandomColorHex() },
+      {
+        signature: e.detail,
+        visible: true,
+        colorHex: getRandomColorHex(),
+        genuineness: undefined,
+      },
     ]
   }
 
@@ -127,6 +147,7 @@ export class AppElement extends LitElement {
         signature: s,
         visible: true,
         colorHex: getRandomColorHex(),
+        usedForTraining: false,
       })),
     ]
   }
@@ -163,5 +184,31 @@ export class AppElement extends LitElement {
 
   private handleRemoveAllSignaturesEvent(_e: RemoveAllSignaturesEvent): void {
     this.signatures = []
+  }
+
+  private handleSetSignaturesForTrainingByIndexEvent(
+    e: SetSignaturesForTrainingByIndexEvent
+  ): void {
+    this.signatures.forEach((s, i) => {
+      if (e.detail.signatureIndexes.includes(i)) {
+        s.genuineness = 'train'
+      }
+
+      this.signatures = [...this.signatures]
+    })
+  }
+
+  private handleResetTrainingSignatures(_e: ResetTrainSignaturesEvent): void {
+    this.signatures.forEach((s) => (s.genuineness = undefined))
+    this.signatures = [...this.signatures]
+  }
+
+  private handleSetSignatureGenuinenessEvent(
+    e: SetSignatureGenuinenessEvent
+  ): void {
+    this.signatures[e.detail.signatureIndex].genuineness = e.detail.isGenuine
+      ? 'genuine'
+      : 'fake'
+    this.signatures = [...this.signatures]
   }
 }

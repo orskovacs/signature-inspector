@@ -1,11 +1,16 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Publish to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   build:
@@ -13,6 +18,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.x'
+
+    - name: Add GitHub Packages source
+      run: dotnet nuget add source --username orskovacs --password ${{ secrets.GH_PACKAGES_PAT }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/orskovacs/index.json"
+
+    - run: dotnet workload restore
+      working-directory: verifier
+
+    - run: dotnet build
+      working-directory: verifier
+
+    - name: Publish dotnet WASM project
+      run: dotnet publish
+      working-directory: verifier
+
     - name: Build static assets using Node
       uses: actions/setup-node@v4
       with:
@@ -26,7 +50,7 @@ jobs:
       with:
         name: github-pages
         path: dist/
-        
+
   deploy:
       environment:
         name: github-pages
