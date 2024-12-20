@@ -24,6 +24,9 @@ jobs:
       with:
         dotnet-version: '8.x'
 
+    - name: Add GitHub Packages source
+      run: dotnet nuget add source --username orskovacs --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/orskovacs/index.json"
+
     - run: dotnet workload restore
       working-directory: verifier
 
