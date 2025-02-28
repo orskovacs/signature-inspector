@@ -4,7 +4,7 @@ import { type DotnetHostBuilder } from '../../verifier/Verifier/bin/Release/net8
 import { type DotnetAssemblyExports } from './dotnet-assembly-exports.ts'
 import { VerifierProxy } from './verifier-proxy.ts'
 
-export const dotnet: DotnetHostBuilder = dotnet_
+const dotnet: DotnetHostBuilder = dotnet_
 
 export class DotnetProxy {
   private static readonly _instance: DotnetProxy = new DotnetProxy();
