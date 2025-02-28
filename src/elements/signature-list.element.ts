@@ -13,7 +13,7 @@ import {
   signaturesContext,
 } from '../contexts/signatures.context'
 import { consume } from '@lit/context'
-import { SignatureVerifier } from '../verifier/signature-verifier.ts'
+import { LsDtwEbDbaVerifier } from '../verifier/ls-dtw-eb-dba-verifier.ts'
 
 @customElement('signature-list-element')
 export class SignatureListElement extends LitElement {
@@ -131,7 +131,7 @@ export class SignatureListElement extends LitElement {
             ?disabled=${this.visibleSignaturesCount === 0}
             @click=${() => {
               this.dispatchEvent(new ResetTrainSignaturesEvent())
-              const verifier = new SignatureVerifier()
+              const verifier = new LsDtwEbDbaVerifier()
               verifier
                 .trainUsingSignatures(
                   this.selectedSignatures.map((s) => s.signature)
