@@ -2,7 +2,7 @@ import { VerifierProxy } from '../proxy/verifier-proxy.ts'
 import { DotnetProxy } from '../proxy/dotnet-proxy.ts'
 import { Signature } from 'signature-field'
 
-export class LsDtwEbDbaVerifier {
+export class EbDbaLsDtwVerifier {
   private readonly _proxy: Promise<VerifierProxy>
   private readonly _id: Promise<string>
 
