@@ -1,5 +1,5 @@
-import { SignatureVerifierManager } from '../proxy/signature-verifier-manager.ts'
-import { DotNetInteropManager } from '../proxy/dot-net-interop-manager.ts'
+import { SignatureVerifierManager } from '../dot-net-interop/signature-verifier-manager.ts'
+import { DotNetInteropManager } from '../dot-net-interop/dot-net-interop-manager.ts'
 import { Signature } from 'signature-field'
 
 export class EbDbaLsDtwVerifier {
