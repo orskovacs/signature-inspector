@@ -6,4 +6,9 @@ export default {
       'top-level-await': true
     },
   },
+  server :{
+    fs: {
+      allow: [".."]
+    }
+  }
 } satisfies UserConfig
