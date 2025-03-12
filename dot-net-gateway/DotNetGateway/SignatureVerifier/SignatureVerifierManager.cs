@@ -14,11 +14,21 @@ public class SignatureVerifierManager
 
     private SignatureVerifierManager() { }
     
-    public string InitializeNewVerifier()
+    public string InitializeNewVerifier(string classifierId)
     {
+        IClassifier? classifier = null;
+        if (classifierId == "EbDbaLsDtw")
+        {
+            classifier = new EbDbaLsDtwClassifier(distances =>
+                distances.Average() + distances.StandardDeviation() * 1.25);
+        }
+        if (classifier is null)
+        {
+            throw new ApplicationException("Invalid classifier id");
+        }
+        
         var id = Guid.NewGuid().ToString();
-        Classifiers[id] = new EbDbaLsDtwClassifier(distances =>
-            distances.Average() + distances.StandardDeviation() * 1.25);
+        Classifiers[id] = classifier;
         return id;
     }
     

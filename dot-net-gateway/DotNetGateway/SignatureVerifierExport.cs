@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices.JavaScript;
 using System.Runtime.Versioning;
 using DotNetGateway.SignatureVerifier;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedType.Global
 
@@ -12,14 +13,14 @@ public static partial class SignatureVerifierExport
     private static readonly SignatureVerifierManager Manager = SignatureVerifierManager.Instance;
 
     [JSExport]
-    public static string InitializeNewVerifier() => Manager.InitializeNewVerifier();
+    public static string InitializeNewVerifier(string classifierId) => Manager.InitializeNewVerifier(classifierId);
 
     [JSExport]
     public static Task TrainUsingSignatures(string classifierId, string signaturesJson)
     {
         ArgumentNullException.ThrowIfNull(classifierId);
         ArgumentNullException.ThrowIfNull(signaturesJson);
-        
+
         return Manager.TrainUsingSignatures(classifierId, signaturesJson);
     }
 
@@ -28,7 +29,7 @@ public static partial class SignatureVerifierExport
     {
         ArgumentNullException.ThrowIfNull(classifierId);
         ArgumentNullException.ThrowIfNull(signatureJson);
-        
+
         return Manager.TestSignature(classifierId, signatureJson);
     }
 }
