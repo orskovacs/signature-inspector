@@ -1,14 +1,25 @@
 import type { UserConfig } from 'vite'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default {
   esbuild: {
     supported: {
-      'top-level-await': true
+      'top-level-await': true,
     },
   },
-  server :{
+  server: {
     fs: {
-      allow: [".."]
-    }
-  }
+      allow: ['..'],
+    },
+  },
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: '../dot-net-gateway/DotNetGateway/bin/Release/net8.0/browser-wasm/AppBundle/_framework/*',
+          dest: 'assets',
+        },
+      ],
+    }),
+  ],
 } satisfies UserConfig
