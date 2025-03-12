@@ -21,14 +21,14 @@ jobs:
       run: dotnet nuget add source --username orskovacs --password ${{ secrets.GH_PACKAGES_PAT }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/orskovacs/index.json"
 
     - run: dotnet workload restore
-      working-directory: verifier
+      working-directory: dot-net-gateway
 
     - run: dotnet build
-      working-directory: verifier
+      working-directory: dot-net-gateway
 
     - name: Publish dotnet WASM project
       run: dotnet publish
-      working-directory: verifier
+      working-directory: dot-net-gateway
 
     - name: Build static assets using Node
       uses: actions/setup-node@v4
