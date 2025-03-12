@@ -1,7 +1,7 @@
 using SigStat.Common;
 using SigStat.Common.Loaders;
 
-namespace Verifier;
+namespace DotNetGateway.SignatureVerifier;
 
 public class SignatureInspectorClientLoader(List<SignatureData> signatureDataList) : DataSetLoader
 {
@@ -9,7 +9,7 @@ public class SignatureInspectorClientLoader(List<SignatureData> signatureDataLis
 
     public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
     {
-        var signer = new Signer { ID = new Guid().ToString() };
+        var signer = new Signer { ID = Guid.NewGuid().ToString() };
         
         signer.Signatures = signatureDataList
             .Select(s => s.ToSignature(signer))
