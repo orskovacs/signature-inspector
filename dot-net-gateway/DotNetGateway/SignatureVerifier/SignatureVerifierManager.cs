@@ -1,33 +1,30 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices.JavaScript;
-using System.Runtime.Versioning;
 using EbDbaLsDtw;
 using Newtonsoft.Json;
 using SigStat.Common.Pipeline;
 
-namespace Verifier;
+namespace DotNetGateway.SignatureVerifier;
 
-[SupportedOSPlatform("browser")]
-[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-public static partial class VerifierExport
+public class SignatureVerifierManager
 {
-    private static readonly Dictionary<string, IClassifier> Classifiers = new();
-    private static readonly Dictionary<string, ISignerModel> TrainedModels = new();
+    public static SignatureVerifierManager Instance { get; } = new();
 
-    [JSExport]
-    public static string InitializeNewVerifier()
+    private Dictionary<string, IClassifier> Classifiers { get; } = new();
+    
+    private Dictionary<string, ISignerModel> TrainedModels { get; } = new();
+
+    private SignatureVerifierManager() { }
+    
+    public string InitializeNewVerifier()
     {
         var id = Guid.NewGuid().ToString();
         Classifiers[id] = new EbDbaLsDtwClassifier(distances =>
             distances.Average() + distances.StandardDeviation() * 1.25);
         return id;
     }
-
-    [JSExport]
-    public static Task TrainUsingSignatures(string id, string signaturesJson)
+    
+    public Task TrainUsingSignatures(string classifierId, string signaturesJson)
     {
-        ArgumentNullException.ThrowIfNull(id);
-        ArgumentNullException.ThrowIfNull(Classifiers[id]);
+        ArgumentNullException.ThrowIfNull(Classifiers[classifierId]);
         
         var signatureDataList = JsonConvert.DeserializeObject<List<SignatureData>>(signaturesJson) ?? [];
         var signers = new SignatureInspectorClientLoader(signatureDataList).EnumerateSigners().ToList();
@@ -40,22 +37,23 @@ public static partial class VerifierExport
 
         var trainingTask = new Task(() =>
         {
-            TrainedModels[id] = Classifiers[id].Train(signatures);
+            TrainedModels[classifierId] = Classifiers[classifierId].Train(signatures);
         });
         trainingTask.Start();
         
         return trainingTask;
     }
-
-    [JSExport]
-    public static Task<bool> TestSignature(string id, string signatureJson)
+    
+    public Task<bool> TestSignature(string classifierId, string signatureJson)
     {
+        ArgumentNullException.ThrowIfNull(Classifiers[classifierId]);
+        
         var signatureData = JsonConvert.DeserializeObject<SignatureData>(signatureJson);
         var signers = new SignatureInspectorClientLoader([signatureData]).EnumerateSigners().ToList();
         var signature = signers[0].Signatures[0];
         EbDbaLsDtwVerifierItems.FeatureExtractorPipeline.Transform(signature);
         
-        var testTask = new Task<bool>(() => Math.Abs(Classifiers[id].Test(TrainedModels[id], signature) - 1.0) < 0.001);
+        var testTask = new Task<bool>(() => Math.Abs(Classifiers[classifierId].Test(TrainedModels[classifierId], signature) - 1.0) < 0.001);
         testTask.Start();
         return testTask;
     }

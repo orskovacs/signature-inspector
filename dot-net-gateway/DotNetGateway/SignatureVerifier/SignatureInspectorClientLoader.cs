@@ -1,7 +1,7 @@
 using SigStat.Common;
 using SigStat.Common.Loaders;
 
-namespace Verifier;
+namespace DotNetGateway.SignatureVerifier;
 
 public class SignatureInspectorClientLoader(List<SignatureData> signatureDataList) : DataSetLoader
 {

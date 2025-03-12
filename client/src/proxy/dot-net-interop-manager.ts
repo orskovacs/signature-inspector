@@ -2,7 +2,7 @@
 import { dotnet as dotnet_ } from '../../../dot-net-gateway/DotNetGateway/bin/Release/net8.0/browser-wasm/AppBundle/_framework/dotnet'
 import { type DotnetHostBuilder } from '../../../dot-net-gateway/DotNetGateway/bin/Release/net8.0/browser-wasm/'
 import { type DotNetAssemblyExports } from './dot-net-assembly-exports.ts'
-import { VerifierProxy } from './verifier-proxy.ts'
+import { SignatureVerifierManager } from './signature-verifier-manager.ts'
 
 const dotnet: DotnetHostBuilder = dotnet_
 
@@ -14,14 +14,14 @@ export class DotNetInteropManager {
 
   private readonly _assemblyExports: Promise<DotNetAssemblyExports>
 
-  private readonly _verifierProxy: Promise<VerifierProxy>
-  public get verifierProxy(): Promise<VerifierProxy> {
-    return this._verifierProxy
+  private readonly _signatureVerifierManager: Promise<SignatureVerifierManager>
+  public get signatureVerifierManager(): Promise<SignatureVerifierManager> {
+    return this._signatureVerifierManager
   }
 
   private constructor() {
     this._assemblyExports = this.initializeAssemblyExports()
-    this._verifierProxy = this._assemblyExports.then(a => a.Verifier.VerifierExport)
+    this._signatureVerifierManager = this._assemblyExports.then(a => a.DotNetGateway.SignatureVerifierExport)
   }
 
   private async initializeAssemblyExports(): Promise<DotNetAssemblyExports> {

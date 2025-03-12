@@ -1,4 +1,4 @@
-namespace Verifier;
+namespace DotNetGateway.SignatureVerifier;
 
 public record struct SignatureDataPoint(
     long TimeStamp,

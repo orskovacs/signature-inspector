@@ -1,7 +1,7 @@
-import { VerifierProxy } from './verifier-proxy.ts'
+import { SignatureVerifierManager } from './signature-verifier-manager.ts'
 
 export type DotNetAssemblyExports = {
-  Verifier: {
-    VerifierExport: VerifierProxy
+  DotNetGateway: {
+    SignatureVerifierExport: SignatureVerifierManager
   }
 }
