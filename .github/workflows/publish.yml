@@ -35,6 +35,7 @@ jobs:
       with:
         node-version: 'latest'
         cache: 'npm'
+        cache-dependency-path: 'client'
     - run: npm ci
       working-directory: client
     - run: npm run build
