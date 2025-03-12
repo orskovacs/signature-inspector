@@ -1,5 +1,5 @@
 import { VerifierProxy } from '../proxy/verifier-proxy.ts'
-import { DotnetProxy } from '../proxy/dotnet-proxy.ts'
+import { DotNetInteropManager } from '../proxy/dot-net-interop-manager.ts'
 import { Signature } from 'signature-field'
 
 export class EbDbaLsDtwVerifier {
@@ -7,7 +7,7 @@ export class EbDbaLsDtwVerifier {
   private readonly _id: Promise<string>
 
   constructor() {
-    this._proxy = DotnetProxy.instance.verifierProxy
+    this._proxy = DotNetInteropManager.instance.verifierProxy
     this._id = this._proxy.then((proxy) => proxy.InitializeNewVerifier())
   }
 

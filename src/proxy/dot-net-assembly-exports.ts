@@ -1,6 +1,6 @@
 import { VerifierProxy } from './verifier-proxy.ts'
 
-export type DotnetAssemblyExports = {
+export type DotNetAssemblyExports = {
   Verifier: {
     VerifierExport: VerifierProxy
   }
