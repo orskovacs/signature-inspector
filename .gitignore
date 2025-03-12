@@ -1,5 +1,1 @@
-node_modules
-.vscode
-dist/*
-/.idea/
 /dot-net-gateway/.idea
