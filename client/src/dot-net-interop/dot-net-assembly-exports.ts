@@ -13,4 +13,8 @@ export interface SignatureVerifierImport extends DotNetImport {
   TestSignature: (id: string, signatureJson: string) => Promise<boolean>
 }
 
-export interface SignatureParserImport extends DotNetImport {}
+export interface SignatureParserImport extends DotNetImport {
+  InitializeNewParser(loaderId: string): string
+
+  ParseFileContents(id: string, fileContents: string): Promise<string>
+}
