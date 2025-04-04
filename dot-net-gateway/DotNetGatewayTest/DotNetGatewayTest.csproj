@@ -21,4 +21,8 @@
         <Using Include="NUnit.Framework"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DotNetGateway\DotNetGateway.csproj" />
+    </ItemGroup>
+
 </Project>
