@@ -1,7 +1,7 @@
 import { LitElement, css, html, nothing } from 'lit'
 import { customElement, query, state } from 'lit/decorators.js'
 import { MdDialog } from '@material/web/dialog/dialog.ts'
-import { Signature, SignatureField } from 'signature-field'
+import { SignatureField } from 'signature-field'
 import {
   PushSignatureEvent,
   PushSignaturesEvent,
@@ -9,6 +9,8 @@ import {
 import { SignatureParser } from '../parsers/signature-parser'
 import { SignaturesFileParser } from '../parsers/signatures-file-parser'
 import { Svc2004Parser } from '../parsers/svc-2004-parser'
+import { Signature } from '../model/signature.ts'
+import { Signer } from '../model/signer.ts'
 
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
@@ -122,8 +124,11 @@ export class SignatureLoaderElement extends LitElement {
             @click="${async () => {
               const dataPoints = this.signatureField.dataPoints
               this.signatureField.clear()
+              const signer = new Signer(crypto.randomUUID())
+              const signature = new Signature(dataPoints)
+              signer.addSignatures(signature)
               this.dispatchEvent(
-                new PushSignatureEvent(new Signature(dataPoints))
+                new PushSignatureEvent(signature)
               )
             }}"
           >

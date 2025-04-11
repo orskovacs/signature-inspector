@@ -1,7 +1,7 @@
 import { SignatureVerifier } from './signature-verifier.ts'
-import { Signature } from 'signature-field'
 import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
 import { SignatureVerifierImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
+import { Signature } from '../model/signature.ts'
 
 export abstract class DotNetBackedSignatureVerifier
   extends DotNetBackedObject<SignatureVerifierImport>

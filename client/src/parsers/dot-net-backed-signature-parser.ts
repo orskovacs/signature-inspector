@@ -1,6 +1,6 @@
 import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
 import { SignatureParser } from './signature-parser.ts'
-import { Signature } from 'signature-field'
+import { Signature } from '../model/signature.ts'
 import { SignatureParserImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
 
 export abstract class DotNetBackedSignatureParser

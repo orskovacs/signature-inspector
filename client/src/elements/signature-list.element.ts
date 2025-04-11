@@ -199,8 +199,8 @@ export class SignatureListElement extends LitElement {
 
   private getItemTemplate = (s: SignatureData, index: number) =>
     html`<md-list-item>
-      <span>${new Date(s.signature.creationTimeStamp).toLocaleString()}</span>
-      <div slot="start">
+      <span>[${s.signature.signer?.id ?? "???"}]: ${new Date(s.signature.creationTimeStamp).toLocaleString()}</span>
+      <div slot="start"
         <md-checkbox
           touch-target="wrapper"
           ?checked=${s.visible}

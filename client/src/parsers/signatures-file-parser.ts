@@ -1,5 +1,5 @@
-import { Signature } from 'signature-field'
 import { SignatureParser } from './signature-parser'
+import { Signature } from '../model/signature.ts'
 
 export class SignaturesFileParser implements SignatureParser {
   async parse(file: File): Promise<Signature[]> {

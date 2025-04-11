@@ -1,5 +1,6 @@
-import { Signature, SignatureDataPoint } from 'signature-field'
+import { SignatureDataPoint } from 'signature-field'
 import { SignatureParser } from './signature-parser'
+import { Signature } from '../model/signature.ts'
 
 export class Svc2004Parser implements SignatureParser {
   private static extractPointDataFromLine(line: string): SignatureDataPoint {
