@@ -1,4 +1,4 @@
-namespace DotNetGateway.SignatureParser.Svc2021;
+namespace DotNetGateway.SignatureParser.Svc2021.External;
 
 public static class StringExtensions
 {

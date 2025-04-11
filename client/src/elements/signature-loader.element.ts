@@ -11,6 +11,7 @@ import { SignaturesFileParser } from '../parsers/signatures-file-parser'
 import { Svc2004Parser } from '../parsers/svc-2004-parser'
 import { Signature } from '../model/signature.ts'
 import { Signer } from '../model/signer.ts'
+import { DeepSignParser } from '../parsers/deep-sign-parser.ts'
 
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
@@ -50,6 +51,10 @@ export class SignatureLoaderElement extends LitElement {
       name: 'SVC 2004 file',
       parser: new Svc2004Parser(),
     },
+    {
+      name: 'DeepSignDB',
+      parser: new DeepSignParser(),
+    }
   ]
 
   @query('#signature-input-dialog')

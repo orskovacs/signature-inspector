@@ -15,10 +15,10 @@ public class SignatureVerifierManagerTests
     public void InitializeNonExistentVerifier()
     {
         var manager = SignatureVerifierManager.Instance;
-        Assert.That(() => manager.InitializeNewVerifier("---"), 
+        Assert.That(() => manager.InitializeNewVerifier("---"),
             Throws.Exception.With.Message.EqualTo("Invalid classifier id"));
     }
-    
+
     [Test]
     public void InitializeNewEbDbaLsDtwVerifier()
     {
