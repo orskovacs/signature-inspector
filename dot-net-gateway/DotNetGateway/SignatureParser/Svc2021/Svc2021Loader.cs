@@ -1,5 +1,6 @@
 using SigStat.Common;
 using SigStat.Common.Loaders;
+using ExternalLoader = DotNetGateway.SignatureParser.Svc2021.External.Svc2021Loader;
 
 namespace DotNetGateway.SignatureParser.Svc2021;
 
@@ -11,9 +12,8 @@ public class Svc2021Loader(string dataBaseZipBase64) : DataSetLoader
 
     public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
     {
-        var externalLoader =
-            new DotNetGateway.SignatureParser.Svc2021.External.Svc2021Loader(DataBaseZipBase64, true, signerFilter);
-        var signers = externalLoader.EnumerateSigners();
+        var externalLoader = new ExternalLoader(DataBaseZipBase64, true);
+        var signers = externalLoader.EnumerateSigners(signerFilter);
         return signers;
     }
 }
