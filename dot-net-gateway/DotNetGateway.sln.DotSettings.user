@@ -17,9 +17,10 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;PhysicalFolder Path="/Users/ors/.nuget/packages/ebdbalsdtw/1.0.0" Loaded="True" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=743bd833_002D6bb9_002D4448_002D9b5a_002Da9b3f065e476/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Project Location="/Users/ors/Dev/Repositories/signature-inspector/dot-net-gateway/DotNetGatewayTest" Presentation="&amp;lt;DotNetGatewayTest&amp;gt;" /&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ba692550_002D4345_002D4361_002D8b86_002D6fa6c78ef17f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=87b0912d_002Df577_002D4329_002Db270_002D09f3150692dd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;DotNetGatewayTest&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Project Location="/Users/ors/Dev/Repositories/signature-inspector/dot-net-gateway/DotNetGatewayTest" Presentation="&amp;lt;DotNetGatewayTest&amp;gt;" /&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	</wpf:ResourceDictionary>

@@ -38,7 +38,7 @@ export abstract class DotNetBackedSignatureParser
         (_, index) => ({
           xCoord: signatureData.x[index],
           yCoord: signatureData.y[index],
-          timeStamp: 0,
+          timeStamp: index,
           pressure: 0,
           altitudeAngle: 0,
           azimuthAngle: 0,
