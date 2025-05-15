@@ -2,7 +2,8 @@ import { customElement, query } from 'lit/decorators.js'
 import { css, html, LitElement } from 'lit'
 import { consume } from '@lit/context'
 import {
-  PushSignersEvent, SelectSignerEvent,
+  PushSignersEvent,
+  SelectSignerEvent,
   signersContext,
   SignersContextData,
 } from '../contexts/signers.context.ts'
@@ -14,7 +15,7 @@ export class SignerSelectorElement extends LitElement {
   static styles = css`
     :host {
       --md-sys-color-surface-container: var(--md-sys-color-surface-variant);
-      
+
       display: flex;
       align-items: center;
       flex-direction: row;
@@ -34,11 +35,17 @@ export class SignerSelectorElement extends LitElement {
 
   render() {
     return html`
-      <md-outlined-select id="signer-selector" label="Signer" @change="${() =>
-        this.signerSelector?.value
-          ? this.dispatchEvent(new SelectSignerEvent(Number.parseInt(this.signerSelector.value)))
-          : null}">
-        
+      <md-outlined-select
+        id="signer-selector"
+        label="Signer"
+        @change="${() => {
+          if (!this.signerSelector || !this.signerSelector.value) return
+
+          this.dispatchEvent(
+            new SelectSignerEvent(Number.parseInt(this.signerSelector.value))
+          )
+        }}"
+      >
         ${this.signers.map(
           (s, i) => html`
             <md-select-option value="${i}">${s.id}</md-select-option>
@@ -47,9 +54,8 @@ export class SignerSelectorElement extends LitElement {
       </md-outlined-select>
       <md-outlined-button
         @click="${async () => {
-          this.dispatchEvent(
-            new PushSignersEvent([new Signer(Date.now().toString())])
-          )
+          const newSigner = new Signer(Date.now().toString())
+          this.dispatchEvent(new PushSignersEvent([newSigner]))
         }}"
       >
         New Signer
