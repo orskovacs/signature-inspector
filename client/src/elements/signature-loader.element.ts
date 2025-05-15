@@ -91,8 +91,10 @@ export class SignatureLoaderElement extends LitElement {
   private error: any = undefined
 
   render() {
-    return html` <div class="buttons">
+    return html`
+      <div class="buttons">
         <md-filled-button
+          .disabled="${this.selectedSigner === null}"
           @click="${() => {
             this.inputDialog.show()
           }}"
@@ -106,6 +108,7 @@ export class SignatureLoaderElement extends LitElement {
         </md-filled-button>
 
         <md-filled-button
+          .disabled="${this.selectedSigner === null}"
           @click="${() => {
             this.importDialog.show()
           }}"
@@ -169,12 +172,14 @@ export class SignatureLoaderElement extends LitElement {
           </label>
           <select id="parser-selector">
             ${this.parsers.map(
-              (p, index) => html` <option value="${index}">${p.name}</option>`
+              (p, index) => html`
+                <option value="${index}">${p.name}</option>`
             )}
           </select>
           ${this.error === undefined
             ? nothing
-            : html` <div class="error-conatiner">
+            : html`
+              <div class="error-conatiner">
                 <div class="error-details">${this.error}</div>
               </div>`}
         </form>
