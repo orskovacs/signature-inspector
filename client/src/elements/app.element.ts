@@ -17,6 +17,12 @@ import {
   signaturesContext,
 } from '../contexts/signatures.context'
 import { getRandomColorHex } from '../utils/color.util'
+import {
+  PushSignersEvent,
+  SelectSignerEvent,
+  signersContext,
+  SignersContextData,
+} from '../contexts/signers.context.ts'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -66,12 +72,22 @@ export class AppElement extends LitElement {
     }
   `
 
+  @provide({ context: signersContext })
+  @state()
+  private signersContext: SignersContextData = {
+    signers: [],
+    selectedSignerIndex: null,
+  }
+
   @provide({ context: signaturesContext })
   @state()
   private signatures: SignatureData[] = []
 
   override connectedCallback() {
     super.connectedCallback()
+
+    this.addEventListener(PushSignersEvent.key, this.handlePushSignersEvent)
+    this.addEventListener(SelectSignerEvent.key, this.handleSelectSignerEvent)
 
     this.addEventListener(PushSignatureEvent.key, this.handlePushSignatureEvent)
     this.addEventListener(
@@ -117,8 +133,8 @@ export class AppElement extends LitElement {
   }
 
   render() {
-    return html`<div class="heading">
-        <h1>Signature Inspector</h1>
+    return html` <div class="heading">
+        <signer-selector-element></signer-selector-element>
         <signature-loader-element></signature-loader-element>
       </div>
 
@@ -210,5 +226,28 @@ export class AppElement extends LitElement {
       ? 'genuine'
       : 'fake'
     this.signatures = [...this.signatures]
+  }
+
+  private handlePushSignersEvent(e: PushSignersEvent): void {
+    this.signersContext = {
+      ...this.signersContext,
+      signers: [...this.signersContext.signers, ...e.detail],
+    }
+  }
+
+  private handleSelectSignerEvent(e: SelectSignerEvent): void {
+    this.signersContext = {
+      ...this.signersContext,
+      selectedSignerIndex: e.detail.signerIndex,
+    }
+
+    this.signatures = this.signersContext.signers[
+      e.detail.signerIndex
+    ].signatures.map((s) => ({
+      signature: s,
+      visible: true,
+      colorHex: getRandomColorHex(),
+      usedForTraining: false,
+    }))
   }
 }
