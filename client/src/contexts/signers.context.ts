@@ -23,11 +23,11 @@ export class PushSignersEvent extends CustomEvent<Signer[]> {
 }
 
 export class SelectSignerEvent extends CustomEvent<{
-  signerIndex: number | null
+  signerIndex: number
 }> {
   public static readonly key = 'select-signer'
 
-  constructor(signerIndex: number | null) {
+  constructor(signerIndex: number) {
     super(SelectSignerEvent.key, {
       bubbles: true,
       composed: true,
