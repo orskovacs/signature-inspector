@@ -35,23 +35,6 @@ export class SignerSelectorElement extends LitElement {
 
   render() {
     return html`
-      <md-outlined-select
-        id="signer-selector"
-        label="Signer"
-        @change="${() => {
-          if (!this.signerSelector || !this.signerSelector.value) return
-
-          this.dispatchEvent(
-            new SelectSignerEvent(Number.parseInt(this.signerSelector.value))
-          )
-        }}"
-      >
-        ${this.signers.map(
-          (s, i) => html`
-            <md-select-option value="${i}">${s.id}</md-select-option>
-          `
-        )}
-      </md-outlined-select>
       <md-outlined-button
         @click="${async () => {
           const newSigner = new Signer(Date.now().toString())
@@ -71,6 +54,24 @@ export class SignerSelectorElement extends LitElement {
           />
         </svg>
       </md-outlined-button>
+      <md-outlined-select
+        id="signer-selector"
+        label="Selected Signer"
+        .disabled="${this.signers.length === 0}"
+        @change="${() => {
+          if (!this.signerSelector || !this.signerSelector.value) return
+
+          this.dispatchEvent(
+            new SelectSignerEvent(Number.parseInt(this.signerSelector.value))
+          )
+        }}"
+      >
+        ${this.signers.map(
+          (s, i) => html`
+            <md-select-option value="${i}">${s.id}</md-select-option>
+          `
+        )}
+      </md-outlined-select>
     `
   }
 }
