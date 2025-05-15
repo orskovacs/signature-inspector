@@ -12,6 +12,11 @@ import { Svc2004Parser } from '../parsers/svc-2004-parser'
 import { Signature } from '../model/signature.ts'
 import { Signer } from '../model/signer.ts'
 import { DeepSignParser } from '../parsers/deep-sign-parser.ts'
+import { consume } from '@lit/context'
+import {
+  signersContext,
+  SignersContextData,
+} from '../contexts/signers.context.ts'
 
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
@@ -54,8 +59,18 @@ export class SignatureLoaderElement extends LitElement {
     {
       name: 'DeepSignDB',
       parser: new DeepSignParser(),
-    }
+    },
   ]
+
+  @consume({ context: signersContext, subscribe: true })
+  private signersContextData!: SignersContextData
+
+  private get selectedSigner(): Signer | null {
+    if (this.signersContextData.selectedSignerIndex === null) return null
+    return this.signersContextData.signers[
+      this.signersContextData.selectedSignerIndex
+    ]
+  }
 
   @query('#signature-input-dialog')
   private inputDialog!: MdDialog
@@ -76,7 +91,7 @@ export class SignatureLoaderElement extends LitElement {
   private error: any = undefined
 
   render() {
-    return html`<div class="buttons">
+    return html` <div class="buttons">
         <md-filled-button
           @click="${() => {
             this.inputDialog.show()
@@ -129,12 +144,9 @@ export class SignatureLoaderElement extends LitElement {
             @click="${async () => {
               const dataPoints = this.signatureField.dataPoints
               this.signatureField.clear()
-              const signer = new Signer(crypto.randomUUID())
               const signature = new Signature(dataPoints)
-              signer.addSignatures(signature)
-              this.dispatchEvent(
-                new PushSignatureEvent(signature)
-              )
+              this.selectedSigner?.addSignatures(signature)
+              this.dispatchEvent(new PushSignatureEvent(signature))
             }}"
           >
             Add signature
@@ -157,12 +169,12 @@ export class SignatureLoaderElement extends LitElement {
           </label>
           <select id="parser-selector">
             ${this.parsers.map(
-              (p, index) => html`<option value="${index}">${p.name}</option>`
+              (p, index) => html` <option value="${index}">${p.name}</option>`
             )}
           </select>
           ${this.error === undefined
             ? nothing
-            : html`<div class="error-conatiner">
+            : html` <div class="error-conatiner">
                 <div class="error-details">${this.error}</div>
               </div>`}
         </form>
