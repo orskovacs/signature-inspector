@@ -8,18 +8,31 @@ import {
   SignersContextData,
 } from '../contexts/signers.context.ts'
 import { Signer } from '../model/signer.ts'
-import { MdOutlinedSelect } from '@material/web/all'
+import {
+  MdDialog,
+  MdOutlinedSelect,
+  MdOutlinedTextField,
+} from '@material/web/all'
 
 @customElement('signer-selector-element')
 export class SignerSelectorElement extends LitElement {
   static styles = css`
     :host {
       --md-sys-color-surface-container: var(--md-sys-color-surface-variant);
+      --md-dialog-container-color: var(--md-sys-color-surface);
 
       display: flex;
       align-items: center;
       flex-direction: row;
       gap: 8px;
+    }
+
+    #signer-id-input {
+      width: 100%;
+    }
+
+    #new-signer-dialog-form {
+      width: 500px;
     }
   `
 
@@ -31,16 +44,17 @@ export class SignerSelectorElement extends LitElement {
   }
 
   @query('#signer-selector')
-  private signerSelector!: MdOutlinedSelect | null
+  private signerSelector!: MdOutlinedSelect
+
+  @query('#new-signer-dialog')
+  private newSignerDialog!: MdDialog
+
+  @query('#signer-id-input')
+  private signerIdInput!: MdOutlinedTextField
 
   render() {
     return html`
-      <md-outlined-button
-        @click="${async () => {
-          const newSigner = new Signer(Date.now().toString())
-          this.dispatchEvent(new PushSignersEvent([newSigner]))
-        }}"
-      >
+      <md-outlined-button @click="${() => this.newSignerDialog.show()}">
         New Signer
         <svg
           slot="icon"
@@ -72,6 +86,29 @@ export class SignerSelectorElement extends LitElement {
           `
         )}
       </md-outlined-select>
+
+      <md-dialog id="new-signer-dialog">
+        <div slot="headline">Add a New Signer</div>
+        <form slot="content" id="new-signer-dialog-form" method="dialog">
+          <md-outlined-text-field
+            id="signer-id-input"
+            label="Unique signer identifier"
+          ></md-outlined-text-field>
+        </form>
+        <div slot="actions">
+          <md-filled-button
+            @click="${async () => {
+              const newSigner = new Signer(this.signerIdInput.value)
+              this.dispatchEvent(new PushSignersEvent([newSigner]))
+            }}"
+          >
+            Add
+          </md-filled-button>
+          <md-text-button form="new-signer-dialog-form" @click="${() => {}}">
+            Close
+          </md-text-button>
+        </div>
+      </md-dialog>
     `
   }
 }
