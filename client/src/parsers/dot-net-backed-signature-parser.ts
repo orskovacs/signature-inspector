@@ -22,7 +22,7 @@ export abstract class DotNetBackedSignatureParser
     )
   }
 
-  public async parse(file: File): Promise<Signature[]> {
+  public async parse(file: File, options?: any): Promise<Signature[]> {
     let manager = await this.dotNetImport
     let id = await this._dotNetId
     let fileBase64 = await fileToBase64(file)

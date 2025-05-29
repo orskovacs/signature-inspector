@@ -17,12 +17,14 @@ import {
   signersContext,
   SignersContextData,
 } from '../contexts/signers.context.ts'
+import { MdOutlinedSelect } from '@material/web/all'
 
 @customElement('signature-loader-element')
 export class SignatureLoaderElement extends LitElement {
   static styles = css`
     :host {
       --md-dialog-container-color: var(--md-sys-color-surface);
+      --md-sys-color-surface-container: var(--md-sys-color-surface-variant);
     }
 
     .buttons {
@@ -41,6 +43,12 @@ export class SignatureLoaderElement extends LitElement {
     label {
       display: inline-block;
       margin-bottom: 12px;
+    }
+
+    form#signature-import-dialog-form {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 12px;
     }
   `
 
@@ -90,9 +98,11 @@ export class SignatureLoaderElement extends LitElement {
   @state()
   private error: any = undefined
 
+  @state()
+  private selectedParser: (typeof this.parsers)[number] | null = null
+
   render() {
-    return html`
-      <div class="buttons">
+    return html` <div class="buttons">
         <md-filled-button
           .disabled="${this.selectedSigner === null}"
           @click="${() => {
@@ -163,23 +173,43 @@ export class SignatureLoaderElement extends LitElement {
       <md-dialog id="signature-import-dialog">
         <div slot="headline">Signature Import</div>
         <form slot="content" id="signature-import-dialog-form" method="dialog">
+          <label for="parser-selector">
+            Specify the format of the file(s) to import:
+          </label>
+          <md-outlined-select
+            id="parser-selector"
+            @change="${(e: Event) => {
+              const target = e.target as unknown as MdOutlinedSelect
+              this.selectedParser = this.parsers[target.selectedIndex]
+            }}"
+          >
+            ${this.parsers.map(
+              (p, index) =>
+                html` <md-select-option value="${index}"
+                  >${p.name}
+                </md-select-option>`
+            )}
+          </md-outlined-select>
+
           <label for="signatures-file">
             Select one or more files to import:
           </label>
           <input type="file" id="signatures-file" name="signatures" multiple />
-          <label for="parser-selector">
-            Specify the format of the file(s) to import:
-          </label>
-          <select id="parser-selector">
-            ${this.parsers.map(
-              (p, index) => html`
-                <option value="${index}">${p.name}</option>`
-            )}
-          </select>
+
+          ${this.selectedParser?.name === 'DeepSignDB'
+            ? html`
+              <label for="signer"> Select the signers to import: </label>
+              <input type="email" list="signers" name="signer" multiple>
+              <datalist id="signers">
+                <option value="1001">
+                <option value="1002">
+                <option value="1009">
+              </datalist>
+            `
+            : nothing}
           ${this.error === undefined
             ? nothing
-            : html`
-              <div class="error-conatiner">
+            : html` <div class="error-conatiner">
                 <div class="error-details">${this.error}</div>
               </div>`}
         </form>
@@ -213,10 +243,11 @@ export class SignatureLoaderElement extends LitElement {
 
     try {
       const signatures: Signature[] = []
+
       for (let i = 0; i < files.length; i++) {
-        const parser =
-          this.parsers[Number.parseInt(this.parserSelector.value)].parser
-        const signature = await parser.parse(files.item(i)!)
+        const file = files.item(i)
+        if (file === null) continue
+        const signature = (await this.selectedParser?.parser.parse(file)) ?? []
         signatures.push(...signature)
       }
       this.signaturesFileInput.value = ''
