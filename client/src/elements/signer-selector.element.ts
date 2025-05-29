@@ -82,7 +82,7 @@ export class SignerSelectorElement extends LitElement {
       >
         ${this.signers.map(
           (s, i) => html`
-            <md-select-option value="${i}">${s.id}</md-select-option>
+            <md-select-option value="${i}">${s.name} [${s.id}]</md-select-option>
           `
         )}
       </md-outlined-select>

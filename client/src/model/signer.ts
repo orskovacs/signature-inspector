@@ -2,14 +2,20 @@ import { Signature } from './signature.ts'
 
 export class Signer {
   private readonly _id: string
+  private readonly _name: string
   private readonly _signatures: Signature[] = []
 
-  constructor(id: string) {
-    this._id = id
+  constructor(name: string) {
+    this._name = name
+    this._id = crypto.randomUUID()
   }
 
   public get id(): string {
     return this._id
+  }
+
+  public get name(): string {
+    return this._name
   }
 
   public get signatures() {
