@@ -10,6 +10,7 @@ import {
 import { Signer } from '../model/signer.ts'
 import {
   MdDialog,
+  MdFilledButton,
   MdOutlinedSelect,
   MdOutlinedTextField,
 } from '@material/web/all'
@@ -50,7 +51,10 @@ export class SignerSelectorElement extends LitElement {
   private newSignerDialog!: MdDialog
 
   @query('#signer-id-input')
-  private signerIdInput!: MdOutlinedTextField
+  private signerIdInput?: MdOutlinedTextField
+
+  @query('#new-signer-dialog-add-button')
+  private newSignerDialogAddButton?: MdFilledButton
 
   render() {
     return html`
@@ -82,24 +86,36 @@ export class SignerSelectorElement extends LitElement {
       >
         ${this.signers.map(
           (s, i) => html`
-            <md-select-option value="${i}">${s.name} [${s.id}]</md-select-option>
+            <md-select-option value="${i}"
+              >${s.name} [${s.id}]
+            </md-select-option>
           `
         )}
       </md-outlined-select>
 
-      <md-dialog id="new-signer-dialog">
+      <md-dialog
+        id="new-signer-dialog"
+        @closed="${() => {
+          this.signerIdInput!.value = ''
+        }}"
+      >
         <div slot="headline">Add a New Signer</div>
         <form slot="content" id="new-signer-dialog-form" method="dialog">
           <md-outlined-text-field
             id="signer-id-input"
             label="Unique signer identifier"
+            @input="${() =>
+              (this.newSignerDialogAddButton!.disabled =
+                this.signerIdInput?.value.trim() === '')}"
           ></md-outlined-text-field>
         </form>
         <div slot="actions">
           <md-filled-button
+            id="new-signer-dialog-add-button"
             form="new-signer-dialog-form"
+            disabled
             @click="${async () => {
-              const newSigner = new Signer(this.signerIdInput.value)
+              const newSigner = new Signer(this.signerIdInput!.value)
               this.dispatchEvent(new PushSignersEvent([newSigner]))
             }}"
           >
