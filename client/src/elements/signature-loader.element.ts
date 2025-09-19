@@ -50,6 +50,10 @@ export class SignatureLoaderElement extends LitElement {
       grid-template-columns: auto auto;
       grid-gap: 12px;
     }
+
+    signature-field {
+      background-color: white;
+    }
   `
 
   private readonly parsers: ReadonlyArray<{
