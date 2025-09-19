@@ -51,7 +51,7 @@ export class SignerSelectorElement extends LitElement {
   private newSignerDialog!: MdDialog
 
   @query('#signer-id-input')
-  private signerIdInput?: MdOutlinedTextField
+  private newSignerNameTextField?: MdOutlinedTextField
 
   @query('#new-signer-dialog-add-button')
   private newSignerDialogAddButton?: MdFilledButton
@@ -87,7 +87,7 @@ export class SignerSelectorElement extends LitElement {
         ${this.signers.map(
           (s, i) => html`
             <md-select-option value="${i}"
-              >${s.name} [${s.id}]
+            >${s.name} [${s.id}]
             </md-select-option>
           `
         )}
@@ -96,7 +96,7 @@ export class SignerSelectorElement extends LitElement {
       <md-dialog
         id="new-signer-dialog"
         @closed="${() => {
-          this.signerIdInput!.value = ''
+          this.newSignerNameTextField!.value = ''
         }}"
       >
         <div slot="headline">Add a New Signer</div>
@@ -106,7 +106,7 @@ export class SignerSelectorElement extends LitElement {
             label="Unique signer identifier"
             @input="${() =>
               (this.newSignerDialogAddButton!.disabled =
-                this.signerIdInput?.value.trim() === '')}"
+                this.newSignerNameTextField?.value.trim() === '')}"
           ></md-outlined-text-field>
         </form>
         <div slot="actions">
@@ -115,13 +115,13 @@ export class SignerSelectorElement extends LitElement {
             form="new-signer-dialog-form"
             disabled
             @click="${async () => {
-              const newSigner = new Signer(this.signerIdInput!.value)
+              const newSigner = new Signer(this.newSignerNameTextField!.value)
               this.dispatchEvent(new PushSignersEvent([newSigner]))
             }}"
           >
             Add
           </md-filled-button>
-          <md-text-button form="new-signer-dialog-form" @click="${() => {}}">
+          <md-text-button form="new-signer-dialog-form">
             Close
           </md-text-button>
         </div>
