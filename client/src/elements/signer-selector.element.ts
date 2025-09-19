@@ -97,6 +97,7 @@ export class SignerSelectorElement extends LitElement {
         </form>
         <div slot="actions">
           <md-filled-button
+            form="new-signer-dialog-form"
             @click="${async () => {
               const newSigner = new Signer(this.signerIdInput.value)
               this.dispatchEvent(new PushSignersEvent([newSigner]))
