@@ -259,9 +259,11 @@ export class SignatureLoaderElement extends LitElement {
       this.signaturesFileInput.value = ''
 
       this.dispatchEvent(new PushSignersEvent(signers))
-      this.dispatchEvent(
-        new SelectSignerEvent(this.signersContextData.selectedSignerIndex ?? 0)
-      )
+      if (this.signersContextData.selectedSignerIndex !== null) {
+        this.dispatchEvent(
+          new SelectSignerEvent(this.signersContextData.selectedSignerIndex)
+        )
+      }
     } catch (error) {
       this.error = error
     }
