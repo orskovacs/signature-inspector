@@ -14,6 +14,7 @@ import { Signer } from '../model/signer.ts'
 import { DeepSignParser } from '../parsers/deep-sign-parser.ts'
 import { consume } from '@lit/context'
 import {
+  PushSignersEvent,
   signersContext,
   SignersContextData,
 } from '../contexts/signers.context.ts'
@@ -122,7 +123,6 @@ export class SignatureLoaderElement extends LitElement {
         </md-filled-button>
 
         <md-filled-button
-          .disabled="${this.selectedSigner === null}"
           @click="${() => {
             this.importDialog.show()
           }}"
@@ -202,14 +202,14 @@ export class SignatureLoaderElement extends LitElement {
 
           ${this.selectedParser?.name === 'DeepSignDB'
             ? html`
-              <label for="signer"> Select the signers to import: </label>
-              <input type="email" list="signers" name="signer" multiple>
-              <datalist id="signers">
-                <option value="1001">
-                <option value="1002">
-                <option value="1009">
-              </datalist>
-            `
+                <label for="signer"> Select the signers to import: </label>
+                <input type="email" list="signers" name="signer" multiple />
+                <datalist id="signers">
+                  <option value="1001"></option>
+                  <option value="1002"></option>
+                  <option value="1009"></option>
+                </datalist>
+              `
             : nothing}
           ${this.error === undefined
             ? nothing
@@ -247,15 +247,22 @@ export class SignatureLoaderElement extends LitElement {
 
     try {
       const signatures: Signature[] = []
+      const signers: Signer[] = []
 
       for (let i = 0; i < files.length; i++) {
         const file = files.item(i)
         if (file === null) continue
-        const signature = (await this.selectedParser?.parser.parse(file)) ?? []
-        signatures.push(...signature)
+        const { signatures: newSignatures, signers: newSigners } =
+          (await this.selectedParser?.parser.parse(file, [
+            ...this.signersContextData.signers,
+            ...signers,
+          ]))!
+        signatures.push(...newSignatures)
+        signers.push(...newSigners)
       }
       this.signaturesFileInput.value = ''
       this.dispatchEvent(new PushSignaturesEvent(signatures))
+      this.dispatchEvent(new PushSignersEvent(signers))
     } catch (error) {
       this.error = error
     }

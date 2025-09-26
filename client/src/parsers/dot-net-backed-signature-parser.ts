@@ -1,5 +1,5 @@
 import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
-import { SignatureParser } from './signature-parser.ts'
+import { ParseResult, SignatureParser } from './signature-parser.ts'
 import { Signature } from '../model/signature.ts'
 import { SignatureParserImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
 import { fileToBase64 } from '../utils/file.util.ts'
@@ -22,7 +22,11 @@ export abstract class DotNetBackedSignatureParser
     )
   }
 
-  public async parse(file: File, options?: any): Promise<Signature[]> {
+  public async parse(
+    file: File,
+    _existingSigners: Signer[],
+    _options?: any
+  ): Promise<ParseResult> {
     let manager = await this.dotNetImport
     let id = await this._dotNetId
     let fileBase64 = await fileToBase64(file)
@@ -32,32 +36,35 @@ export abstract class DotNetBackedSignatureParser
 
     const signers: Map<string, Signer> = new Map<string, Signer>()
 
-    return result.map((signatureData) => {
-      const dataPoints: SignatureDataPoint[] = Array.from(
-        { length: Math.min(signatureData.x.length, signatureData.y.length) },
-        (_, index) => ({
-          xCoord: signatureData.x[index],
-          yCoord: signatureData.y[index],
-          timeStamp: index,
-          pressure: 0,
-          altitudeAngle: 0,
-          azimuthAngle: 0,
-          height: 0,
-          twist: 0,
-        })
-      )
-      const signature = new Signature(dataPoints)
+    return {
+      signatures: result.map((signatureData) => {
+        const dataPoints: SignatureDataPoint[] = Array.from(
+          { length: Math.min(signatureData.x.length, signatureData.y.length) },
+          (_, index) => ({
+            xCoord: signatureData.x[index],
+            yCoord: signatureData.y[index],
+            timeStamp: index,
+            pressure: 0,
+            altitudeAngle: 0,
+            azimuthAngle: 0,
+            height: 0,
+            twist: 0,
+          })
+        )
+        const signature = new Signature(dataPoints)
 
-      const signerId = signatureData.signer
-      if (signers.has(signerId)) {
-        signers.get(signerId)!.addSignatures(signature)
-      } else {
-        const signer = new Signer(signerId)
-        signer.addSignatures(signature)
-        signers.set(signerId, signer)
-      }
+        const signerId = signatureData.signer
+        if (signers.has(signerId)) {
+          signers.get(signerId)!.addSignatures(signature)
+        } else {
+          const signer = new Signer(signerId)
+          signer.addSignatures(signature)
+          signers.set(signerId, signer)
+        }
 
-      return signature
-    })
+        return signature
+      }),
+      signers: [],
+    }
   }
 }
