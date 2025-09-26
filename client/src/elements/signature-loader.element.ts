@@ -2,10 +2,7 @@ import { LitElement, css, html, nothing } from 'lit'
 import { customElement, query, state } from 'lit/decorators.js'
 import { MdDialog } from '@material/web/dialog/dialog.ts'
 import { SignatureField } from 'signature-field'
-import {
-  PushSignatureEvent,
-  PushSignaturesEvent,
-} from '../contexts/signatures.context'
+import { PushSignatureEvent } from '../contexts/signatures.context'
 import { SignatureParser } from '../parsers/signature-parser'
 import { SignaturesFileParser } from '../parsers/signatures-file-parser'
 import { Svc2004Parser } from '../parsers/svc-2004-parser'
@@ -15,6 +12,7 @@ import { DeepSignParser } from '../parsers/deep-sign-parser.ts'
 import { consume } from '@lit/context'
 import {
   PushSignersEvent,
+  SelectSignerEvent,
   signersContext,
   SignersContextData,
 } from '../contexts/signers.context.ts'
@@ -246,23 +244,24 @@ export class SignatureLoaderElement extends LitElement {
     this.error = undefined
 
     try {
-      const signatures: Signature[] = []
       const signers: Signer[] = []
 
       for (let i = 0; i < files.length; i++) {
         const file = files.item(i)
         if (file === null) continue
-        const { signatures: newSignatures, signers: newSigners } =
+        const { signers: newSigners } =
           (await this.selectedParser?.parser.parse(file, [
             ...this.signersContextData.signers,
             ...signers,
           ]))!
-        signatures.push(...newSignatures)
         signers.push(...newSigners)
       }
       this.signaturesFileInput.value = ''
-      this.dispatchEvent(new PushSignaturesEvent(signatures))
+
       this.dispatchEvent(new PushSignersEvent(signers))
+      this.dispatchEvent(
+        new SelectSignerEvent(this.signersContextData.selectedSignerIndex ?? 0)
+      )
     } catch (error) {
       this.error = error
     }
