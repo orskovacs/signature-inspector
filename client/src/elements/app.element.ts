@@ -28,37 +28,21 @@ import {
 export class AppElement extends LitElement {
   static styles = css`
     :host {
+      --select-block-space: 8px;
+      --md-outlined-field-bottom-space: var(--select-block-space);
+      --md-outlined-field-top-space: var(--select-block-space);
+
       height: 100%;
-      display: block;
-    }
-
-    .heading {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--md-ref-typeface-brand);
-      padding-inline: 24px;
-      padding-block: 18px;
-      margin: 8px 0 8px 0;
-    }
-
-    .heading h1 {
-      margin: 0;
+      display: grid;
+      grid-template-rows: min-content 1fr;
     }
 
     main {
-      height: calc(100% - 100px);
       display: grid;
-      align-items: start;
-      grid-template-rows: 40% 60%;
-      grid-template-columns: 100%;
-      overflow: hidden;
+      grid-template-rows: 4fr 6fr;
       gap: 4px;
     }
 
-    .heading,
     signature-list-element,
     visualizer-element {
       background: var(--md-sys-color-surface);
@@ -67,7 +51,7 @@ export class AppElement extends LitElement {
 
     signature-list-element,
     visualizer-element {
-      height: calc(100% - 2 * 18px - 8px);
+      height: calc(100% - 2 * 18px - 4px);
       padding: 18px;
     }
   `
@@ -133,11 +117,7 @@ export class AppElement extends LitElement {
   }
 
   render() {
-    return html` <div class="heading">
-        <signer-selector-element></signer-selector-element>
-        <signature-loader-element></signature-loader-element>
-      </div>
-
+    return html`<header-element></header-element>
       <main>
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>
