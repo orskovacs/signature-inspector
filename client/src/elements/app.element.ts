@@ -39,8 +39,9 @@ export class AppElement extends LitElement {
 
     main {
       display: grid;
-      grid-template-rows: 4fr 6fr;
+      grid-template-rows: 40% 60%;
       gap: 4px;
+      height: calc(100vh - 56px - 8px);
     }
 
     signature-list-element,
