@@ -87,7 +87,7 @@ export class SignatureDatabaseImporter extends LitElement {
         <folder-zip-icon slot="icon"></folder-zip-icon>
       </md-filled-button>
 
-      <md-dialog id="dialog">
+      <md-dialog id="dialog" @closed="${this.onDialogClosed}">
         <div slot="headline">Import from Database</div>
 
         <form slot="content" id="signature-import-dialog-form" method="dialog">
@@ -122,7 +122,7 @@ export class SignatureDatabaseImporter extends LitElement {
 
           <label for="signer-input"> Select the signers to import: </label>
           <input
-            type="email"
+            type="text"
             list="signers"
             id="signer-input"
             name="signer-input"
@@ -145,13 +145,11 @@ export class SignatureDatabaseImporter extends LitElement {
           <md-filled-button
             .disabled="${this.selectedImporter === null || this.file === null}"
             @click="${this.handleImportButtonClick}"
+            form="signature-import-dialog-form"
           >
             Import
           </md-filled-button>
-          <md-text-button
-            form="signature-import-dialog-form"
-            @click="${this.handleCancelButtonClick}"
-          >
+          <md-text-button form="signature-import-dialog-form">
             Close
           </md-text-button>
         </div>
@@ -175,12 +173,9 @@ export class SignatureDatabaseImporter extends LitElement {
         (await this.selectedImporter?.parser.parse(
           this.file,
           [...this.signersContextData.signers, ...signers],
-          this.signerInput?.value?.split(',') ?? []
+          this.signerInput?.value?.split(',').map((id) => id.trim()) ?? []
         ))!
       signers.push(...newSigners)
-
-      this.fileInput.value = ''
-      this.file = null
 
       this.dispatchEvent(new PushSignersEvent(signers))
       if (this.signersContextData.selectedSignerIndex !== null) {
@@ -193,10 +188,10 @@ export class SignatureDatabaseImporter extends LitElement {
     }
   }
 
-  private handleCancelButtonClick() {
+  private onDialogClosed() {
     this.fileInput!.value = ''
     this.file = null
+    this.signerInput!.value = ''
     this.error = undefined
-    this.dialog.close().then()
   }
 }

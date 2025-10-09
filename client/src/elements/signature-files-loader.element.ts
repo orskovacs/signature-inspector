@@ -89,10 +89,10 @@ export class SignatureFilesLoaderElement extends LitElement {
         <upload-file-icon slot="icon"></upload-file-icon>
       </md-filled-button>
 
-      <md-dialog id="dialog">
+      <md-dialog id="dialog" @closed="${this.onDialogClosed}">
         <div slot="headline">Load from Files</div>
 
-        <form slot="content" id="signature-import-dialog-form" method="dialog">
+        <form slot="content" id="signature-loader-dialog-form" method="dialog">
           <label for="loader-selector"> Signature file format: </label>
           <md-outlined-select
             id="loader-selector"
@@ -136,10 +136,11 @@ export class SignatureFilesLoaderElement extends LitElement {
           <md-filled-button
             .disabled="${this.selectedLoader === null || this.files === null}"
             @click="${this.handleLoadButtonClick}"
+            form="signature-loader-dialog-form"
           >
             Load from file(s)
           </md-filled-button>
-          <md-text-button @click="${this.handleCancelButtonClick}">
+          <md-text-button form="signature-loader-dialog-form">
             Close
           </md-text-button>
         </div>
@@ -169,8 +170,6 @@ export class SignatureFilesLoaderElement extends LitElement {
           ]))!
         signers.push(...newSigners)
       }
-      this.fileInput.value = ''
-      this.files = null
 
       this.dispatchEvent(new PushSignersEvent(signers))
       if (this.signersContextData.selectedSignerIndex !== null) {
@@ -183,10 +182,9 @@ export class SignatureFilesLoaderElement extends LitElement {
     }
   }
 
-  private handleCancelButtonClick() {
+  private onDialogClosed() {
     this.fileInput!.value = ''
     this.files = null
     this.error = undefined
-    this.dialog.close().then()
   }
 }
