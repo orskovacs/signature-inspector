@@ -170,6 +170,7 @@ export class SignatureFilesLoaderElement extends LitElement {
         signers.push(...newSigners)
       }
       this.fileInput.value = ''
+      this.files = null
 
       this.dispatchEvent(new PushSignersEvent(signers))
       if (this.signersContextData.selectedSignerIndex !== null) {

@@ -1,4 +1,4 @@
-import { customElement, query, state, eventOptions } from 'lit/decorators.js'
+import { customElement, query, state } from 'lit/decorators.js'
 import { css, html, LitElement, nothing } from 'lit'
 import { DeepSignParser } from '../parsers/deep-sign-parser.ts'
 import { SignatureParser } from '../parsers/signature-parser.ts'
@@ -71,6 +71,9 @@ export class SignatureDatabaseImporter extends LitElement {
   @query('#importer-file-input')
   private fileInput!: HTMLInputElement | null
 
+  @query('#signer-input')
+  private signerInput!: HTMLInputElement | null
+
   @query('#importer-selector')
   private importerSelector!: MdOutlinedSelect | null
 
@@ -117,17 +120,20 @@ export class SignatureDatabaseImporter extends LitElement {
             }}"
           />
 
-          ${this.selectedImporter?.name === 'DeepSignDB'
-            ? html`
-                <label for="signer"> Select the signers to import: </label>
-                <input type="email" list="signers" name="signer" multiple />
-                <datalist id="signers">
-                  <option value="1001"></option>
-                  <option value="1002"></option>
-                  <option value="1009"></option>
-                </datalist>
-              `
-            : nothing}
+          <label for="signer-input"> Select the signers to import: </label>
+          <input
+            type="email"
+            list="signers"
+            id="signer-input"
+            name="signer-input"
+            multiple
+          />
+          <datalist id="signers">
+            <option value="1001"></option>
+            <option value="1002"></option>
+            <option value="1009"></option>
+          </datalist>
+
           ${this.error === undefined
             ? nothing
             : html` <div class="error-container">
@@ -136,7 +142,10 @@ export class SignatureDatabaseImporter extends LitElement {
         </form>
 
         <div slot="actions">
-          <md-filled-button @click="${this.handleImportButtonClick}">
+          <md-filled-button
+            .disabled="${this.selectedImporter === null || this.file === null}"
+            @click="${this.handleImportButtonClick}"
+          >
             Import
           </md-filled-button>
           <md-text-button
@@ -149,7 +158,6 @@ export class SignatureDatabaseImporter extends LitElement {
       </md-dialog>`
   }
 
-  @eventOptions({ passive: true })
   private async handleImportButtonClick() {
     if (
       this.fileInput === null ||
@@ -164,13 +172,15 @@ export class SignatureDatabaseImporter extends LitElement {
       const signers: Signer[] = []
 
       const { signers: newSigners } =
-        (await this.selectedImporter?.parser.parse(this.file, [
-          ...this.signersContextData.signers,
-          ...signers,
-        ]))!
+        (await this.selectedImporter?.parser.parse(
+          this.file,
+          [...this.signersContextData.signers, ...signers],
+          this.signerInput?.value?.split(',') ?? []
+        ))!
       signers.push(...newSigners)
 
       this.fileInput.value = ''
+      this.file = null
 
       this.dispatchEvent(new PushSignersEvent(signers))
       if (this.signersContextData.selectedSignerIndex !== null) {

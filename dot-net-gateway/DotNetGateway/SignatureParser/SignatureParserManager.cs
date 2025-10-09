@@ -1,7 +1,6 @@
 using DotNetGateway.SignatureParser.Svc2021;
 using Newtonsoft.Json;
 using SigStat.Common;
-using SigStat.Common.Loaders;
 
 namespace DotNetGateway.SignatureParser;
 
@@ -9,44 +8,42 @@ public class SignatureParserManager
 {
     public static SignatureParserManager Instance { get; } = new();
 
-    private Dictionary<string, IDataSetLoader> Loaders { get; } = new();
-    
-    private SignatureParserManager() { }
-    
-    public string InitializeNewParser(string loaderId)
+    private Dictionary<string, ISignatureParser> Parsers { get; } = new();
+
+    private SignatureParserManager()
     {
-        IDataSetLoader? loader = null;
-        if (loaderId == "Svc2021")
+    }
+
+    public string InitializeNewParser(string parserId)
+    {
+        ISignatureParser? parser = null;
+        if (parserId == "Svc2021")
         {
-            loader = new Svc2021Loader(null);
+            parser = new Svc2021Parser();
         }
-        if (loader is null)
+
+        if (parser is null)
         {
             throw new ApplicationException("Invalid parser id");
         }
-        
+
         var id = Guid.NewGuid().ToString();
-        Loaders[id] = loader;
+        Parsers[id] = parser;
         return id;
     }
 
-    public Task<string> ParseFileContents(string loaderId, string fileBase64)
+    public Task<string> ParseFileContents(string parserId, string fileBase64, string[] signerIds)
     {
-        ArgumentNullException.ThrowIfNull(Loaders[loaderId]);
+        ArgumentNullException.ThrowIfNull(Parsers[parserId]);
         ArgumentNullException.ThrowIfNull(fileBase64);
-        
+
+        Predicate<Signer> signerFilter = signerIds.Length == 0 ? _ => true : s => signerIds.Contains(s.ID);
+
         var task = new Task<string>(() =>
         {
-            // var loader = Loaders[loaderId];
-            var loader = new Svc2021Loader(fileBase64);
-            var signatures = loader.EnumerateSigners(s => s.ID.Equals("1009")).SelectMany(signer => signer.Signatures).Select(s => new
-            {
-                x = s.GetFeature(Features.X),
-                y = s.GetFeature(Features.Y),
-                id = s.ID,
-                signer = s.Signer.ID,
-            }).ToList();
-            return JsonConvert.SerializeObject(signatures);
+            var parser = Parsers[parserId];
+            var signers = parser.ParseFileBase64(fileBase64, signerFilter);
+            return JsonConvert.SerializeObject(signers);
         });
         task.Start();
         return task;

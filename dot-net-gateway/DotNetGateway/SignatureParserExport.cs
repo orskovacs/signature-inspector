@@ -16,11 +16,12 @@ public static partial class SignatureParserExport
     public static string InitializeNewParser(string loaderId) => Manager.InitializeNewParser(loaderId);
 
     [JSExport]
-    public static Task<string> ParseFileContents(string loaderId, string fileContentsJson)
+    public static Task<string> ParseFileContents(string loaderId, string fileBase64, string[] signerIds)
     {
         ArgumentNullException.ThrowIfNull(loaderId);
-        ArgumentNullException.ThrowIfNull(fileContentsJson);
+        ArgumentNullException.ThrowIfNull(fileBase64);
+        ArgumentNullException.ThrowIfNull(signerIds);
         
-        return Manager.ParseFileContents(loaderId, fileContentsJson);
+        return Manager.ParseFileContents(loaderId, fileBase64, signerIds);
     }
 }

@@ -7,6 +7,6 @@ export interface SignatureParser {
   parse(
     file: File,
     existingSigners: Signer[],
-    options?: any
+    signerIds?: string[]
   ): ParseResult | Promise<ParseResult>
 }

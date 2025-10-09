@@ -6,7 +6,8 @@ import { type DotNetAssemblyExports } from './dot-net-assembly-exports.ts'
 const dotnet: DotnetHostBuilder = dotnet_
 
 export class DotNetInteropManager {
-  private static readonly _instance: DotNetInteropManager = new DotNetInteropManager();
+  private static readonly _instance: DotNetInteropManager =
+    new DotNetInteropManager()
   static get instance(): DotNetInteropManager {
     return this._instance
   }
