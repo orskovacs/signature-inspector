@@ -26,6 +26,7 @@ export class SignatureDatabaseImporter extends LitElement {
     }
 
     .error-container {
+      grid-column: 1 / 3;
       background-color: var(--md-sys-color-error);
       color: var(--md-sys-color-on-error);
       border-radius: 28px;
