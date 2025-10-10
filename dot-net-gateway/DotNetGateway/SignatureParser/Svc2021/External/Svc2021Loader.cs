@@ -426,7 +426,7 @@ public static class Svc2021Features
         FeatureDescriptor.Get<List<double>>("Svc2021.Pressure");
 
     /// <summary>
-    /// A list of all Svc2004 feature descriptors
+    /// A list of all Svc2021 feature descriptors
     /// </summary>
     public static readonly FeatureDescriptor?[] All =
         typeof(Svc2021Features)
