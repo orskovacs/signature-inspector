@@ -1,0 +1,308 @@
+using SigStat.Common;
+using SigStat.Common.Loaders;
+using SixLabors.Primitives;
+using System.IO.Compression;
+using Newtonsoft.Json;
+using System.Reflection;
+
+namespace DotNetGateway.SignatureParser.Svc2004.External;
+
+/// <summary>
+/// Set of features containing raw data loaded from SVC2004-format database.
+/// </summary>
+public static class Svc2004
+{
+    /// <summary>
+    /// X coordinates from the online signature imported from the SVC2004 database
+    /// </summary>
+    public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor.Get<List<int>>("Svc2004.X");
+
+    /// <summary>
+    /// Y coordinates from the online signature imported from the SVC2004 database
+    /// </summary>
+    public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor.Get<List<int>>("Svc2004.Y");
+
+    /// <summary>
+    /// T values from the online signature imported from the SVC2004 database
+    /// </summary>
+    public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("Svc2004.T");
+
+    /// <summary>
+    /// Button values from the online signature imported from the SVC2004 database
+    /// </summary>
+    public static readonly FeatureDescriptor<List<int>> Button = FeatureDescriptor.Get<List<int>>("Svc2004.Button");
+
+    /// <summary>
+    /// Azimuth values from the online signature imported from the SVC2004 database
+    /// </summary>
+    public static readonly FeatureDescriptor<List<int>> Azimuth = FeatureDescriptor.Get<List<int>>("Svc2004.Azimuth");
+
+    /// <summary>
+    /// Altitude values from the online signature imported from the SVC2004 database
+    /// </summary>
+    public static readonly FeatureDescriptor<List<int>> Altitude = FeatureDescriptor.Get<List<int>>("Svc2004.Altitude");
+
+    /// <summary>
+    /// Pressure values from the online signature imported from the SVC2004 database
+    /// </summary>
+    public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor.Get<List<int>>("Svc2004.Pressure");
+
+
+    /// <summary>
+    /// A list of all Svc2004 feature descriptors
+    /// </summary>
+    public static readonly FeatureDescriptor[] All =
+        typeof(Svc2004)
+            .GetFields(BindingFlags.Static | BindingFlags.Public)
+            .Where(f => f.FieldType.IsGenericType &&
+                        f.FieldType.GetGenericTypeDefinition() == typeof(FeatureDescriptor<>))
+            .Select(f => (FeatureDescriptor)f.GetValue(null))
+            .ToArray();
+}
+
+/// <summary>
+/// Loads SVC2004-format database from .zip
+/// </summary>
+[JsonObject(MemberSerialization.OptOut)]
+public class Svc2004Loader : DataSetLoader
+{
+    private struct SignatureFile : IEquatable<SignatureFile>
+    {
+        public string File { get; set; }
+        public string SignerId { get; set; }
+        public string SignatureId { get; set; }
+
+        public SignatureFile(string file)
+        {
+            File = file;
+            var name = file.Split('/').Last(); // handle if file is in zip directory
+            var parts = Path.GetFileNameWithoutExtension(name).Replace("U", "").Split('S');
+            if (parts.Length != 2)
+            {
+                throw new InvalidOperationException(
+                    "Invalid file format. All signature files should be in 'U__S__.txt' format");
+            }
+
+            SignerId = parts[0].PadLeft(2, '0');
+            SignatureId = parts[1].PadLeft(2, '0');
+        }
+
+        public bool Equals(SignatureFile other)
+        {
+            return
+                File == other.File
+                && SignerId == other.SignerId
+                && SignatureId == other.SignatureId;
+        }
+    }
+
+    /// <summary>
+    /// Sampling Frequency of the SVC database
+    /// </summary>
+    public override int SamplingFrequency => 100;
+
+    /// <summary>
+    /// Gets or sets the database as a base 64 encoded string.
+    /// </summary>
+    private string DataBaseZipBase64 { get; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
+    /// </summary>
+    public bool StandardFeatures { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
+    /// </summary>
+    /// <param name="dataBaseZipBase64">Represents the path, to load the signatures from. It supports two basic approaches:
+    /// <list type="bullet">
+    /// <item>DatabasePath may point to a (non password protected) zip file, containing the signature files</item>
+    /// <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+    /// </list></param>
+    /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
+    public Svc2004Loader(string dataBaseZipBase64, bool standardFeatures)
+    {
+        DataBaseZipBase64 = dataBaseZipBase64;
+        StandardFeatures = standardFeatures;
+    }
+
+    /// <inheritdoc/>
+    public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
+    {
+        this.LogInformation("Enumerating signers started.");
+        var zipFileBytes = Convert.FromBase64String(DataBaseZipBase64);
+        using var memoryStream = new MemoryStream(zipFileBytes);
+        var zip = new ZipArchive(memoryStream, ZipArchiveMode.Read);
+
+        // cut names if the files are in directories
+        var signatureGroups = zip.Entries.Where(f => f.Name.EndsWith(".TXT"))
+            .Select(f => new SignatureFile(f.FullName)).GroupBy(sf => sf.SignerId);
+        this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
+        foreach (var group in signatureGroups)
+        {
+            var signer = new Signer { ID = group.Key };
+
+            if (!signerFilter(signer)) continue;
+
+            foreach (var signatureFile in group)
+            {
+                var signature = new Signature
+                {
+                    Signer = signer,
+                    ID = signatureFile.SignatureId
+                };
+                
+                using (var s = zip.GetEntry(signatureFile.File).Open())
+                {
+                    LoadSignature(signature, s, StandardFeatures);
+                }
+
+                signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
+                signer.Signatures.Add(signature);
+            }
+
+            signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
+
+            yield return signer;
+        }
+
+        this.LogInformation("Enumerating signers finished.");
+    }
+
+    /// <summary>
+    /// Loads one signature from specified file path.
+    /// </summary>
+    /// <param name="signature">Signature to write features to.</param>
+    /// <param name="path">Path to a file of format "U*S*.txt"</param>
+    /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
+    public static void LoadSignature(Signature signature, string path, bool standardFeatures)
+    {
+        ParseSignature(signature, File.ReadAllLines(path), standardFeatures);
+    }
+
+    /// <summary>
+    /// Loads one signature from specified stream.
+    /// </summary>
+    /// <param name="signature">Signature to write features to.</param>
+    /// <param name="stream">Stream to read svc2004 data from.</param>
+    /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
+    public static void LoadSignature(Signature signature, Stream stream, bool standardFeatures)
+    {
+        using var sr = new StreamReader(stream);
+        ParseSignature(signature, sr.ReadToEnd().Split(["\r\n", "\r", "\n"], StringSplitOptions.None),
+            standardFeatures);
+    }
+
+    private static void ParseSignature(Signature signature, string[] linesArray, bool standardFeatures)
+    {
+        var lines = linesArray
+            .Skip(1)
+            .Where(l => l != "")
+            .Select(l => l.Split(' ').Select(int.Parse).ToArray())
+            .ToList();
+
+        // HACK: same timestamp for measurements does not make sense
+        // therefore, we remove the second entry
+        // a better solution would be to change the timestamps based on their environments
+
+        var i = 0;
+        while (i < lines.Count - 1)
+        {
+            if (lines[i][2] == lines[i + 1][2])
+            {
+                lines.RemoveAt(i + 1);
+                continue;
+            }
+
+            i++;
+        }
+
+        // Remove noise (points with 0 pressure) from the beginning of the signature
+        while (lines.Count > 0 && lines[0][6] == 0)
+        {
+            lines.RemoveAt(0);
+        }
+
+        // Remove noise (points with 0 pressure) from the end of the signature
+        while (lines.Count > 0 && lines[^1][6] == 0)
+        {
+            lines.RemoveAt(lines.Count - 1);
+        }
+
+        // Task1, Task2
+        signature.SetFeature(Svc2004.X, lines.Select(l => l[0]).ToList());
+        signature.SetFeature(Svc2004.Y, lines.Select(l => l[1]).ToList());
+        signature.SetFeature(Svc2004.T, lines.Select(l => l[2]).ToList());
+        signature.SetFeature(Svc2004.Button, lines.Select(l => l[3]).ToList());
+
+        // There are some anomalies in the database which have to be eliminated by standard features
+        var standardLines = lines.ToList();
+        if (standardFeatures)
+        {
+            // There are no upstrokes in the database, the starting points of downstrokes are marked by button=0 values 
+            // There are some anomalies in the database: button values between 2-5 and some upstrokes were not deleted               // Button is 2 or 4 if the given point's pressure is 0
+            // Button is 1, 3, 5 if the given point is in a downstroke
+            var button = signature.GetFeature(Svc2004.Button).ToArray();
+            var pointType = new double[button.Length];
+            for (i = 0; i < button.Length; i++)
+            {
+                if (button[i] == 0)
+                    pointType[i] = 1;
+                else if (i == button.Length - 1 || (button[i] % 2 != 0 && button[i + 1] % 2 == 0))
+                    pointType[i] = 2;
+                else if (button[i] == 2 || button[i] == 4)
+                    pointType[i] = 0;
+                else if (button[i] % 2 != 0 && button[i - 1] % 2 == 0 && button[i - 1] != 0)
+                    pointType[i] = 1;
+                else
+                    pointType[i] = 0;
+            }
+
+            // Because of the anomalies we have to remove some zero pressure points
+            standardLines.Reverse();
+            var standardPointType = pointType.ToList();
+            standardPointType.Reverse();
+            for (i = standardLines.Count - 1; i >= 0; i--)
+            {
+                if (standardLines[i][3] != 2 && standardLines[i][3] != 4) continue;
+
+                standardLines.RemoveAt(i);
+                standardPointType
+                    .RemoveAt(i); // we have to remove generated point type values of zero pressure points as well
+            }
+
+            standardLines.Reverse();
+            standardPointType.Reverse();
+
+            signature.SetFeature(Features.X, standardLines.Select(l => (double)l[0]).ToList());
+            signature.SetFeature(Features.Y, standardLines.Select(l => (double)l[1]).ToList());
+            signature.SetFeature(Features.T, standardLines.Select(l => (double)l[2]).ToList());
+            signature.SetFeature(Features.PenDown, standardLines.Select(l => l[3] != 0).ToList());
+            signature.SetFeature(Features.PointType, standardPointType);
+
+            CalculateStandardStatistics(signature);
+        }
+
+        if (lines[0].Length != 7) return; // Task2
+
+        var azimuth = lines.Select(l => l[4]).ToList();
+        var altitude = lines.Select(l => l[5]).ToList();
+        var pressure = lines.Select(l => l[6]).ToList();
+        signature.SetFeature(Svc2004.Azimuth, azimuth);
+        signature.SetFeature(Svc2004.Altitude, altitude);
+        signature.SetFeature(Svc2004.Pressure, pressure);
+
+        if (!standardFeatures) return;
+
+        signature.SetFeature(Features.Azimuth, standardLines.Select(l => (double)l[4]).ToList());
+        signature.SetFeature(Features.Altitude, standardLines.Select(l => (double)l[5]).ToList());
+        signature.SetFeature(Features.Pressure, standardLines.Select(l => (double)l[6]).ToList().ToList());
+    }
+
+    private static void CalculateStandardStatistics(Signature signature)
+    {
+        var x = signature.GetFeature(Features.X);
+        var y = signature.GetFeature(Features.Y);
+        signature[Features.Size] = new SizeF((float)(x.Max() - x.Min()), (float)(y.Max() - y.Min()));
+    }
+}

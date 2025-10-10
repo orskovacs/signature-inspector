@@ -1,8 +1,8 @@
 import { DotNetBackedSignatureParser } from './dot-net-backed-signature-parser.ts'
 
-export class DeepSignParser extends DotNetBackedSignatureParser {
+export class Svc2004ZipParser extends DotNetBackedSignatureParser {
   protected get loaderId(): string {
-    return 'Svc2021'
+    return 'Svc2004'
   }
 
   constructor() {

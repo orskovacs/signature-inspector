@@ -1,6 +1,6 @@
 import { customElement, query, state } from 'lit/decorators.js'
 import { css, html, LitElement, nothing } from 'lit'
-import { DeepSignParser } from '../parsers/deep-sign-parser.ts'
+import { DeepSignZipParser } from '../parsers/deep-sign-zip-parser.ts'
 import { SignatureParser } from '../parsers/signature-parser.ts'
 import { MdOutlinedSelect } from '@material/web/all'
 import { Signer } from '../model/signer.ts'
@@ -12,6 +12,7 @@ import {
 } from '../contexts/signers.context.ts'
 import { consume } from '@lit/context'
 import { MdDialog } from '@material/web/dialog/dialog'
+import { Svc2004ZipParser } from '../parsers/svc-2004-zip-parser.ts'
 
 interface ImporterOption {
   name: string
@@ -47,10 +48,8 @@ export class SignatureDatabaseImporter extends LitElement {
   `
 
   private readonly importers: ReadonlyArray<ImporterOption> = [
-    {
-      name: 'DeepSignDB',
-      parser: new DeepSignParser(),
-    },
+    { name: 'SVC 2004', parser: new Svc2004ZipParser() },
+    { name: 'DeepSignDB', parser: new DeepSignZipParser() },
   ]
 
   @consume({ context: signersContext, subscribe: true })
@@ -173,7 +172,9 @@ export class SignatureDatabaseImporter extends LitElement {
         (await this.selectedImporter?.parser.parse(
           this.file,
           [...this.signersContextData.signers, ...signers],
-          this.signerInput?.value?.split(',').map((id) => id.trim()) ?? []
+          this.signerInput?.value === ''
+            ? []
+            : (this.signerInput?.value?.split(',').map((id) => id.trim()) ?? [])
         ))!
       signers.push(...newSigners)
 

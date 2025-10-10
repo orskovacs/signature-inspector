@@ -1,3 +1,4 @@
+using DotNetGateway.SignatureParser.Svc2004;
 using DotNetGateway.SignatureParser.Svc2021;
 using Newtonsoft.Json;
 using SigStat.Common;
@@ -16,11 +17,12 @@ public class SignatureParserManager
 
     public string InitializeNewParser(string parserId)
     {
-        ISignatureParser? parser = null;
-        if (parserId == "Svc2021")
+        ISignatureParser? parser = parserId switch
         {
-            parser = new Svc2021Parser();
-        }
+            "Svc2021" => new Svc2021Parser(),
+            "Svc2004" => new Svc2004Parser(),
+            _ => null
+        };
 
         if (parser is null)
         {
