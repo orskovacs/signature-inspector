@@ -28,8 +28,14 @@ export class AppElement extends LitElement {
   static styles = css`
     :host {
       --select-block-space: 8px;
+      --button-height: 30px;
       --md-outlined-field-bottom-space: var(--select-block-space);
       --md-outlined-field-top-space: var(--select-block-space);
+      --md-text-button-container-height: var(--button-height);
+      --md-filled-button-container-height: var(--button-height);
+      --md-filled-tonal-button-container-height: var(--button-height);
+      --md-outlined-button-container-height: var(--button-height);
+      --md-switch-track-height: 25px;
 
       height: 100%;
       display: grid;
@@ -39,15 +45,17 @@ export class AppElement extends LitElement {
     main {
       display: grid;
       grid-template-rows: 40% 60%;
-      gap: 4px;
-      height: calc(100vh - 56px - 8px);
+      gap: 6px;
+      height: calc(100vh - 69px);
     }
 
     signature-list-element,
     visualizer-element {
       background: var(--md-sys-color-surface);
-      border-radius: 28px;
-      height: calc(100% - 2 * 8px - 4px);
+      border-radius: 16px;
+    }
+
+    signature-list-element {
       padding: 8px;
     }
   `
