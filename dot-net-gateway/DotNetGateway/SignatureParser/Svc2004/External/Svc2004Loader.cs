@@ -240,7 +240,8 @@ public class Svc2004Loader : DataSetLoader
         if (standardFeatures)
         {
             // There are no upstrokes in the database, the starting points of downstrokes are marked by button=0 values 
-            // There are some anomalies in the database: button values between 2-5 and some upstrokes were not deleted               // Button is 2 or 4 if the given point's pressure is 0
+            // There are some anomalies in the database: button values between 2-5 and some upstrokes were not deleted
+            // Button is 2 or 4 if the given point's pressure is 0
             // Button is 1, 3, 5 if the given point is in a downstroke
             var button = signature.GetFeature(Svc2004.Button).ToArray();
             var pointType = new double[button.Length];
