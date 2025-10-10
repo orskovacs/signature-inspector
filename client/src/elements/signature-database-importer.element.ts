@@ -127,11 +127,7 @@ export class SignatureDatabaseImporter extends LitElement {
             name="signer-input"
             multiple
           />
-          <datalist id="signers">
-            <option value="1001"></option>
-            <option value="1002"></option>
-            <option value="1009"></option>
-          </datalist>
+          <datalist id="signers">${this.signerIdOptions}</datalist>
 
           ${this.error === undefined
             ? nothing
@@ -153,6 +149,31 @@ export class SignatureDatabaseImporter extends LitElement {
           </md-text-button>
         </div>
       </md-dialog>`
+  }
+
+  private get signerIdOptions() {
+    let ids: string[] = []
+    switch (this.selectedImporter.name) {
+      case 'SVC 2004':
+        ids = Array.from({ length: 40 }, (_, i) =>
+          String(i + 1).padStart(2, '0')
+        )
+        break
+      case 'DeepSignDB':
+        {
+          const range1009to1084 = Array.from(
+            { length: 1084 - 1009 + 1 },
+            (_, i) => String(1009 + i)
+          )
+          const range0001to0121 = Array.from({ length: 121 }, (_, i) =>
+            String(i + 1).padStart(4, '0')
+          )
+          ids = [...range1009to1084, ...range0001to0121]
+        }
+        break
+    }
+
+    return html`${ids.map((id) => html`<option value="${id}"></option>`)}`
   }
 
   private async handleImportButtonClick() {
