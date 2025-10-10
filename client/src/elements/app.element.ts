@@ -8,12 +8,15 @@ import {
   RemoveAllSignaturesEvent,
   RemoveSignatureEvent,
   ResetTrainSignaturesEvent,
+  SelectAllSignaturesEvent,
   SetSignatureColorEvent,
   SetSignatureGenuinenessEvent,
+  SetSignatureSelectionEvent,
   SetSignaturesForTrainingByIndexEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
   signaturesContext,
+  UnselectAllSignaturesEvent,
 } from '../contexts/signatures.context'
 import {
   PushSignersEvent,
@@ -95,6 +98,18 @@ export class AppElement extends LitElement {
       this.handleShowAllSignaturesEvent
     )
     this.addEventListener(
+      SetSignatureSelectionEvent.key,
+      this.handleSetSignatureSelectionEvent
+    )
+    this.addEventListener(
+      UnselectAllSignaturesEvent.key,
+      this.handleUnselectAllSignaturesEvent
+    )
+    this.addEventListener(
+      SelectAllSignaturesEvent.key,
+      this.handleSelectAllSignaturesEvent
+    )
+    this.addEventListener(
       SetSignatureColorEvent.key,
       this.handleSetSignatureColorEvent
     )
@@ -151,6 +166,26 @@ export class AppElement extends LitElement {
 
   private handleShowAllSignaturesEvent(_e: HideAllSignaturesEvent): void {
     this.signatures.forEach((s) => (s.visible = true))
+    this.signatures = [...this.signatures]
+  }
+
+  private handleSetSignatureSelectionEvent(
+    e: SetSignatureSelectionEvent
+  ): void {
+    const signature = this.signatures[e.detail.signatureIndex]
+    signature.selected = e.detail.selection
+    this.signatures = [...this.signatures]
+  }
+
+  private handleUnselectAllSignaturesEvent(
+    _e: UnselectAllSignaturesEvent
+  ): void {
+    this.signatures.forEach((s) => (s.selected = false))
+    this.signatures = [...this.signatures]
+  }
+
+  private handleSelectAllSignaturesEvent(_e: SelectAllSignaturesEvent): void {
+    this.signatures.forEach((s) => (s.selected = true))
     this.signatures = [...this.signatures]
   }
 

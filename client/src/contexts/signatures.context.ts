@@ -66,6 +66,43 @@ export class ShowAllSignaturesEvent extends CustomEvent<void> {
   }
 }
 
+export class SetSignatureSelectionEvent extends CustomEvent<{
+  signatureIndex: number
+  selection: boolean
+}> {
+  public static readonly key = 'set-signature-selection'
+
+  constructor(signatureIndex: number, selection: boolean) {
+    super(SetSignatureSelectionEvent.key, {
+      bubbles: true,
+      composed: true,
+      detail: { signatureIndex, selection },
+    })
+  }
+}
+
+export class UnselectAllSignaturesEvent extends CustomEvent<void> {
+  public static readonly key = 'unselect-all-signatures'
+
+  constructor() {
+    super(UnselectAllSignaturesEvent.key, {
+      bubbles: true,
+      composed: true,
+    })
+  }
+}
+
+export class SelectAllSignaturesEvent extends CustomEvent<void> {
+  public static readonly key = 'select-all-signatures'
+
+  constructor() {
+    super(SelectAllSignaturesEvent.key, {
+      bubbles: true,
+      composed: true,
+    })
+  }
+}
+
 export class SetSignatureColorEvent extends CustomEvent<{
   signatureIndex: number
   colorHex: string
@@ -152,6 +189,9 @@ type CustomEventMap = {
   [SetSignatureVisibilityEvent.key]: SetSignatureVisibilityEvent
   [HideAllSignaturesEvent.key]: HideAllSignaturesEvent
   [ShowAllSignaturesEvent.key]: ShowAllSignaturesEvent
+  [SetSignatureSelectionEvent.key]: SetSignatureSelectionEvent
+  [UnselectAllSignaturesEvent.key]: UnselectAllSignaturesEvent
+  [SelectAllSignaturesEvent.key]: SelectAllSignaturesEvent
   [SetSignatureColorEvent.key]: SetSignatureColorEvent
   [RemoveSignatureEvent.key]: RemoveSignatureEvent
   [RemoveAllSignaturesEvent.key]: RemoveAllSignaturesEvent
