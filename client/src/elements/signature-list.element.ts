@@ -5,15 +5,16 @@ import {
   RemoveAllSignaturesEvent,
   RemoveSignatureEvent,
   ResetTrainSignaturesEvent,
-  SetSignatureColorEvent, SetSignatureGenuinenessEvent,
+  SetSignatureColorEvent,
+  SetSignatureGenuinenessEvent,
   SetSignaturesForTrainingByIndexEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
-  SignatureData,
   signaturesContext,
 } from '../contexts/signatures.context'
 import { consume } from '@lit/context'
 import { EbDbaLsDtwVerifier } from '../verifier/eb-dba-ls-dtw-verifier.ts'
+import { Signature } from '../model/signature.ts'
 
 @customElement('signature-list-element')
 export class SignatureListElement extends LitElement {
@@ -21,6 +22,7 @@ export class SignatureListElement extends LitElement {
     :host {
       --md-list-item-top-space: 0;
       --md-list-item-bottom-space: 0;
+      --md-list-item-one-line-container-height: 0;
 
       display: grid;
       align-content: flex-start;
@@ -90,25 +92,33 @@ export class SignatureListElement extends LitElement {
   `
 
   @consume({ context: signaturesContext, subscribe: true })
-  private signatures!: SignatureData[]
+  private signatures!: Signature[]
 
   private get signaturesCount(): number {
     return this.signatures.length
   }
 
   private get visibleSignaturesCount(): number {
+    return this.visibleSignatures.length
+  }
+
+  private get selectedSignaturesCount(): number {
     return this.selectedSignatures.length
   }
 
-  private get selectedSignatures(): SignatureData[] {
+  private get visibleSignatures(): Signature[] {
     return this.signatures.filter((s) => s.visible)
+  }
+
+  private get selectedSignatures(): Signature[] {
+    return this.signatures.filter((s) => s.selected)
   }
 
   render() {
     return html` <md-list-item>
         <div slot="start">
           <md-checkbox
-            id="toggle-all-ckeckbox"
+            id="toggle-all-checkbox"
             touch-target="wrapper"
             ?disabled=${this.signatures.length === 0}
             ?checked=${this.signatures.length > 0 &&
@@ -128,14 +138,12 @@ export class SignatureListElement extends LitElement {
         </div>
         <div slot="end">
           <md-filled-tonal-button
-            ?disabled=${this.visibleSignaturesCount === 0}
+            ?disabled=${this.selectedSignaturesCount === 0}
             @click=${() => {
               this.dispatchEvent(new ResetTrainSignaturesEvent())
               const verifier = new EbDbaLsDtwVerifier()
               verifier
-                .trainUsingSignatures(
-                  this.selectedSignatures.map((s) => s.signature)
-                )
+                .trainUsingSignatures(this.selectedSignatures)
                 .then(() => {
                   const selectedSignaturesIndexes: number[] = []
                   this.signatures.forEach((s, i) => {
@@ -152,8 +160,10 @@ export class SignatureListElement extends LitElement {
 
                   this.signatures.forEach((s, i) => {
                     if (!s.visible) {
-                      verifier.testSignature(s.signature).then(isGenuine => {
-                        this.dispatchEvent(new SetSignatureGenuinenessEvent(i, isGenuine))
+                      verifier.testSignature(s).then((isGenuine) => {
+                        this.dispatchEvent(
+                          new SetSignatureGenuinenessEvent(i, isGenuine)
+                        )
                       })
                     }
                   })
@@ -197,49 +207,48 @@ export class SignatureListElement extends LitElement {
       </md-list>`
   }
 
-  private getItemTemplate = (s: SignatureData, index: number) =>
-    html`
-      <md-list-item>
-        <span>[${s.signature.signer?.name ?? "Unknown Signer"}]: ${new Date(s.signature.creationTimeStamp).toLocaleString()}</span>
-        <div slot="start">
-          <md-checkbox
-            touch-target="wrapper"
-            ?checked=${s.visible}
-            @click=${() => {
-              this.dispatchEvent(
-                new SetSignatureVisibilityEvent(index, !s.visible)
-              )
-            }}
-          ></md-checkbox>
-        </div>
-        <div slot="end">
-          <md-chip-set aria-label="Training results">
-            ${s.genuineness === 'train'
-              ? html`
-                <md-assist-chip
-                  class="train"
-                  label="Used for training"
-                ></md-assist-chip>`
-              : nothing}
-            ${s.genuineness === 'genuine'
-              ? html`
-                <md-assist-chip
-                  class="genuine"
-                  label="Genuine"
-                ></md-assist-chip>`
-              : nothing}
-            ${s.genuineness === 'fake'
-              ? html`
-                <md-assist-chip class="fake" label="Fake"></md-assist-chip>`
-              : nothing}
-          </md-chip-set>
-          <label
-            class="color-input-label"
-            .id="hex-${index}"
-            .for="color-input-${index}"
-          >
-            <span class="label">Signature colour</span>
-            <span class="color-input-wrapper">
+  private getItemTemplate = (s: Signature, index: number) =>
+    html` <md-list-item>
+      <span>[${s.signer?.name ?? 'Unknown Signer'}]: ${s.name}</span>
+      <div slot="start">
+        <md-checkbox
+          touch-target="wrapper"
+          ?checked=${s.visible}
+          @click=${() => {
+            this.dispatchEvent(
+              new SetSignatureVisibilityEvent(index, !s.visible)
+            )
+          }}
+        ></md-checkbox>
+      </div>
+      <div slot="end">
+        <md-chip-set aria-label="Training results">
+          ${s.status === 'train'
+            ? html` <md-assist-chip
+                class="train"
+                label="Used for training"
+              ></md-assist-chip>`
+            : nothing}
+          ${s.status === 'genuine'
+            ? html` <md-assist-chip
+                class="genuine"
+                label="Genuine"
+              ></md-assist-chip>`
+            : nothing}
+          ${s.status === 'forgery'
+            ? html` <md-assist-chip
+                class="forgery"
+                label="Forgery"
+              ></md-assist-chip>`
+            : nothing}
+        </md-chip-set>
+        <label
+          class="color-input-label"
+          .id="hex-${index}"
+          .for="color-input-${index}"
+        >
+          <span class="label">Signature colour</span>
+          <span class="color-input-wrapper">
             <div>
               <input
                 type="color"
@@ -256,19 +265,19 @@ export class SignatureListElement extends LitElement {
               />
             </div>
           </span>
-          </label>
-          <md-filled-tonal-button
-            @click=${() => {
-              this.dispatchEvent(new RemoveSignatureEvent(index))
-            }}
-          >
-            Delete
-            <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
-              <path
-                d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
-              />
-            </svg>
-          </md-filled-tonal-button>
-        </div>
-      </md-list-item>`
+        </label>
+        <md-text-button
+          @click=${() => {
+            this.dispatchEvent(new RemoveSignatureEvent(index))
+          }}
+        >
+          Delete
+          <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
+            <path
+              d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+            />
+          </svg>
+        </md-text-button>
+      </div>
+    </md-list-item>`
 }

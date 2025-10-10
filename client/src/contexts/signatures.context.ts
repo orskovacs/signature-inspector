@@ -1,14 +1,7 @@
 import { createContext } from '@lit/context'
 import { Signature } from '../model/signature.ts'
 
-export type SignatureData = {
-  signature: Signature
-  visible: boolean
-  colorHex: string
-  genuineness?: 'genuine' | 'fake' | 'train'
-}
-
-export const signaturesContext = createContext<Array<SignatureData>>(
+export const signaturesContext = createContext<Array<Signature>>(
   Symbol('signatures-context')
 )
 

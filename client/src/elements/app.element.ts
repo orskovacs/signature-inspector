@@ -13,16 +13,15 @@ import {
   SetSignaturesForTrainingByIndexEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
-  SignatureData,
   signaturesContext,
 } from '../contexts/signatures.context'
-import { getRandomColorHex } from '../utils/color.util'
 import {
   PushSignersEvent,
   SelectSignerEvent,
   signersContext,
   SignersContextData,
 } from '../contexts/signers.context.ts'
+import { Signature } from '../model/signature.ts'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -48,12 +47,8 @@ export class AppElement extends LitElement {
     visualizer-element {
       background: var(--md-sys-color-surface);
       border-radius: 28px;
-    }
-
-    signature-list-element,
-    visualizer-element {
-      height: calc(100% - 2 * 18px - 4px);
-      padding: 18px;
+      height: calc(100% - 2 * 8px - 4px);
+      padding: 8px;
     }
   `
 
@@ -66,7 +61,7 @@ export class AppElement extends LitElement {
 
   @provide({ context: signaturesContext })
   @state()
-  private signatures: SignatureData[] = []
+  private signatures: Signature[] = []
 
   override connectedCallback() {
     super.connectedCallback()
@@ -126,27 +121,11 @@ export class AppElement extends LitElement {
   }
 
   private handlePushSignatureEvent(e: PushSignatureEvent): void {
-    this.signatures = [
-      ...this.signatures,
-      {
-        signature: e.detail,
-        visible: true,
-        colorHex: getRandomColorHex(),
-        genuineness: undefined,
-      },
-    ]
+    this.signatures = [...this.signatures, e.detail]
   }
 
   private handlePushSignaturesEvent(e: PushSignaturesEvent): void {
-    this.signatures = [
-      ...this.signatures,
-      ...e.detail.map((s) => ({
-        signature: s,
-        visible: true,
-        colorHex: getRandomColorHex(),
-        usedForTraining: false,
-      })),
-    ]
+    this.signatures = [...this.signatures, ...e.detail]
   }
 
   private handleSetSignatureVisibilityEvent(
@@ -188,7 +167,7 @@ export class AppElement extends LitElement {
   ): void {
     this.signatures.forEach((s, i) => {
       if (e.detail.signatureIndexes.includes(i)) {
-        s.genuineness = 'train'
+        s.status = 'train'
       }
 
       this.signatures = [...this.signatures]
@@ -196,16 +175,16 @@ export class AppElement extends LitElement {
   }
 
   private handleResetTrainingSignatures(_e: ResetTrainSignaturesEvent): void {
-    this.signatures.forEach((s) => (s.genuineness = undefined))
+    this.signatures.forEach((s) => (s.status = 'unknown'))
     this.signatures = [...this.signatures]
   }
 
   private handleSetSignatureGenuinenessEvent(
     e: SetSignatureGenuinenessEvent
   ): void {
-    this.signatures[e.detail.signatureIndex].genuineness = e.detail.isGenuine
+    this.signatures[e.detail.signatureIndex].status = e.detail.isGenuine
       ? 'genuine'
-      : 'fake'
+      : 'forgery'
     this.signatures = [...this.signatures]
   }
 
@@ -222,13 +201,7 @@ export class AppElement extends LitElement {
       selectedSignerIndex: e.detail.signerIndex,
     }
 
-    this.signatures = this.signersContext.signers[
-      e.detail.signerIndex
-    ].signatures.map((s) => ({
-      signature: s,
-      visible: true,
-      colorHex: getRandomColorHex(),
-      usedForTraining: false,
-    }))
+    this.signatures =
+      this.signersContext.signers[e.detail.signerIndex].signatures
   }
 }

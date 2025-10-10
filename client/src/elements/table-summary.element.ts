@@ -1,12 +1,10 @@
 import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import { ref } from 'lit/directives/ref.js'
-import {
-  SignatureData,
-  signaturesContext,
-} from '../contexts/signatures.context'
+import { signaturesContext } from '../contexts/signatures.context'
 import { setupSignatureSummaryTable } from '../utils/chart.util'
 import { consume } from '@lit/context'
+import { Signature } from '../model/signature.ts'
 
 @customElement('table-summary-element')
 export class TableSummaryElement extends LitElement {
@@ -24,9 +22,9 @@ export class TableSummaryElement extends LitElement {
   `
 
   @consume({ context: signaturesContext, subscribe: true })
-  private signatures!: SignatureData[]
+  private signatures!: Signature[]
 
-  private get visibleSignatures(): SignatureData[] {
+  private get visibleSignatures(): Signature[] {
     return this.signatures.filter((s) => s.visible)
   }
 
@@ -44,7 +42,7 @@ export class TableSummaryElement extends LitElement {
   }
 }
 
-function setupChart(signature: SignatureData) {
+function setupChart(signature: Signature) {
   return ref((element) => {
     if (!element) {
       return

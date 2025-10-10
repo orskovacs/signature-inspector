@@ -1,11 +1,9 @@
 import { consume } from '@lit/context'
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import {
-  signaturesContext,
-  SignatureData,
-} from '../contexts/signatures.context'
+import { signaturesContext } from '../contexts/signatures.context'
 import { ref } from 'lit/directives/ref.js'
+import { Signature } from '../model/signature.ts'
 
 @customElement('visual-representation-element')
 export class VisualRepresentationElement extends LitElement {
@@ -13,7 +11,7 @@ export class VisualRepresentationElement extends LitElement {
   static readonly canvasHeight = 200
 
   @consume({ context: signaturesContext, subscribe: true })
-  private signatures!: SignatureData[]
+  private signatures!: Signature[]
 
   render() {
     return html`<canvas
@@ -24,7 +22,7 @@ export class VisualRepresentationElement extends LitElement {
   }
 }
 
-function setupCanvas(signatures: SignatureData[]) {
+function setupCanvas(signatures: Signature[]) {
   return ref((element) => {
     if (!(element instanceof HTMLCanvasElement)) {
       return
@@ -41,20 +39,20 @@ function setupCanvas(signatures: SignatureData[]) {
       context.strokeStyle = `#${s.colorHex}`
       context.lineCap = 'round'
 
-      const xMax = Math.max(...s.signature.dataPoints.map((p) => p.xCoord))
-      const yMax = Math.max(...s.signature.dataPoints.map((p) => p.yCoord))
+      const xMax = Math.max(...s.dataPoints.map((p) => p.xCoord))
+      const yMax = Math.max(...s.dataPoints.map((p) => p.yCoord))
 
       const xStart =
-        (s.signature.dataPoints[0].xCoord / xMax) *
+        (s.dataPoints[0].xCoord / xMax) *
         VisualRepresentationElement.canvasWidth
       const yStart =
-        (s.signature.dataPoints[0].xCoord / yMax) *
+        (s.dataPoints[0].xCoord / yMax) *
         VisualRepresentationElement.canvasHeight
 
       context.beginPath()
       context.moveTo(xStart, yStart)
 
-      s.signature.dataPoints.slice(1).forEach((p) => {
+      s.dataPoints.slice(1).forEach((p) => {
         const pressure = p.pressure <= 1 ? p.pressure : p.pressure / 1000
         const pointSize = 0.1 + pressure * 7
         const [x, y] = [
