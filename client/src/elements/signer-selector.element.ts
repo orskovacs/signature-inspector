@@ -71,11 +71,8 @@ export class SignerSelectorElement extends LitElement {
         }}"
       >
         ${this.signers.map(
-          (s, i) => html`
-            <md-select-option value="${i}"
-            >${s.name}<!-- [${s.id}] -->
-            </md-select-option>
-          `
+          (s, i) =>
+            html`<md-select-option value="${i}">${s.name}</md-select-option>`
         )}
       </md-outlined-select>
       <md-outlined-button @click="${() => this.newSignerDialog.show()}">
@@ -121,9 +118,7 @@ export class SignerSelectorElement extends LitElement {
           >
             Add
           </md-filled-button>
-          <md-text-button form="new-signer-dialog-form">
-            Close
-          </md-text-button>
+          <md-text-button form="new-signer-dialog-form">Close</md-text-button>
         </div>
       </md-dialog>
     `
