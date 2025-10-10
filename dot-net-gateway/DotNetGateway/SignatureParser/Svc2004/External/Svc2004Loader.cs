@@ -297,7 +297,7 @@ public class Svc2004Loader : DataSetLoader
 
         signature.SetFeature(Features.Azimuth, standardLines.Select(l => (double)l[4]).ToList());
         signature.SetFeature(Features.Altitude, standardLines.Select(l => (double)l[5]).ToList());
-        signature.SetFeature(Features.Pressure, standardLines.Select(l => (double)l[6]).ToList().ToList());
+        signature.SetFeature(Features.Pressure, standardLines.Select(l => (double)l[6]).ToList());
     }
 
     private static void CalculateStandardStatistics(Signature signature)
