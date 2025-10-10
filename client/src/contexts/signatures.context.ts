@@ -1,5 +1,5 @@
 import { createContext } from '@lit/context'
-import { Signature } from 'signature-field'
+import { Signature } from '../model/signature.ts'
 
 export type SignatureData = {
   signature: Signature

@@ -17,42 +17,33 @@ import {
   signaturesContext,
 } from '../contexts/signatures.context'
 import { getRandomColorHex } from '../utils/color.util'
+import {
+  PushSignersEvent,
+  SelectSignerEvent,
+  signersContext,
+  SignersContextData,
+} from '../contexts/signers.context.ts'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
   static styles = css`
     :host {
+      --select-block-space: 8px;
+      --md-outlined-field-bottom-space: var(--select-block-space);
+      --md-outlined-field-top-space: var(--select-block-space);
+
       height: 100%;
-      display: block;
-    }
-
-    .heading {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--md-ref-typeface-brand);
-      padding-inline: 24px;
-      padding-block: 18px;
-      margin: 8px 0 8px 0;
-    }
-
-    .heading h1 {
-      margin: 0;
+      display: grid;
+      grid-template-rows: min-content 1fr;
     }
 
     main {
-      height: calc(100% - 100px);
       display: grid;
-      align-items: start;
       grid-template-rows: 40% 60%;
-      grid-template-columns: 100%;
-      overflow: hidden;
       gap: 4px;
+      height: calc(100vh - 56px - 8px);
     }
 
-    .heading,
     signature-list-element,
     visualizer-element {
       background: var(--md-sys-color-surface);
@@ -61,10 +52,17 @@ export class AppElement extends LitElement {
 
     signature-list-element,
     visualizer-element {
-      height: calc(100% - 2 * 18px - 8px);
+      height: calc(100% - 2 * 18px - 4px);
       padding: 18px;
     }
   `
+
+  @provide({ context: signersContext })
+  @state()
+  private signersContext: SignersContextData = {
+    signers: [],
+    selectedSignerIndex: null,
+  }
 
   @provide({ context: signaturesContext })
   @state()
@@ -72,6 +70,9 @@ export class AppElement extends LitElement {
 
   override connectedCallback() {
     super.connectedCallback()
+
+    this.addEventListener(PushSignersEvent.key, this.handlePushSignersEvent)
+    this.addEventListener(SelectSignerEvent.key, this.handleSelectSignerEvent)
 
     this.addEventListener(PushSignatureEvent.key, this.handlePushSignatureEvent)
     this.addEventListener(
@@ -117,11 +118,7 @@ export class AppElement extends LitElement {
   }
 
   render() {
-    return html`<div class="heading">
-        <h1>Signature Inspector</h1>
-        <signature-loader-element></signature-loader-element>
-      </div>
-
+    return html`<header-element></header-element>
       <main>
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>
@@ -210,5 +207,28 @@ export class AppElement extends LitElement {
       ? 'genuine'
       : 'fake'
     this.signatures = [...this.signatures]
+  }
+
+  private handlePushSignersEvent(e: PushSignersEvent): void {
+    this.signersContext = {
+      ...this.signersContext,
+      signers: [...this.signersContext.signers, ...e.detail],
+    }
+  }
+
+  private handleSelectSignerEvent(e: SelectSignerEvent): void {
+    this.signersContext = {
+      ...this.signersContext,
+      selectedSignerIndex: e.detail.signerIndex,
+    }
+
+    this.signatures = this.signersContext.signers[
+      e.detail.signerIndex
+    ].signatures.map((s) => ({
+      signature: s,
+      visible: true,
+      colorHex: getRandomColorHex(),
+      usedForTraining: false,
+    }))
   }
 }

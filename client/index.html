@@ -9,6 +9,7 @@
     <app-element></app-element>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="module">
+      import '/src/main.ts'
       import '@material/web/button/filled-button.js'
       import '@material/web/button/outlined-button.js'
       import '@material/web/button/text-button.js'
@@ -22,15 +23,24 @@
       import '@material/web/switch/switch.js'
       import '@material/web/chips/chip-set.js'
       import '@material/web/chips/assist-chip.js'
+      import '@material/web/select/outlined-select.js'
+      import '@material/web/select/select-option.js'
+      import '@material/web/textfield/outlined-text-field.js'
       import 'signature-field/signature-field.js'
       import '/src/elements/app.element.ts'
-      import '/src/elements/signature-loader.element.ts'
+      import '/src/elements/header.element.js'
+      import '/src/elements/signature-input.element.ts'
+      import '/src/elements/signature-files-loader.element.js'
+      import '/src/elements/signature-database-importer.element.js'
       import '/src/elements/signature-list.element.ts'
       import '/src/elements/visualizer.element.ts'
       import '/src/elements/visual-representation.element.ts'
       import '/src/elements/graph.element.ts'
       import '/src/elements/table-summary.element.ts'
-      import '/src/main.ts'
+      import '/src/elements/signer-selector.element.js'
+      import '/src/elements/icons/draw.icon.js'
+      import '/src/elements/icons/folder-zip.icon.js'
+      import '/src/elements/icons/upload-file.icon.js'
     </script>
   </body>
 </html>

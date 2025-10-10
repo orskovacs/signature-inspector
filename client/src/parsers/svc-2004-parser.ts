@@ -1,5 +1,7 @@
-import { Signature, SignatureDataPoint } from 'signature-field'
-import { SignatureParser } from './signature-parser'
+import { SignatureDataPoint } from 'signature-field'
+import { ParseResult, SignatureParser } from './signature-parser'
+import { Signature } from '../model/signature.ts'
+import { Signer } from '../model/signer.ts'
 
 export class Svc2004Parser implements SignatureParser {
   private static extractPointDataFromLine(line: string): SignatureDataPoint {
@@ -16,7 +18,7 @@ export class Svc2004Parser implements SignatureParser {
     }
   }
 
-  async parse(file: File): Promise<Signature[]> {
+  async parse(file: File, existingSigners: Signer[]): Promise<ParseResult> {
     const fileContents = await file.text()
     const lines = fileContents.split('\n')
     const pointsCount = Number.parseInt(lines[0])
@@ -26,6 +28,22 @@ export class Svc2004Parser implements SignatureParser {
       dataPoints.push(Svc2004Parser.extractPointDataFromLine(lines[i]))
     }
 
-    return [new Signature(dataPoints)]
+    const signature = new Signature(dataPoints)
+    let isNewSigner = false
+    const signerName = `SVC2004 ${file.name.split('S')[0]}`
+    let signer = existingSigners.find((s) => s.name === signerName)
+
+    if (signer === undefined) {
+      signer = new Signer(signerName)
+      isNewSigner = true
+    }
+
+    signature.setSigner(signer)
+    signer.addSignatures(signature)
+
+    return {
+      signatures: [signature],
+      signers: isNewSigner ? [signer] : [],
+    }
   }
 }

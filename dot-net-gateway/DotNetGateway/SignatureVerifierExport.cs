@@ -1,9 +1,9 @@
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedType.Global
+
 using System.Runtime.InteropServices.JavaScript;
 using System.Runtime.Versioning;
 using DotNetGateway.SignatureVerifier;
-
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedType.Global
 
 namespace DotNetGateway;
 

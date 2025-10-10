@@ -1,7 +1,24 @@
-import { SignatureVerifierManager } from './signature-verifier-manager.ts'
-
 export type DotNetAssemblyExports = {
   DotNetGateway: {
-    SignatureVerifierExport: SignatureVerifierManager
+    SignatureVerifierExport: SignatureVerifierImport
+    SignatureParserExport: SignatureParserImport
   }
+}
+
+export interface DotNetImport {}
+
+export interface SignatureVerifierImport extends DotNetImport {
+  InitializeNewVerifier: (classifierId: string) => string
+  TrainUsingSignatures: (id: string, signaturesJson: string) => Promise<void>
+  TestSignature: (id: string, signatureJson: string) => Promise<boolean>
+}
+
+export interface SignatureParserImport extends DotNetImport {
+  InitializeNewParser(loaderId: string): string
+
+  ParseFileContents(
+    id: string,
+    fileContents: string,
+    signerIds: string[]
+  ): Promise<string>
 }

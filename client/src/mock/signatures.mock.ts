@@ -1,4 +1,5 @@
-import { Signature, SignatureDataPoint } from 'signature-field'
+import { SignatureDataPoint } from 'signature-field'
+import { Signature } from '../model/signature.ts'
 
 const dataPointsA: SignatureDataPoint[] = [
   {

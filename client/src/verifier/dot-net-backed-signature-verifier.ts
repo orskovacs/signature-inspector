@@ -1,26 +1,27 @@
 import { SignatureVerifier } from './signature-verifier.ts'
-import { DotNetInteropManager } from '../dot-net-interop/dot-net-interop-manager.ts'
-import { SignatureVerifierManager } from '../dot-net-interop/signature-verifier-manager.ts'
-import { Signature } from 'signature-field'
+import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
+import { SignatureVerifierImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
+import { Signature } from '../model/signature.ts'
 
 export abstract class DotNetBackedSignatureVerifier
+  extends DotNetBackedObject<SignatureVerifierImport>
   implements SignatureVerifier
 {
-  private readonly _manager: Promise<SignatureVerifierManager>
-  private readonly _id: Promise<string>
+  private readonly _dotNetId: Promise<string>
 
   protected abstract get classifierId(): string
 
   protected constructor() {
-    this._manager = DotNetInteropManager.instance.signatureVerifierManager
-    this._id = this._manager.then((manager) =>
+    super("SignatureVerifierExport")
+
+    this._dotNetId = this.dotNetImport.then((manager) =>
       manager.InitializeNewVerifier(this.classifierId)
     )
   }
 
   public async trainUsingSignatures(signatures: Signature[]): Promise<void> {
-    let manager = await this._manager
-    let id = await this._id
+    let manager = await this.dotNetImport
+    let id = await this._dotNetId
     let signatureDataArray = signatures.map((s) => ({
       timeStamp: s.creationTimeStamp,
       dataPoints: s.dataPoints,
@@ -30,8 +31,8 @@ export abstract class DotNetBackedSignatureVerifier
   }
 
   public async testSignature(signature: Signature): Promise<boolean> {
-    let manager = await this._manager
-    let id = await this._id
+    let manager = await this.dotNetImport
+    let id = await this._dotNetId
     let signatureData = {
       timeStamp: signature.creationTimeStamp,
       dataPoints: signature.dataPoints,

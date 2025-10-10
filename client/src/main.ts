@@ -1,8 +1,8 @@
 import './style.css'
 import { applyCustomTheme } from './utils/theme.util'
 
-window.addEventListener('DOMContentLoaded', () => {
-  applyCustomTheme()
-})
+applyCustomTheme()
 
-await google.charts.load('current', { packages: ['corechart', 'line', 'table'] })
+await google.charts.load('current', {
+  packages: ['corechart', 'line', 'table'],
+})

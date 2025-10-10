@@ -198,44 +198,48 @@ export class SignatureListElement extends LitElement {
   }
 
   private getItemTemplate = (s: SignatureData, index: number) =>
-    html`<md-list-item>
-      <span>${new Date(s.signature.creationTimeStamp).toLocaleString()}</span>
-      <div slot="start">
-        <md-checkbox
-          touch-target="wrapper"
-          ?checked=${s.visible}
-          @click=${() => {
-            this.dispatchEvent(
-              new SetSignatureVisibilityEvent(index, !s.visible)
-            )
-          }}
-        ></md-checkbox>
-      </div>
-      <div slot="end">
-        <md-chip-set aria-label="Training results">
-          ${s.genuineness === 'train'
-            ? html`<md-assist-chip
-                class="train"
-                label="Used for training"
-              ></md-assist-chip>`
-            : nothing}
-          ${s.genuineness === 'genuine'
-            ? html`<md-assist-chip
-                class="genuine"
-                label="Genuine"
-              ></md-assist-chip>`
-            : nothing}
-          ${s.genuineness === 'fake'
-            ? html`<md-assist-chip class="fake" label="Fake"></md-assist-chip>`
-            : nothing}
-        </md-chip-set>
-        <label
-          class="color-input-label"
-          .id="hex-${index}"
-          .for="color-input-${index}"
-        >
-          <span class="label">Signature colour</span>
-          <span class="color-input-wrapper">
+    html`
+      <md-list-item>
+        <span>[${s.signature.signer?.name ?? "Unknown Signer"}]: ${new Date(s.signature.creationTimeStamp).toLocaleString()}</span>
+        <div slot="start">
+          <md-checkbox
+            touch-target="wrapper"
+            ?checked=${s.visible}
+            @click=${() => {
+              this.dispatchEvent(
+                new SetSignatureVisibilityEvent(index, !s.visible)
+              )
+            }}
+          ></md-checkbox>
+        </div>
+        <div slot="end">
+          <md-chip-set aria-label="Training results">
+            ${s.genuineness === 'train'
+              ? html`
+                <md-assist-chip
+                  class="train"
+                  label="Used for training"
+                ></md-assist-chip>`
+              : nothing}
+            ${s.genuineness === 'genuine'
+              ? html`
+                <md-assist-chip
+                  class="genuine"
+                  label="Genuine"
+                ></md-assist-chip>`
+              : nothing}
+            ${s.genuineness === 'fake'
+              ? html`
+                <md-assist-chip class="fake" label="Fake"></md-assist-chip>`
+              : nothing}
+          </md-chip-set>
+          <label
+            class="color-input-label"
+            .id="hex-${index}"
+            .for="color-input-${index}"
+          >
+            <span class="label">Signature colour</span>
+            <span class="color-input-wrapper">
             <div>
               <input
                 type="color"
@@ -252,19 +256,19 @@ export class SignatureListElement extends LitElement {
               />
             </div>
           </span>
-        </label>
-        <md-filled-tonal-button
-          @click=${() => {
-            this.dispatchEvent(new RemoveSignatureEvent(index))
-          }}
-        >
-          Delete
-          <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
-            <path
-              d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
-            />
-          </svg>
-        </md-filled-tonal-button>
-      </div>
-    </md-list-item>`
+          </label>
+          <md-filled-tonal-button
+            @click=${() => {
+              this.dispatchEvent(new RemoveSignatureEvent(index))
+            }}
+          >
+            Delete
+            <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
+              <path
+                d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+              />
+            </svg>
+          </md-filled-tonal-button>
+        </div>
+      </md-list-item>`
 }
