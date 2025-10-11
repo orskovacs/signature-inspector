@@ -49,10 +49,27 @@ export class AppElement extends LitElement {
     }
 
     main {
+      position: relative;
+      bottom: 0;
       display: grid;
       grid-template-rows: 40% 60%;
       gap: 6px;
       height: calc(100vh - 69px);
+      transition: bottom 0.5s ease-in-out;
+    }
+
+    main.hidden {
+      bottom: -100%;
+    }
+
+    header-element {
+      position: relative;
+      top: 0;
+      transition: top 0.5s ease-in-out;
+    }
+
+    header-element.center {
+      top: calc(50vh - 100%);
     }
 
     signature-list-element,
@@ -76,6 +93,10 @@ export class AppElement extends LitElement {
   @provide({ context: signaturesContext })
   @state()
   private signatures: Signature[] = []
+
+  private get isAppEmpty(): boolean {
+    return this.signersContext.signers.length === 0
+  }
 
   override connectedCallback() {
     super.connectedCallback()
@@ -139,8 +160,10 @@ export class AppElement extends LitElement {
   }
 
   render() {
-    return html`<header-element></header-element>
-      <main>
+    return html`<header-element
+        class="${this.isAppEmpty && 'center'}"
+      ></header-element>
+      <main class="${this.isAppEmpty && 'hidden'}">
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>
       </main>`
@@ -235,9 +258,16 @@ export class AppElement extends LitElement {
   }
 
   private handlePushSignersEvent(e: PushSignersEvent): void {
+    const selectFirst =
+      this.signersContext.signers.length === 0 && e.detail.length > 0
+
     this.signersContext = {
       ...this.signersContext,
       signers: [...this.signersContext.signers, ...e.detail],
+    }
+
+    if (selectFirst) {
+      this.dispatchEvent(new SelectSignerEvent(0))
     }
   }
 
