@@ -1,5 +1,5 @@
 import { createContext } from '@lit/context'
-import { Signature } from '../model/signature.ts'
+import { Signature, VerificationStatus } from '../model/signature.ts'
 
 export const signaturesContext = createContext<Array<Signature>>(
   Symbol('signatures-context')
@@ -168,17 +168,17 @@ export class ResetTrainSignaturesEvent extends CustomEvent<void> {
   }
 }
 
-export class SetSignatureGenuinenessEvent extends CustomEvent<{
+export class SetSignatureVerificationStatusEvent extends CustomEvent<{
   signatureIndex: number
-  isGenuine: boolean
+  status: VerificationStatus
 }> {
   public static readonly key = 'set-signature-genuineness'
 
-  constructor(signatureIndex: number, isGenuine: boolean) {
-    super(SetSignatureGenuinenessEvent.key, {
+  constructor(signatureIndex: number, status: VerificationStatus) {
+    super(SetSignatureVerificationStatusEvent.key, {
       bubbles: true,
       composed: true,
-      detail: { signatureIndex, isGenuine },
+      detail: { signatureIndex, status },
     })
   }
 }
@@ -197,7 +197,7 @@ type CustomEventMap = {
   [RemoveAllSignaturesEvent.key]: RemoveAllSignaturesEvent
   [SetSignaturesForTrainingByIndexEvent.key]: SetSignaturesForTrainingByIndexEvent
   [ResetTrainSignaturesEvent.key]: ResetTrainSignaturesEvent
-  [SetSignatureGenuinenessEvent.key]: SetSignatureGenuinenessEvent
+  [SetSignatureVerificationStatusEvent.key]: SetSignatureVerificationStatusEvent
 }
 
 declare global {

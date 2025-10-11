@@ -5,19 +5,23 @@ import { getRandomColorHex } from '../utils/color.util.ts'
 export class Signature extends SignatureBase {
   private readonly _name: string
   private _signer: Signer | null = null
-  private _visible: boolean = true
-  private _selected: boolean = false
+  private _visible: boolean = false
+  private _forTraining: boolean = false
   private _colorHex: string = getRandomColorHex()
-  private _status: SignatureStatus
+  private readonly _authenticity: Authenticity = 'unknown'
+  private _verificationStatus: VerificationStatus = 'unverified'
+  private readonly _origin: string | null = null
 
   constructor(
     name: string,
     dataPoints: SignatureDataPoint[],
-    status: SignatureStatus = 'unknown'
+    authenticity: Authenticity = 'unknown',
+    origin: string | null = null
   ) {
     super(dataPoints)
     this._name = name
-    this._status = status
+    this._authenticity = authenticity
+    this._origin = origin
   }
 
   public get name(): string {
@@ -40,12 +44,12 @@ export class Signature extends SignatureBase {
     this._visible = value
   }
 
-  public get selected(): boolean {
-    return this._selected
+  public get forTraining(): boolean {
+    return this._forTraining
   }
 
-  public set selected(value: boolean) {
-    this._selected = value
+  public set forTraining(value: boolean) {
+    this._forTraining = value
   }
 
   public get colorHex(): string {
@@ -56,13 +60,26 @@ export class Signature extends SignatureBase {
     this._colorHex = value
   }
 
-  public get status(): SignatureStatus {
-    return this._status
+  public get authenticity(): Authenticity {
+    return this._authenticity
   }
 
-  public set status(value: SignatureStatus) {
-    this._status = value
+  public get verificationStatus(): VerificationStatus {
+    return this._verificationStatus
+  }
+
+  public set verificationStatus(value: VerificationStatus) {
+    this._verificationStatus = value
+  }
+
+  public get origin() {
+    return this._origin
   }
 }
 
-export type SignatureStatus = 'genuine' | 'forgery' | 'train' | 'unknown'
+export type VerificationStatus =
+  | 'genuine'
+  | 'forged'
+  | 'unverified'
+  | 'training'
+export type Authenticity = 'genuine' | 'forged' | 'unknown'

@@ -10,7 +10,7 @@ import {
   ResetTrainSignaturesEvent,
   SelectAllSignaturesEvent,
   SetSignatureColorEvent,
-  SetSignatureGenuinenessEvent,
+  SetSignatureVerificationStatusEvent,
   SetSignatureSelectionEvent,
   SetSignaturesForTrainingByIndexEvent,
   SetSignatureVisibilityEvent,
@@ -76,10 +76,6 @@ export class AppElement extends LitElement {
     visualizer-element {
       background: var(--md-sys-color-surface);
       border-radius: 16px;
-    }
-
-    signature-list-element {
-      padding: 8px;
     }
   `
 
@@ -154,8 +150,8 @@ export class AppElement extends LitElement {
       this.handleResetTrainingSignatures
     )
     this.addEventListener(
-      SetSignatureGenuinenessEvent.key,
-      this.handleSetSignatureGenuinenessEvent
+      SetSignatureVerificationStatusEvent.key,
+      this.handleSetSignatureVerificationStatusEvent
     )
   }
 
@@ -169,12 +165,25 @@ export class AppElement extends LitElement {
       </main>`
   }
 
+  private pushSignatures(...signatures: Signature[]): void {
+    if (signatures.length === 0) return
+
+    if (this.signatures.length === 0 && signatures.every((s) => !s.visible)) {
+      const visibleSignaturesCount = Math.min(3, signatures.length)
+      for (let i = 0; i < visibleSignaturesCount; i++) {
+        signatures[i].visible = true
+      }
+    }
+
+    this.signatures = [...this.signatures, ...signatures]
+  }
+
   private handlePushSignatureEvent(e: PushSignatureEvent): void {
-    this.signatures = [...this.signatures, e.detail]
+    this.pushSignatures(e.detail)
   }
 
   private handlePushSignaturesEvent(e: PushSignaturesEvent): void {
-    this.signatures = [...this.signatures, ...e.detail]
+    this.pushSignatures(...e.detail)
   }
 
   private handleSetSignatureVisibilityEvent(
@@ -199,19 +208,19 @@ export class AppElement extends LitElement {
     e: SetSignatureSelectionEvent
   ): void {
     const signature = this.signatures[e.detail.signatureIndex]
-    signature.selected = e.detail.selection
+    signature.forTraining = e.detail.selection
     this.signatures = [...this.signatures]
   }
 
   private handleUnselectAllSignaturesEvent(
     _e: UnselectAllSignaturesEvent
   ): void {
-    this.signatures.forEach((s) => (s.selected = false))
+    this.signatures.forEach((s) => (s.forTraining = false))
     this.signatures = [...this.signatures]
   }
 
   private handleSelectAllSignaturesEvent(_e: SelectAllSignaturesEvent): void {
-    this.signatures.forEach((s) => (s.selected = true))
+    this.signatures.forEach((s) => (s.forTraining = true))
     this.signatures = [...this.signatures]
   }
 
@@ -236,7 +245,7 @@ export class AppElement extends LitElement {
   ): void {
     this.signatures.forEach((s, i) => {
       if (e.detail.signatureIndexes.includes(i)) {
-        s.status = 'train'
+        s.verificationStatus = 'training'
       }
 
       this.signatures = [...this.signatures]
@@ -244,16 +253,15 @@ export class AppElement extends LitElement {
   }
 
   private handleResetTrainingSignatures(_e: ResetTrainSignaturesEvent): void {
-    this.signatures.forEach((s) => (s.status = 'unknown'))
+    this.signatures.forEach((s) => (s.verificationStatus = 'unverified'))
     this.signatures = [...this.signatures]
   }
 
-  private handleSetSignatureGenuinenessEvent(
-    e: SetSignatureGenuinenessEvent
+  private handleSetSignatureVerificationStatusEvent(
+    e: SetSignatureVerificationStatusEvent
   ): void {
-    this.signatures[e.detail.signatureIndex].status = e.detail.isGenuine
-      ? 'genuine'
-      : 'forgery'
+    this.signatures[e.detail.signatureIndex].verificationStatus =
+      e.detail.status
     this.signatures = [...this.signatures]
   }
 
@@ -277,7 +285,10 @@ export class AppElement extends LitElement {
       selectedSignerIndex: e.detail.signerIndex,
     }
 
-    this.signatures =
-      this.signersContext.signers[e.detail.signerIndex].signatures
+    this.signatures = []
+
+    this.pushSignatures(
+      ...this.signersContext.signers[e.detail.signerIndex].signatures
+    )
   }
 }

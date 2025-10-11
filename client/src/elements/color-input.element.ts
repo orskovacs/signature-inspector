@@ -7,7 +7,7 @@ export class ColorInputElement extends LitElement {
     :host {
       display: inline-block;
       border-radius: 10px;
-      width: 40px;
+      width: 60px;
       height: 20px;
       box-sizing: border-box;
       border: 1px solid var(--md-sys-color-outline);

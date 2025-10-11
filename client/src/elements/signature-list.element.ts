@@ -5,16 +5,25 @@ import {
   RemoveAllSignaturesEvent,
   RemoveSignatureEvent,
   ResetTrainSignaturesEvent,
+  SelectAllSignaturesEvent,
   SetSignatureColorEvent,
-  SetSignatureGenuinenessEvent,
+  SetSignatureVerificationStatusEvent,
+  SetSignatureSelectionEvent,
   SetSignaturesForTrainingByIndexEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
   signaturesContext,
+  UnselectAllSignaturesEvent,
 } from '../contexts/signatures.context'
 import { consume } from '@lit/context'
 import { EbDbaLsDtwVerifier } from '../verifier/eb-dba-ls-dtw-verifier.ts'
 import { Signature } from '../model/signature.ts'
+import { ColorChangeEvent } from './color-input.element.ts'
+import {
+  signersContext,
+  SignersContextData,
+} from '../contexts/signers.context.ts'
+import { Signer } from '../model/signer.ts'
 
 @customElement('signature-list-element')
 export class SignatureListElement extends LitElement {
@@ -24,260 +33,370 @@ export class SignatureListElement extends LitElement {
       --md-list-item-bottom-space: 0;
       --md-list-item-one-line-container-height: 0;
 
-      display: grid;
-      align-content: flex-start;
+      overflow: clip;
     }
 
-    div[slot='start'],
-    div[slot='end'] {
-      display: contents;
-    }
-
-    label.color-input-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-
-    .color-input-wrapper {
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      box-sizing: border-box;
-      border: 1px solid var(--md-sys-color-on-secondary-container);
-      position: relative;
-      cursor: pointer;
-    }
-
-    .color-input-wrapper div {
+    .suggestion {
+      font-style: oblique;
+      position: absolute;
       width: 100%;
-      height: 100%;
-      overflow: hidden;
-      border-radius: inherit;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+      text-align: center;
+      margin-block: 20px;
     }
 
-    .color-input-wrapper input[type='color'] {
-      min-width: 200%;
-      min-height: 200%;
-      border: none;
-      background: none;
-      cursor: pointer;
+    .suggestion .signer-name {
+      font-weight: bold;
+      text-decoration: underline;
     }
 
-    md-list {
+    .table-wrapper {
+      height: calc(100% + 8px);
       overflow: scroll;
     }
 
-    md-list::after {
-      content: ' ';
-      min-height: 40px;
-      position: sticky;
-      bottom: -8px;
-      background: -webkit-linear-gradient(
-        bottom,
-        var(--md-sys-color-surface, #fef7ff),
-        transparent 40px
-      );
-      background: linear-gradient(
-        0,
-        var(--md-sys-color-surface, #fef7ff),
-        transparent 40px
-      );
+    table {
+      position: relative;
+      width: 100%;
+      border-spacing: 0;
+      text-align: center;
     }
+
+    td,
+    th {
+      border: 1px solid var(--md-sys-color-outline-variant);
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: var(--md-sys-color-surface);
+      z-index: 10;
+      font-variant: all-petite-caps;
+      font-size: 0.9rem;
+      border-bottom: 4px solid var(--md-sys-color-outline-variant);
+    }
+
+    thead tr:first-of-type th {
+      border-top: none;
+    }
+
+    tbody tr:last-of-type td {
+      border-bottom: none;
+    }
+
+    th:first-of-type,
+    td:first-of-type {
+      border-left: none;
+    }
+
+    th:last-of-type,
+    td:last-of-type {
+      border-right: none;
+    }
+
+    td,
+    th {
+      padding-inline: 20px;
+    }
+
+    th.col-verification,
+    th.col-actions {
+      font-variant: initial;
+      padding-inline: 0;
+    }
+
+    .col-visibility,
+    .col-training {
+      padding-inline: 6px;
+    }
+
+    .col-visibility,
+    .col-training,
+    .col-color {
+      width: 60px;
+    }
+
+    .col-name,
+    .col-signer,
+    .col-origin {
+      width: auto;
+    }
+
+    .col-length,
+    .col-authenticity,
+    .col-verification,
+    .col-actions {
+      width: 1px;
+    }
+
+    td.col-color {
+      padding: 0;
+    }
+
+    th > label {
+      margin-bottom: 4px;
+      display: block;
+      font-size: 0.7rem;
+      text-wrap-mode: nowrap;
+    }
+
+    th > label + md-checkbox {
+      margin-bottom: 6px;
+    }
+
+    //.table-wrapper::after {
+    //  content: ' ';
+    //  display: block;
+    //  min-height: 40px;
+    //  position: sticky;
+    //  bottom: -8px;
+    //  background: -webkit-linear-gradient(
+    //    bottom,
+    //    var(--md-sys-color-surface, #fef7ff),
+    //    transparent 40px
+    //  );
+    //  background: linear-gradient(
+    //    0,
+    //    var(--md-sys-color-surface, #fef7ff),
+    //    transparent 40px
+    //  );
+    //}
   `
+
+  @consume({ context: signersContext, subscribe: true })
+  private signersContext!: SignersContextData
 
   @consume({ context: signaturesContext, subscribe: true })
   private signatures!: Signature[]
 
-  private get signaturesCount(): number {
-    return this.signatures.length
+  private get selectedSigner(): Signer | null {
+    const selectedSignerIndex = this.signersContext.selectedSignerIndex
+    if (selectedSignerIndex === null) return null
+
+    return this.signersContext.signers[selectedSignerIndex]
   }
 
-  private get visibleSignaturesCount(): number {
-    return this.visibleSignatures.length
+  private get signaturesForTrainingCount(): number {
+    return this.signaturesForTraining.length
   }
 
-  private get selectedSignaturesCount(): number {
-    return this.selectedSignatures.length
-  }
-
-  private get visibleSignatures(): Signature[] {
-    return this.signatures.filter((s) => s.visible)
-  }
-
-  private get selectedSignatures(): Signature[] {
-    return this.signatures.filter((s) => s.selected)
+  private get signaturesForTraining(): Signature[] {
+    return this.signatures.filter((s) => s.forTraining)
   }
 
   render() {
-    return html` <md-list-item>
-        <div slot="start">
-          <md-checkbox
-            id="toggle-all-checkbox"
-            touch-target="wrapper"
-            ?disabled=${this.signatures.length === 0}
-            ?checked=${this.signatures.length > 0 &&
-            this.signatures.every((s) => s.visible)}
-            ?indeterminate=${!this.signatures.every((s) => s.visible) &&
-            this.signatures.some((s) => s.visible)}
-            @click=${() => {
-              if (this.signatures.every((s) => s.visible))
-                this.dispatchEvent(new HideAllSignaturesEvent())
-              else this.dispatchEvent(new ShowAllSignaturesEvent())
-            }}
-          ></md-checkbox>
-          <label>
-            ${this.visibleSignaturesCount} / ${this.signaturesCount} signatures
-            visible
-          </label>
-        </div>
-        <div slot="end">
-          <md-filled-tonal-button
-            ?disabled=${this.selectedSignaturesCount === 0}
-            @click=${() => {
-              this.dispatchEvent(new ResetTrainSignaturesEvent())
-              const verifier = new EbDbaLsDtwVerifier()
-              verifier
-                .trainUsingSignatures(this.selectedSignatures)
-                .then(() => {
-                  const selectedSignaturesIndexes: number[] = []
-                  this.signatures.forEach((s, i) => {
-                    if (s.visible) {
-                      selectedSignaturesIndexes.push(i)
-                    }
-                  })
+    return html`<div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-visibility">
+              <label for="toggle-all-visibility-checkbox">Visible</label>
+              <md-checkbox
+                id="toggle-all-visibility-checkbox"
+                ?disabled=${this.signatures.length === 0}
+                ?checked=${this.signatures.length > 0 &&
+                this.signatures.every((s) => s.visible)}
+                ?indeterminate=${!this.signatures.every((s) => s.visible) &&
+                this.signatures.some((s) => s.visible)}
+                @click=${() => {
+                  if (this.signatures.every((s) => s.visible))
+                    this.dispatchEvent(new HideAllSignaturesEvent())
+                  else this.dispatchEvent(new ShowAllSignaturesEvent())
+                }}
+              ></md-checkbox>
+            </th>
+            <th class="col-color">Colour</th>
+            <th class="col-name">Name</th>
+            <th class="col-signer">Signer</th>
+            <th class="col-origin">Origin</th>
+            <th class="col-length">Data points</th>
+            <th class="col-authenticity">Authenticity</th>
+            <th class="col-training">
+              <label for="toggle-selection-checkbox">Train on</label>
+              <md-checkbox
+                id="toggle-all-selection-checkbox"
+                ?disabled=${this.signatures.length === 0}
+                ?checked=${this.signatures.length > 0 &&
+                this.signatures.every((s) => s.forTraining)}
+                ?indeterminate=${!this.signatures.every((s) => s.forTraining) &&
+                this.signatures.some((s) => s.forTraining)}
+                @click=${() => {
+                  if (this.signatures.every((s) => s.forTraining))
+                    this.dispatchEvent(new UnselectAllSignaturesEvent())
+                  else this.dispatchEvent(new SelectAllSignaturesEvent())
+                }}
+              ></md-checkbox>
+            </th>
+            <th class="col-verification">
+              <md-filled-tonal-button
+                ?disabled=${this.signaturesForTrainingCount === 0}
+                @click=${this.onTrainClick}
+              >
+                Train
+                <train-model-icon slot="icon"></train-model-icon>
+              </md-filled-tonal-button>
+            </th>
+            <th class="col-actions">
+              <md-filled-tonal-button
+                ?disabled=${this.signatures.length === 0}
+                @click=${() => {
+                  this.dispatchEvent(new RemoveAllSignaturesEvent())
+                }}
+              >
+                Delete All
+                <delete-icon slot="icon"></delete-icon>
+              </md-filled-tonal-button>
+            </th>
+          </tr>
+        </thead>
 
-                  this.dispatchEvent(
-                    new SetSignaturesForTrainingByIndexEvent(
-                      selectedSignaturesIndexes
-                    )
-                  )
-
-                  this.signatures.forEach((s, i) => {
-                    if (!s.visible) {
-                      verifier.testSignature(s).then((isGenuine) => {
-                        this.dispatchEvent(
-                          new SetSignatureGenuinenessEvent(i, isGenuine)
-                        )
-                      })
-                    }
-                  })
-                })
-            }}
-          >
-            Train
-            <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
-              <path
-                d="M206-206q-41-48-63.5-107.5T120-440q0-150 105-255t255-105h8l-64-64 56-56 160 160-160 160-57-57 63-63h-6q-116 0-198 82t-82 198q0 51 16.5 96t46.5 81l-57 57Zm234-14q0-23-15.5-45.5t-34.5-47q-19-24.5-34.5-51T340-420q0-58 41-99t99-41q58 0 99 41t41 99q0 30-15.5 56.5t-34.5 51q-19 24.5-34.5 47T520-220h-80Zm0 100v-60h80v60h-80Zm314-86-57-57q30-36 46.5-81t16.5-96q0-66-27.5-122.5T657-657l57-57q58 50 92 120.5T840-440q0 67-22.5 126.5T754-206Z"
-              />
-            </svg>
-          </md-filled-tonal-button>
-          <md-filled-tonal-button
-            ?disabled=${this.signatures.length === 0}
-            @click=${() => {
-              this.dispatchEvent(new RemoveAllSignaturesEvent())
-            }}
-          >
-            Delete All
-            <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
-              <path
-                d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
-              />
-            </svg>
-          </md-filled-tonal-button>
-        </div>
-      </md-list-item>
-      <md-divider></md-divider>
-      <md-list>
-        ${this.signatures.length === 0
-          ? html`<md-list-item>
-              <div style="font-style: oblique;">
+        <tbody>
+          ${this.signatures.length === 0
+            ? html` <div class="suggestion">
+                <span class="signer-name">
+                  ${this.selectedSigner?.name ?? 'Unknown signer'}
+                </span>
+                has no signatures.<br />
                 Draw or import some signatures using the buttons above!
-              </div>
-            </md-list-item>`
-          : nothing}
-        ${this.signatures.map((s, i) => {
-          return this.getItemTemplate(s, i)
-        })}
-      </md-list>`
+              </div>`
+            : nothing}
+          ${this.signatures.map(
+            (s, i) => html`
+              <tr>
+                <td class="col-visibility">
+                  <md-checkbox
+                    ?checked=${s.visible}
+                    @click=${() => {
+                      this.dispatchEvent(
+                        new SetSignatureVisibilityEvent(i, !s.visible)
+                      )
+                    }}
+                  ></md-checkbox>
+                </td>
+
+                <td class="col-color">
+                  <color-input-element
+                    .id="color-input-${i}"
+                    .value="#${s.colorHex}"
+                    @change="${(e: ColorChangeEvent) => {
+                      this.dispatchEvent(
+                        new SetSignatureColorEvent(i, e.detail)
+                      )
+                    }}"
+                  ></color-input-element>
+                </td>
+                
+                <td class="col-name">${s.name}</td>
+                
+                <td class="col-signer">
+                  ${s.signer?.name ?? 'Unknown Signer'}
+                </td>
+                
+                <td class="col-origin">${s.origin ?? 'Unknown'}</td>
+                
+                <td class="col-length">${s.dataPoints.length}</td>
+
+                <td class="col-authenticity">
+                  ${(() => {
+                    switch (s.authenticity) {
+                      case 'unknown':
+                        return html`<span class="authenticity-unknown">
+                          Unknown
+                        </span>`
+                      case 'genuine':
+                        return html`<span class="authenticity-genuine">
+                          Genuine
+                        </span>`
+                      case 'forged':
+                        return html`<span class="authenticity-forged">
+                          Forged
+                        </span>`
+                    }
+                  })()}
+                </td>
+
+                <td class="col-training">
+                  <md-checkbox
+                    ?checked=${s.forTraining}
+                    @click=${() => {
+                      this.dispatchEvent(
+                        new SetSignatureSelectionEvent(i, !s.forTraining)
+                      )
+                    }}
+                  ></md-checkbox>
+                </td>
+                
+                <td class="col-verification">
+                    ${(() => {
+                      switch (s.verificationStatus) {
+                        case 'training':
+                          return html`<span class="verification-training">
+                            Trained&nbsp;on
+                          </span>`
+                        case 'genuine':
+                          return html`<span class="verification-genuine">
+                            Genuine
+                          </span>`
+                        case 'forged':
+                          return html`<span class="verification-forged">
+                            Forged
+                          </span>`
+                        case 'unverified':
+                          return html`<span class="verification-unverified">
+                            Unverified
+                          </span>`
+                      }
+                    })()}
+                  </md-assist-chip>
+                </td>
+                
+                <td class="col-actions">
+                  <md-text-button
+                    @click=${() => {
+                      this.dispatchEvent(new RemoveSignatureEvent(i))
+                    }}
+                  >
+                    Delete
+                    <delete-icon slot="icon"></delete-icon>
+                  </md-text-button>
+                </td>
+              </tr>
+            `
+          )}
+        </tbody>
+      </table>
+    </div>`
   }
 
-  private getItemTemplate = (s: Signature, index: number) =>
-    html` <md-list-item>
-      <span>[${s.signer?.name ?? 'Unknown Signer'}]: ${s.name}</span>
-      <div slot="start">
-        <md-checkbox
-          touch-target="wrapper"
-          ?checked=${s.visible}
-          @click=${() => {
-            this.dispatchEvent(
-              new SetSignatureVisibilityEvent(index, !s.visible)
-            )
-          }}
-        ></md-checkbox>
-      </div>
-      <div slot="end">
-        <md-chip-set aria-label="Training results">
-          ${s.status === 'train'
-            ? html` <md-assist-chip
-                class="train"
-                label="Used for training"
-              ></md-assist-chip>`
-            : nothing}
-          ${s.status === 'genuine'
-            ? html` <md-assist-chip
-                class="genuine"
-                label="Genuine"
-              ></md-assist-chip>`
-            : nothing}
-          ${s.status === 'forgery'
-            ? html` <md-assist-chip
-                class="forgery"
-                label="Forgery"
-              ></md-assist-chip>`
-            : nothing}
-        </md-chip-set>
-        <label
-          class="color-input-label"
-          .id="hex-${index}"
-          .for="color-input-${index}"
-        >
-          <span class="label">Signature colour</span>
-          <span class="color-input-wrapper">
-            <div>
-              <input
-                type="color"
-                .id="color-input-${index}"
-                .value="#${s.colorHex}"
-                @input=${(e: Event) => {
-                  if (!(e.target instanceof HTMLInputElement)) return
+  private onTrainClick() {
+    this.dispatchEvent(new ResetTrainSignaturesEvent())
+    const verifier = new EbDbaLsDtwVerifier()
+    verifier.trainUsingSignatures(this.signaturesForTraining).then(() => {
+      const selectedSignaturesIndexes: number[] = []
+      this.signatures.forEach((s, i) => {
+        if (s.forTraining) {
+          selectedSignaturesIndexes.push(i)
+        }
+      })
 
-                  const newColor = e.target.value.slice(1)
-                  this.dispatchEvent(
-                    new SetSignatureColorEvent(index, newColor)
-                  )
-                }}
-              />
-            </div>
-          </span>
-        </label>
-        <md-text-button
-          @click=${() => {
-            this.dispatchEvent(new RemoveSignatureEvent(index))
-          }}
-        >
-          Delete
-          <svg slot="icon" height="24" viewBox="0 -960 960 960" width="24">
-            <path
-              d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
-            />
-          </svg>
-        </md-text-button>
-      </div>
-    </md-list-item>`
+      this.dispatchEvent(
+        new SetSignaturesForTrainingByIndexEvent(selectedSignaturesIndexes)
+      )
+
+      this.signatures.forEach((s, i) => {
+        if (!s.forTraining) {
+          verifier.testSignature(s).then((isGenuine) => {
+            this.dispatchEvent(
+              new SetSignatureVerificationStatusEvent(
+                i,
+                isGenuine ? 'genuine' : 'forged'
+              )
+            )
+          })
+        }
+      })
+
+      this.dispatchEvent(new UnselectAllSignaturesEvent())
+    })
+  }
 }
