@@ -10,7 +10,7 @@ export class ColorInputElement extends LitElement {
       width: 40px;
       height: 20px;
       box-sizing: border-box;
-      border: 1px solid var(--md-sys-color-on-secondary-container);
+      border: 1px solid var(--md-sys-color-outline);
       position: relative;
       cursor: pointer;
     }
