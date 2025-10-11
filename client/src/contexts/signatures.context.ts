@@ -172,7 +172,7 @@ export class SetSignatureVerificationStatusEvent extends CustomEvent<{
   signatureIndex: number
   status: VerificationStatus
 }> {
-  public static readonly key = 'set-signature-genuineness'
+  public static readonly key = 'set-signature-verification-status'
 
   constructor(signatureIndex: number, status: VerificationStatus) {
     super(SetSignatureVerificationStatusEvent.key, {
