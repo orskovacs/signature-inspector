@@ -67,7 +67,7 @@ export class SignerSelectorElement extends LitElement {
         label="Selected Signer"
         .disabled="${this.signers.length === 0}"
         @change="${() => {
-          if (this.signerSelector.value === undefined) return
+          if (this.signerSelector.value === '') return
 
           this.dispatchEvent(
             new SelectSignerEvent(Number.parseInt(this.signerSelector.value))
