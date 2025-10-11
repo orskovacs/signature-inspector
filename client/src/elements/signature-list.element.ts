@@ -347,7 +347,6 @@ export class SignatureListElement extends LitElement {
                           </span>`
                       }
                     })()}
-                  </md-assist-chip>
                 </td>
                 
                 <td class="col-actions">
