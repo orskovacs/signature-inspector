@@ -39,6 +39,9 @@ export class AppElement extends LitElement {
       --md-filled-tonal-button-container-height: var(--button-height);
       --md-outlined-button-container-height: var(--button-height);
       --md-switch-track-height: 25px;
+      --md-menu-item-top-space: var(--select-block-space);
+      --md-menu-item-bottom-space: var(--select-block-space);
+      --md-menu-item-one-line-container-height: 40px;
 
       height: 100%;
       display: grid;
