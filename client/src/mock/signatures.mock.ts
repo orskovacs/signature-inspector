@@ -14,4 +14,4 @@ const dataPointsA: SignatureDataPoint[] = [
   },
 ]
 
-export const getMockSignature = () => new Signature(dataPointsA)
+export const getMockSignature = () => new Signature('MOCK', dataPointsA)

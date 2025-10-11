@@ -14,15 +14,17 @@ export class VisualizerElement extends LitElement {
 
     div[role='tabpanel'] {
       height: 100%;
-      overflow: auto;
-      margin-inline: 16px;
+      overflow: clip;
       grid-column: 1 / 3;
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
     }
 
     md-tabs {
       display: flex;
       overflow: auto;
       scrollbar-width: none;
+      border-top-left-radius: inherit;
     }
 
     label {

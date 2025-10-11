@@ -1,14 +1,12 @@
 import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { ref } from 'lit/directives/ref.js'
-import {
-  SignatureData,
-  signaturesContext,
-} from '../contexts/signatures.context'
+import { signaturesContext } from '../contexts/signatures.context'
 import { consume } from '@lit/context'
 import { setupSignatureFeatureChart } from '../utils/chart.util'
 import { SignatureDataPoint } from 'signature-field'
 import { normalizeDataContext } from '../contexts/normalize-data.context'
+import { Signature } from '../model/signature.ts'
 
 @customElement('graph-element')
 export class GraphElement extends LitElement {
@@ -24,7 +22,7 @@ export class GraphElement extends LitElement {
   public feature!: keyof SignatureDataPoint
 
   @consume({ context: signaturesContext, subscribe: true })
-  private signatures!: SignatureData[]
+  private signatures!: Signature[]
 
   @consume({ context: normalizeDataContext, subscribe: true })
   public normalizeData!: boolean
@@ -42,7 +40,7 @@ export class GraphElement extends LitElement {
 }
 
 function setupChart(
-  signatures: SignatureData[],
+  signatures: Signature[],
   feature: keyof SignatureDataPoint,
   normalizeData: boolean
 ) {

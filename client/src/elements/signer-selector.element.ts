@@ -56,6 +56,10 @@ export class SignerSelectorElement extends LitElement {
   @query('#new-signer-dialog-add-button')
   private newSignerDialogAddButton?: MdFilledButton
 
+  protected updated(): void {
+    this.syncSignerSelectorWithSelection()
+  }
+
   render() {
     return html`
       <md-outlined-select
@@ -63,7 +67,7 @@ export class SignerSelectorElement extends LitElement {
         label="Selected Signer"
         .disabled="${this.signers.length === 0}"
         @change="${() => {
-          if (!this.signerSelector || !this.signerSelector.value) return
+          if (this.signerSelector.value === '') return
 
           this.dispatchEvent(
             new SelectSignerEvent(Number.parseInt(this.signerSelector.value))
@@ -71,11 +75,14 @@ export class SignerSelectorElement extends LitElement {
         }}"
       >
         ${this.signers.map(
-          (s, i) => html`
-            <md-select-option value="${i}"
-            >${s.name}<!-- [${s.id}] -->
-            </md-select-option>
-          `
+          (s, i) =>
+            html`<md-select-option
+              value="${i}"
+              display-text="${s.name}"
+              ?selected="${i === this.signersContextData.selectedSignerIndex}"
+            >
+              <div slot="headline">${s.name}</div>
+            </md-select-option>`
         )}
       </md-outlined-select>
       <md-outlined-button @click="${() => this.newSignerDialog.show()}">
@@ -121,11 +128,22 @@ export class SignerSelectorElement extends LitElement {
           >
             Add
           </md-filled-button>
-          <md-text-button form="new-signer-dialog-form">
-            Close
-          </md-text-button>
+          <md-text-button form="new-signer-dialog-form">Close</md-text-button>
         </div>
       </md-dialog>
     `
+  }
+
+  private syncSignerSelectorWithSelection(): void {
+    const selectedSignerIndex = this.signersContextData.selectedSignerIndex
+    if (selectedSignerIndex === null) {
+      this.signerSelector.value = ''
+      return
+    }
+
+    const desired = String(selectedSignerIndex)
+    if (String(this.signerSelector.value ?? '') !== desired) {
+      this.signerSelector.value = desired
+    }
   }
 }

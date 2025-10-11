@@ -8,29 +8,40 @@ import {
   RemoveAllSignaturesEvent,
   RemoveSignatureEvent,
   ResetTrainSignaturesEvent,
+  SelectAllSignaturesEvent,
   SetSignatureColorEvent,
-  SetSignatureGenuinenessEvent,
+  SetSignatureVerificationStatusEvent,
+  SetSignatureSelectionEvent,
   SetSignaturesForTrainingByIndexEvent,
   SetSignatureVisibilityEvent,
   ShowAllSignaturesEvent,
-  SignatureData,
   signaturesContext,
+  UnselectAllSignaturesEvent,
 } from '../contexts/signatures.context'
-import { getRandomColorHex } from '../utils/color.util'
 import {
   PushSignersEvent,
   SelectSignerEvent,
   signersContext,
   SignersContextData,
 } from '../contexts/signers.context.ts'
+import { Signature } from '../model/signature.ts'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
   static styles = css`
     :host {
       --select-block-space: 8px;
+      --button-height: 30px;
       --md-outlined-field-bottom-space: var(--select-block-space);
       --md-outlined-field-top-space: var(--select-block-space);
+      --md-text-button-container-height: var(--button-height);
+      --md-filled-button-container-height: var(--button-height);
+      --md-filled-tonal-button-container-height: var(--button-height);
+      --md-outlined-button-container-height: var(--button-height);
+      --md-switch-track-height: 25px;
+      --md-menu-item-top-space: var(--select-block-space);
+      --md-menu-item-bottom-space: var(--select-block-space);
+      --md-menu-item-one-line-container-height: 40px;
 
       height: 100%;
       display: grid;
@@ -38,22 +49,33 @@ export class AppElement extends LitElement {
     }
 
     main {
+      position: relative;
+      bottom: 0;
       display: grid;
       grid-template-rows: 40% 60%;
-      gap: 4px;
-      height: calc(100vh - 56px - 8px);
+      gap: 6px;
+      height: calc(100vh - 69px);
+      transition: bottom 0.5s ease-in-out;
+    }
+
+    main.hidden {
+      bottom: -100%;
+    }
+
+    header-element {
+      position: relative;
+      top: 0;
+      transition: top 0.5s ease-in-out;
+    }
+
+    header-element.center {
+      top: calc(50vh - 100%);
     }
 
     signature-list-element,
     visualizer-element {
       background: var(--md-sys-color-surface);
-      border-radius: 28px;
-    }
-
-    signature-list-element,
-    visualizer-element {
-      height: calc(100% - 2 * 18px - 4px);
-      padding: 18px;
+      border-radius: 16px;
     }
   `
 
@@ -66,7 +88,11 @@ export class AppElement extends LitElement {
 
   @provide({ context: signaturesContext })
   @state()
-  private signatures: SignatureData[] = []
+  private signatures: Signature[] = []
+
+  private get isAppEmpty(): boolean {
+    return this.signersContext.signers.length === 0
+  }
 
   override connectedCallback() {
     super.connectedCallback()
@@ -92,6 +118,18 @@ export class AppElement extends LitElement {
       this.handleShowAllSignaturesEvent
     )
     this.addEventListener(
+      SetSignatureSelectionEvent.key,
+      this.handleSetSignatureSelectionEvent
+    )
+    this.addEventListener(
+      UnselectAllSignaturesEvent.key,
+      this.handleUnselectAllSignaturesEvent
+    )
+    this.addEventListener(
+      SelectAllSignaturesEvent.key,
+      this.handleSelectAllSignaturesEvent
+    )
+    this.addEventListener(
       SetSignatureColorEvent.key,
       this.handleSetSignatureColorEvent
     )
@@ -112,41 +150,40 @@ export class AppElement extends LitElement {
       this.handleResetTrainingSignatures
     )
     this.addEventListener(
-      SetSignatureGenuinenessEvent.key,
-      this.handleSetSignatureGenuinenessEvent
+      SetSignatureVerificationStatusEvent.key,
+      this.handleSetSignatureVerificationStatusEvent
     )
   }
 
   render() {
-    return html`<header-element></header-element>
-      <main>
+    return html`<header-element
+        class="${this.isAppEmpty && 'center'}"
+      ></header-element>
+      <main class="${this.isAppEmpty && 'hidden'}">
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>
       </main>`
   }
 
+  private pushSignatures(...signatures: Signature[]): void {
+    if (signatures.length === 0) return
+
+    if (this.signatures.length === 0 && signatures.every((s) => !s.visible)) {
+      const visibleSignaturesCount = Math.min(3, signatures.length)
+      for (let i = 0; i < visibleSignaturesCount; i++) {
+        signatures[i].visible = true
+      }
+    }
+
+    this.signatures = [...this.signatures, ...signatures]
+  }
+
   private handlePushSignatureEvent(e: PushSignatureEvent): void {
-    this.signatures = [
-      ...this.signatures,
-      {
-        signature: e.detail,
-        visible: true,
-        colorHex: getRandomColorHex(),
-        genuineness: undefined,
-      },
-    ]
+    this.pushSignatures(e.detail)
   }
 
   private handlePushSignaturesEvent(e: PushSignaturesEvent): void {
-    this.signatures = [
-      ...this.signatures,
-      ...e.detail.map((s) => ({
-        signature: s,
-        visible: true,
-        colorHex: getRandomColorHex(),
-        usedForTraining: false,
-      })),
-    ]
+    this.pushSignatures(...e.detail)
   }
 
   private handleSetSignatureVisibilityEvent(
@@ -164,6 +201,26 @@ export class AppElement extends LitElement {
 
   private handleShowAllSignaturesEvent(_e: HideAllSignaturesEvent): void {
     this.signatures.forEach((s) => (s.visible = true))
+    this.signatures = [...this.signatures]
+  }
+
+  private handleSetSignatureSelectionEvent(
+    e: SetSignatureSelectionEvent
+  ): void {
+    const signature = this.signatures[e.detail.signatureIndex]
+    signature.forTraining = e.detail.selection
+    this.signatures = [...this.signatures]
+  }
+
+  private handleUnselectAllSignaturesEvent(
+    _e: UnselectAllSignaturesEvent
+  ): void {
+    this.signatures.forEach((s) => (s.forTraining = false))
+    this.signatures = [...this.signatures]
+  }
+
+  private handleSelectAllSignaturesEvent(_e: SelectAllSignaturesEvent): void {
+    this.signatures.forEach((s) => (s.forTraining = true))
     this.signatures = [...this.signatures]
   }
 
@@ -188,7 +245,7 @@ export class AppElement extends LitElement {
   ): void {
     this.signatures.forEach((s, i) => {
       if (e.detail.signatureIndexes.includes(i)) {
-        s.genuineness = 'train'
+        s.verificationStatus = 'training'
       }
 
       this.signatures = [...this.signatures]
@@ -196,23 +253,29 @@ export class AppElement extends LitElement {
   }
 
   private handleResetTrainingSignatures(_e: ResetTrainSignaturesEvent): void {
-    this.signatures.forEach((s) => (s.genuineness = undefined))
+    this.signatures.forEach((s) => (s.verificationStatus = 'unverified'))
     this.signatures = [...this.signatures]
   }
 
-  private handleSetSignatureGenuinenessEvent(
-    e: SetSignatureGenuinenessEvent
+  private handleSetSignatureVerificationStatusEvent(
+    e: SetSignatureVerificationStatusEvent
   ): void {
-    this.signatures[e.detail.signatureIndex].genuineness = e.detail.isGenuine
-      ? 'genuine'
-      : 'fake'
+    this.signatures[e.detail.signatureIndex].verificationStatus =
+      e.detail.status
     this.signatures = [...this.signatures]
   }
 
   private handlePushSignersEvent(e: PushSignersEvent): void {
+    const selectFirst =
+      this.signersContext.signers.length === 0 && e.detail.length > 0
+
     this.signersContext = {
       ...this.signersContext,
       signers: [...this.signersContext.signers, ...e.detail],
+    }
+
+    if (selectFirst) {
+      this.dispatchEvent(new SelectSignerEvent(0))
     }
   }
 
@@ -222,13 +285,10 @@ export class AppElement extends LitElement {
       selectedSignerIndex: e.detail.signerIndex,
     }
 
-    this.signatures = this.signersContext.signers[
-      e.detail.signerIndex
-    ].signatures.map((s) => ({
-      signature: s,
-      visible: true,
-      colorHex: getRandomColorHex(),
-      usedForTraining: false,
-    }))
+    this.signatures = []
+
+    this.pushSignatures(
+      ...this.signersContext.signers[e.detail.signerIndex].signatures
+    )
   }
 }

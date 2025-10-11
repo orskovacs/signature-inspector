@@ -1,14 +1,7 @@
 import { createContext } from '@lit/context'
-import { Signature } from '../model/signature.ts'
+import { Signature, VerificationStatus } from '../model/signature.ts'
 
-export type SignatureData = {
-  signature: Signature
-  visible: boolean
-  colorHex: string
-  genuineness?: 'genuine' | 'fake' | 'train'
-}
-
-export const signaturesContext = createContext<Array<SignatureData>>(
+export const signaturesContext = createContext<Array<Signature>>(
   Symbol('signatures-context')
 )
 
@@ -67,6 +60,43 @@ export class ShowAllSignaturesEvent extends CustomEvent<void> {
 
   constructor() {
     super(ShowAllSignaturesEvent.key, {
+      bubbles: true,
+      composed: true,
+    })
+  }
+}
+
+export class SetSignatureSelectionEvent extends CustomEvent<{
+  signatureIndex: number
+  selection: boolean
+}> {
+  public static readonly key = 'set-signature-selection'
+
+  constructor(signatureIndex: number, selection: boolean) {
+    super(SetSignatureSelectionEvent.key, {
+      bubbles: true,
+      composed: true,
+      detail: { signatureIndex, selection },
+    })
+  }
+}
+
+export class UnselectAllSignaturesEvent extends CustomEvent<void> {
+  public static readonly key = 'unselect-all-signatures'
+
+  constructor() {
+    super(UnselectAllSignaturesEvent.key, {
+      bubbles: true,
+      composed: true,
+    })
+  }
+}
+
+export class SelectAllSignaturesEvent extends CustomEvent<void> {
+  public static readonly key = 'select-all-signatures'
+
+  constructor() {
+    super(SelectAllSignaturesEvent.key, {
       bubbles: true,
       composed: true,
     })
@@ -138,17 +168,17 @@ export class ResetTrainSignaturesEvent extends CustomEvent<void> {
   }
 }
 
-export class SetSignatureGenuinenessEvent extends CustomEvent<{
+export class SetSignatureVerificationStatusEvent extends CustomEvent<{
   signatureIndex: number
-  isGenuine: boolean
+  status: VerificationStatus
 }> {
-  public static readonly key = 'set-signature-genuineness'
+  public static readonly key = 'set-signature-verification-status'
 
-  constructor(signatureIndex: number, isGenuine: boolean) {
-    super(SetSignatureGenuinenessEvent.key, {
+  constructor(signatureIndex: number, status: VerificationStatus) {
+    super(SetSignatureVerificationStatusEvent.key, {
       bubbles: true,
       composed: true,
-      detail: { signatureIndex, isGenuine },
+      detail: { signatureIndex, status },
     })
   }
 }
@@ -159,12 +189,15 @@ type CustomEventMap = {
   [SetSignatureVisibilityEvent.key]: SetSignatureVisibilityEvent
   [HideAllSignaturesEvent.key]: HideAllSignaturesEvent
   [ShowAllSignaturesEvent.key]: ShowAllSignaturesEvent
+  [SetSignatureSelectionEvent.key]: SetSignatureSelectionEvent
+  [UnselectAllSignaturesEvent.key]: UnselectAllSignaturesEvent
+  [SelectAllSignaturesEvent.key]: SelectAllSignaturesEvent
   [SetSignatureColorEvent.key]: SetSignatureColorEvent
   [RemoveSignatureEvent.key]: RemoveSignatureEvent
   [RemoveAllSignaturesEvent.key]: RemoveAllSignaturesEvent
   [SetSignaturesForTrainingByIndexEvent.key]: SetSignaturesForTrainingByIndexEvent
   [ResetTrainSignaturesEvent.key]: ResetTrainSignaturesEvent
-  [SetSignatureGenuinenessEvent.key]: SetSignatureGenuinenessEvent
+  [SetSignatureVerificationStatusEvent.key]: SetSignatureVerificationStatusEvent
 }
 
 declare global {

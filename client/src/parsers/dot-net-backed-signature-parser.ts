@@ -56,8 +56,11 @@ export abstract class DotNetBackedSignatureParser
       }
 
       for (const parsedSignature of parsedSigner.signatures) {
-        const signature = new Signature(parsedSignature.dataPoints)
-        signature.setSigner(signer)
+        const signature = new Signature(
+          parsedSignature.name,
+          parsedSignature.dataPoints
+        )
+        signature.signer = signer
         signer.addSignatures(signature)
 
         signatures.push(signature)

@@ -24,7 +24,7 @@ export class Signer {
 
   public addSignatures(...signatures: Signature[]) {
     for (const signature of signatures) {
-      signature.setSigner(this)
+      signature.signer = this
       this.signatures.push(signature)
     }
   }

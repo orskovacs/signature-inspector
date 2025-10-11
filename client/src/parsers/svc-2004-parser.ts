@@ -28,9 +28,11 @@ export class Svc2004Parser implements SignatureParser {
       dataPoints.push(Svc2004Parser.extractPointDataFromLine(lines[i]))
     }
 
-    const signature = new Signature(dataPoints)
+    const [signerId, signatureId] = file.name.split('S')
+
+    const signature = new Signature(`S${signatureId}`, dataPoints)
     let isNewSigner = false
-    const signerName = `SVC2004 ${file.name.split('S')[0]}`
+    const signerName = `SVC2004 ${signerId}`
     let signer = existingSigners.find((s) => s.name === signerName)
 
     if (signer === undefined) {
@@ -38,7 +40,7 @@ export class Svc2004Parser implements SignatureParser {
       isNewSigner = true
     }
 
-    signature.setSigner(signer)
+    signature.signer = signer
     signer.addSignatures(signature)
 
     return {

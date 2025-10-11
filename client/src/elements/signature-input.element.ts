@@ -72,7 +72,7 @@ export class SignatureInputElement extends LitElement {
             @click="${async () => {
               const dataPoints = this.signatureField.dataPoints
               this.signatureField.clear()
-              const signature = new Signature(dataPoints)
+              const signature = new Signature(`Generated-${Date.now()}`, dataPoints)
               this.selectedSigner?.addSignatures(signature)
               this.dispatchEvent(new PushSignatureEvent(signature))
             }}"

@@ -6,7 +6,6 @@ import { MdOutlinedSelect } from '@material/web/all'
 import { Signer } from '../model/signer.ts'
 import {
   PushSignersEvent,
-  SelectSignerEvent,
   signersContext,
   SignersContextData,
 } from '../contexts/signers.context.ts'
@@ -200,11 +199,6 @@ export class SignatureDatabaseImporter extends LitElement {
       signers.push(...newSigners)
 
       this.dispatchEvent(new PushSignersEvent(signers))
-      if (this.signersContextData.selectedSignerIndex !== null) {
-        this.dispatchEvent(
-          new SelectSignerEvent(this.signersContextData.selectedSignerIndex)
-        )
-      }
     } catch (error) {
       this.error = error
     }

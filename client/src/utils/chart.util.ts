@@ -1,10 +1,11 @@
-import { SignatureData } from '../contexts/signatures.context'
 import { getFeatureDataFromSignature, standardize } from './signature.util'
+import { Signature } from '../model/signature.ts'
+import { SignatureDataPoint } from 'signature-field'
 
 export function setupSignatureFeatureChart(
   element: Element,
-  signatures: SignatureData[],
-  feature: keyof SignatureData['signature']['dataPoints'][number],
+  signatures: Signature[],
+  feature: keyof SignatureDataPoint,
   normalizeData: boolean
 ) {
   google.charts.setOnLoadCallback(() => {
@@ -29,22 +30,17 @@ export function setupSignatureFeatureChart(
     } else {
       data.addColumn('number', 'Time')
       signatures.forEach((s) => {
-        data.addColumn(
-          'number',
-          new Date(s.signature.creationTimeStamp).toLocaleString()
-        )
+        data.addColumn('number', s.name)
       })
 
-      const rowCount = Math.max(
-        ...signatures.map((s) => s.signature.dataPoints.length)
-      )
+      const rowCount = Math.max(...signatures.map((s) => s.dataPoints.length))
 
       for (let i = 0; i < rowCount; i++) {
         const rowData = [i]
         signatures.forEach((s) => {
           const featureData = normalizeData
-            ? standardize(getFeatureDataFromSignature(s.signature, feature))
-            : getFeatureDataFromSignature(s.signature, feature)
+            ? standardize(getFeatureDataFromSignature(s, feature))
+            : getFeatureDataFromSignature(s, feature)
 
           const dataPoint: number | undefined = featureData[i]
           rowData.push(dataPoint)
@@ -59,7 +55,7 @@ export function setupSignatureFeatureChart(
 
 export function setupSignatureSummaryTable(
   element: Element,
-  signatureData: SignatureData
+  signature: Signature
 ) {
   google.charts.setOnLoadCallback(() => {
     const data = new google.visualization.DataTable()
@@ -70,7 +66,7 @@ export function setupSignatureSummaryTable(
     data.addColumn('number', 'Altitude angle')
     data.addColumn('number', 'Azimuth angle')
 
-    const rows = signatureData.signature.dataPoints.map((p) => [
+    const rows = signature.dataPoints.map((p) => [
       p.timeStamp,
       p.xCoord,
       p.yCoord,
