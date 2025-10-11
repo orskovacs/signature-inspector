@@ -27,7 +27,7 @@ export class SignaturesFileParser implements SignatureParser {
 
         // TODO: Additional checks
         // TODO: creationTimestamp is ignored
-        return new Signature(element.creationTimeStamp, element.dataPoints)
+        return new Signature(String(element.creationTimeStamp), element.dataPoints)
       }),
       signers: [],
     }
