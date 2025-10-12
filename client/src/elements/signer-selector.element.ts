@@ -102,6 +102,9 @@ export class SignerSelectorElement extends LitElement {
 
       <md-dialog
         id="new-signer-dialog"
+        @open="${(_e: Event) => {
+          this.newSignerNameTextField!.value = `Signer #${(this.signersContextData.signers.length ?? 0) + 1}`
+        }}"
         @closed="${() => {
           this.newSignerNameTextField!.value = ''
         }}"
@@ -120,7 +123,6 @@ export class SignerSelectorElement extends LitElement {
           <md-filled-button
             id="new-signer-dialog-add-button"
             form="new-signer-dialog-form"
-            disabled
             @click="${async () => {
               const newSigner = new Signer(this.newSignerNameTextField!.value)
               this.dispatchEvent(new PushSignersEvent([newSigner]))
