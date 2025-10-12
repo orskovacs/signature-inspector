@@ -12,6 +12,9 @@ export default {
       allow: ['..'],
     },
   },
+  resolve: {
+    dedupe: ['lit', 'lit-html', 'lit-element', '@lit/reactive-element'],
+  },
   plugins: [
     viteStaticCopy({
       targets: [
