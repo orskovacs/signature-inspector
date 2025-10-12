@@ -82,4 +82,5 @@ export type VerificationStatus =
   | 'forged'
   | 'unverified'
   | 'training'
-export type Authenticity = 'genuine' | 'forged' | 'unknown'
+export const authenticityValues = ['genuine', 'forged', 'unknown'] as const
+export type Authenticity = (typeof authenticityValues)[number]
