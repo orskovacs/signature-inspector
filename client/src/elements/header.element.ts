@@ -31,7 +31,7 @@ export class HeaderElement extends LitElement {
       <header>
         <signer-selector-element></signer-selector-element>
         <div class="buttons">
-          <signature-input-element></signature-input-element>
+          <signature-capture-element></signature-capture-element>
           <signature-files-loader-element></signature-files-loader-element>
           <signature-database-importer-element></signature-database-importer-element>
         </div>
