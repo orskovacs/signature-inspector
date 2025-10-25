@@ -1,6 +1,9 @@
 namespace DotNetGateway.SignatureVerifier;
 
 public record struct SignatureData(
-    long TimeStamp,
+    string Id,
+    string Name,
+    string Authenticity,
+    string Origin,
     List<SignatureDataPoint> DataPoints
 );

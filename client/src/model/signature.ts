@@ -3,6 +3,7 @@ import { Signer } from './signer.ts'
 import { getRandomColorHex } from '../utils/color.util.ts'
 
 export class Signature extends SignatureBase {
+  private readonly _id: string
   private readonly _name: string
   private _signer: Signer | null = null
   private _visible: boolean = false
@@ -19,6 +20,7 @@ export class Signature extends SignatureBase {
     origin: string | null = null
   ) {
     super(dataPoints)
+    this._id = crypto.randomUUID()
     this._name = name
     this._authenticity = authenticity
     this._origin = origin
@@ -74,6 +76,10 @@ export class Signature extends SignatureBase {
 
   public get origin() {
     return this._origin
+  }
+  
+  public get id(): string {
+    return this._id
   }
 }
 

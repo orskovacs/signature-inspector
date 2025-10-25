@@ -25,4 +25,10 @@
       <ProjectReference Include="..\DotNetGateway\DotNetGateway.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Data\signatures.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

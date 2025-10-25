@@ -1,7 +1,6 @@
-using DotNetGateway;
 using DotNetGateway.SignatureVerifier;
 
-namespace DotNetGatewayTest;
+namespace DotNetGatewayTest.SignatureVerifierTest;
 
 public class SignatureVerifierManagerTests
 {
@@ -24,6 +23,24 @@ public class SignatureVerifierManagerTests
     {
         var manager = SignatureVerifierManager.Instance;
         var verifierId = manager.InitializeNewVerifier("EbDbaLsDtw");
+        Assert.That(verifierId, Is.Not.Null);
+    }
+
+    [Test]
+    public void InitializeNewDtwVerifier()
+    {
+        var manager = SignatureVerifierManager.Instance;
+        var verifierId = manager.InitializeNewVerifier("Dtw");
+        Assert.That(verifierId, Is.Not.Null);
+    }
+
+    [Test]
+    public async Task TrainUsingSignatures_WithJsonFileString_Trains()
+    {
+        var manager = SignatureVerifierManager.Instance;
+        var verifierId = manager.InitializeNewVerifier("Dtw");
+        var signaturesJson = await File.ReadAllTextAsync("./Data/signatures.json");
+        await manager.TrainUsingSignatures(verifierId, signaturesJson);
         Assert.That(verifierId, Is.Not.Null);
     }
 }
