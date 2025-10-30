@@ -1,7 +1,7 @@
 using DotNetGateway.SignatureParser;
 using Convert = System.Convert;
 
-namespace DotNetGatewayTest.SignatureParserTest;
+namespace DotNetGatewayTest.SignatureParser;
 
 [TestFixture]
 public class SignatureParserManagerTest

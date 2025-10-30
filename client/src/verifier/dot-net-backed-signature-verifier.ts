@@ -12,7 +12,7 @@ export abstract class DotNetBackedSignatureVerifier
   protected abstract get classifierId(): string
 
   protected constructor() {
-    super("SignatureVerifierExport")
+    super('SignatureVerifierExport')
 
     this._dotNetId = this.dotNetImport.then((manager) =>
       manager.InitializeNewVerifier(this.classifierId)
@@ -22,10 +22,7 @@ export abstract class DotNetBackedSignatureVerifier
   public async trainUsingSignatures(signatures: Signature[]): Promise<void> {
     let manager = await this.dotNetImport
     let id = await this._dotNetId
-    let signatureDataArray = signatures.map((s) => ({
-      timeStamp: s.creationTimeStamp,
-      dataPoints: s.dataPoints,
-    }))
+    let signatureDataArray = signatures.map((s) => this.signatureToData(s))
     let signaturesJson = JSON.stringify(signatureDataArray)
     await manager.TrainUsingSignatures(id, signaturesJson)
   }
@@ -33,11 +30,26 @@ export abstract class DotNetBackedSignatureVerifier
   public async testSignature(signature: Signature): Promise<boolean> {
     let manager = await this.dotNetImport
     let id = await this._dotNetId
-    let signatureData = {
-      timeStamp: signature.creationTimeStamp,
-      dataPoints: signature.dataPoints,
-    }
+    let signatureData = this.signatureToData(signature)
     let signatureJson = JSON.stringify(signatureData)
     return await manager.TestSignature(id, signatureJson)
   }
+
+  private signatureToData(signature: Signature): SignatureData {
+    return {
+      id: signature.id,
+      name: signature.name,
+      authenticity: signature.authenticity,
+      origin: signature.origin,
+      dataPoints: signature.dataPoints,
+    }
+  }
+}
+
+type SignatureData = {
+  id: string
+  name: string
+  authenticity: Signature['authenticity']
+  origin: Signature['origin']
+  dataPoints: Signature['dataPoints']
 }

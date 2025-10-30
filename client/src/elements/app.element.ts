@@ -44,6 +44,8 @@ export class AppElement extends LitElement {
       --md-menu-item-one-line-container-height: 40px;
       --md-outlined-text-field-top-space: var(--field-block-space);
       --md-outlined-text-field-bottom-space: var(--field-block-space);
+      --md-sys-color-surface-container: var(--md-sys-color-surface-variant);
+      --md-dialog-container-color: var(--md-sys-color-surface);
 
       height: 100%;
       display: grid;

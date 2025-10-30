@@ -8,7 +8,7 @@ public static class SignatureDataExtensions
     {
         var signature = new Signature
         {
-            ID = signatureData.TimeStamp.ToString(),
+            ID = signatureData.Id,
             Origin = Origin.Genuine,
             Signer = signer,
         };
