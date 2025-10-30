@@ -101,6 +101,8 @@ export class AppElement extends LitElement {
   override connectedCallback() {
     super.connectedCallback()
 
+    this.addExitAlert()
+
     this.addEventListener(PushSignersEvent.key, this.handlePushSignersEvent)
     this.addEventListener(SelectSignerEvent.key, this.handleSelectSignerEvent)
 
@@ -157,6 +159,10 @@ export class AppElement extends LitElement {
       SetSignatureVerificationStatusEvent.key,
       this.handleSetSignatureVerificationStatusEvent
     )
+  }
+
+  override disconnectedCallback() {
+    window.onbeforeunload = null
   }
 
   render() {
@@ -294,5 +300,18 @@ export class AppElement extends LitElement {
     this.pushSignatures(
       ...this.signersContext.signers[e.detail.signerIndex].signatures
     )
+  }
+
+  private addExitAlert() {
+    if (!import.meta.env.DEV) {
+      window.onbeforeunload = (event) => {
+        if (this.signersContext.signers.length === 0) return
+
+        event.preventDefault()
+        const message = `Please keep in mind that Signature Inspector doesn't save your data.`
+        event.returnValue = message
+        return message
+      }
+    }
   }
 }
