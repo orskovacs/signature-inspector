@@ -305,6 +305,8 @@ export class AppElement extends LitElement {
   private addExitAlert() {
     if (!import.meta.env.DEV) {
       window.onbeforeunload = (event) => {
+        if (this.signersContext.signers.length === 0) return
+
         event.preventDefault()
         const message = `Please keep in mind that Signature Inspector doesn't save your data.`
         event.returnValue = message
