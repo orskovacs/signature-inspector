@@ -8,6 +8,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AEbDbaLsDtwVerifierItems_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F85d3b5585cda4e2b819669f0f17f7e056a00_003F07_003F42318cb2_003FEbDbaLsDtwVerifierItems_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AExceptionDispatchInfo_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FSourcesCache_003Fbf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc_003FExceptionDispatchInfo_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AFeatures_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F5ec9eb06909a4e70a0e6b4462f4f452d39a00_003F7e_003Fb86280c7_003FFeatures_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AFeatures_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F5ec9eb06909a4e70a0e6b4462f4f452d39a00_003Fdb_003Ff7ce8d87_003FFeatures_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AGuard_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003Fa6fa1b6818b37585d1855c6ca644922486d2ad61ef304f3155ee3be2ebee578_003FGuard_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AIClassifier_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F5ec9eb06909a4e70a0e6b4462f4f452d39a00_003F99_003F7f369e14_003FIClassifier_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AIClassifier_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F5ec9eb06909a4e70a0e6b4462f4f452d39a00_003F0b_003Fdf76188b_003FIClassifier_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
@@ -16,6 +17,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AJsonSerializerInternalWriter_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FSourcesCache_003Fe2e3d26278e439d44964729238a685ad58d3189abf8fb84cdfe34b893a290a2_003FJsonSerializerInternalWriter_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AOrigin_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F5ec9eb06909a4e70a0e6b4462f4f452d39a00_003F88_003F7ed7b6c5_003FOrigin_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003APredicate_00601_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F6944caef51964961b37f49507d2b53dfd82000_003F39_003F893c962c_003FPredicate_00601_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ARandomAccess_002EUnix_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FSourcesCache_003F8998455d3923a5846bd6be5d85bbc1c18bd948c0dde4be8bfe829598dc17d9_003FRandomAccess_002EUnix_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ASafeFileHandle_002EUnix_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003F9cf5f68d759deefc91b9c48c5ac3dd27708bb7dc38d0c485661fff5ce15b82_003FSafeFileHandle_002EUnix_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ASignatureHelper_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F5ec9eb06909a4e70a0e6b4462f4f452d39a00_003F11_003F671e1ae3_003FSignatureHelper_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ASigner_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F5ec9eb06909a4e70a0e6b4462f4f452d39a00_003F39_003F5985380e_003FSigner_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
@@ -29,36 +31,19 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;PhysicalFolder Path="/Users/ors/.nuget/packages/ebdbalsdtw/1.0.0" Loaded="True" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=229c7aab_002Dab79_002D4cfb_002Db80d_002D4e94a744f4d3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test2&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureVerifierTest.SignatureVerifierManagerTests.Test&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/ShowAdvancedOptions/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=ABE47708_002D1E86_002D4234_002D9363_002D993F37B497B2/@EntryIndexedValue">A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=NUnit3x/@EntryIndexedValue">db4927dd-2e12-48a7-9a84-2b7e3e31b9c8</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6e6b4074_002D5762_002D48d9_002D9fe0_002D9707aa47fcb5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TrainUsingSignatures_WithJsonFileString_Trains" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/ors/Dev/Repositories/signature-inspector/dot-net-gateway/DotNetGatewayTest" Presentation="&amp;lt;DotNetGatewayTest&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7ce84f90_002D6ae2_002D4e9e_002D860e_002Deb90f45871f3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Junie Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Solution /&gt;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=94ebbef6_002Dccbb_002D4f0e_002Da969_002Deae1a6ac5af1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test2&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureVerifierTest.SignatureVerifierManagerTests.Test&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ba692550_002D4345_002D4361_002D8b86_002D6fa6c78ef17f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test2&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureVerifierTest.SignatureVerifierManagerTests.Test&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c0ce8bdc_002D33e7_002D42c9_002Da23e_002Dcbd58b44a657/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureParserTest.SignatureParserManagerTest.Test2&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::A00F8FB7-B727-4CC9-8ACB-A31DC9EF2F02::net8.0::DotNetGatewayTest.SignatureVerifierTest.SignatureVerifierManagerTests.Test&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	</wpf:ResourceDictionary>

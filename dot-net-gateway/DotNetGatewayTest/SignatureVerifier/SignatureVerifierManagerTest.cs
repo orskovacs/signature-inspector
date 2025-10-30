@@ -1,7 +1,9 @@
 using DotNetGateway.SignatureVerifier;
 
-namespace DotNetGatewayTest.SignatureVerifierTest;
+namespace DotNetGatewayTest.SignatureVerifier;
 
+[TestFixture]
+[TestOf(typeof(SignatureVerifierManager))]
 public class SignatureVerifierManagerTests
 {
     [Test]
@@ -41,6 +43,8 @@ public class SignatureVerifierManagerTests
         var verifierId = manager.InitializeNewVerifier("Dtw");
         var signaturesJson = await File.ReadAllTextAsync("./Data/signatures.json");
         await manager.TrainUsingSignatures(verifierId, signaturesJson);
-        Assert.That(verifierId, Is.Not.Null);
+        var signatureJson = await File.ReadAllTextAsync("./Data/signature.json");
+        var result = await manager.TestSignature(verifierId, signatureJson);
+        Assert.That(result, Is.AnyOf([true, false]));
     }
 }
