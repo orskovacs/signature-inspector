@@ -161,6 +161,10 @@ export class AppElement extends LitElement {
     )
   }
 
+  override disconnectedCallback() {
+    window.onbeforeunload = null
+  }
+
   render() {
     return html`<header-element
         class="${this.isAppEmpty && 'center'}"
