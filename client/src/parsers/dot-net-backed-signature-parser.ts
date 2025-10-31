@@ -1,36 +1,39 @@
-import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
 import { ParseResult, SignatureParser } from './signature-parser.ts'
 import { Authenticity, Signature } from '../model/signature.ts'
-import { SignatureParserImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
 import { fileToBase64 } from '../utils/file.util.ts'
 import { Signer } from '../model/signer.ts'
 import { SignatureDataPoint } from 'signature-field'
 
-export abstract class DotNetBackedSignatureParser
-  extends DotNetBackedObject<SignatureParserImport>
-  implements SignatureParser
-{
-  private readonly _dotNetId: Promise<string>
-
+export abstract class DotNetBackedSignatureParser implements SignatureParser {
   protected abstract get loaderId(): string
-
-  protected constructor() {
-    super('SignatureParserExport')
-
-    this._dotNetId = this.dotNetImport.then((manager) =>
-      manager.InitializeNewParser(this.loaderId)
-    )
-  }
 
   public async parse(
     file: File,
     existingSigners: Signer[],
     signerIds: string[] = []
   ): Promise<ParseResult> {
-    let manager = await this.dotNetImport
-    let id = await this._dotNetId
     let fileBase64 = await fileToBase64(file)
-    let signersJson = await manager.ParseFileContents(id, fileBase64, signerIds)
+
+    const signersJson = await new Promise<string>(async (resolve, reject) => {
+      const parserWorker = new Worker(
+        new URL('dot-net-backed-signature-parser.worker.js', import.meta.url),
+        { type: 'module' }
+      )
+
+      parserWorker.postMessage({
+        loaderId: this.loaderId,
+        fileBase64,
+        signerIds,
+      })
+
+      parserWorker.onmessage = (e: MessageEvent<string>) => {
+        resolve(e.data)
+      }
+
+      parserWorker.onerror = (e) => {
+        reject(e)
+      }
+    })
 
     const parsedSigners: Array<{
       name: string

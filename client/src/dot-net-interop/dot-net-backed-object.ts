@@ -13,7 +13,7 @@ export class DotNetBackedObject<T extends DotNetImport> {
 
   protected get dotNetImport(): Promise<T> {
     return this._dotNetInteropManager.dotNetImports.then(
-      (a) => a.DotNetGateway[this._name] as unknown as T
+      (a) => a[this._name] as unknown as T
     )
   }
 }
