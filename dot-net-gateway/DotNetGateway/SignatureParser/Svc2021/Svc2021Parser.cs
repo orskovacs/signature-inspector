@@ -37,10 +37,19 @@ public class Svc2021Parser : ISignatureParser
                     );
                 }
                 
-                signatures.Add(new ExportTypes.Signature(s.ID, dataPoints));
+                var authenticity = s.Origin switch
+                {
+                    Origin.Genuine => "genuine",
+                    Origin.Forged => "forged",
+                    _ => "unknown"
+                };
+
+                var name = s.ID.Split(".", StringSplitOptions.TrimEntries)[0];
+
+                signatures.Add(new ExportTypes.Signature(name, authenticity, "DeepSign", dataPoints));
             }
             
-            signers.Add(new ExportTypes.Signer($"DeepSign {loadedSigner.ID}", signatures));
+            signers.Add(new ExportTypes.Signer($"{loadedSigner.ID}", signatures));
         }
         
         return signers;

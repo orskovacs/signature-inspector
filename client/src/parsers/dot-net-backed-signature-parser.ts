@@ -1,6 +1,6 @@
 import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
 import { ParseResult, SignatureParser } from './signature-parser.ts'
-import { Signature } from '../model/signature.ts'
+import { Authenticity, Signature } from '../model/signature.ts'
 import { SignatureParserImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
 import { fileToBase64 } from '../utils/file.util.ts'
 import { Signer } from '../model/signer.ts'
@@ -34,7 +34,12 @@ export abstract class DotNetBackedSignatureParser
 
     const parsedSigners: Array<{
       name: string
-      signatures: Array<{ name: string; dataPoints: SignatureDataPoint[] }>
+      signatures: Array<{
+        name: string
+        authenticity: string
+        origin: string
+        dataPoints: SignatureDataPoint[]
+      }>
     }> = JSON.parse(signersJson)
 
     const existingSignersById: [string, Signer][] = existingSigners.map(
@@ -56,9 +61,16 @@ export abstract class DotNetBackedSignatureParser
       }
 
       for (const parsedSignature of parsedSigner.signatures) {
+        let authenticity: Authenticity = 'unknown'
+        if (parsedSignature.authenticity === 'genuine') authenticity = 'genuine'
+        else if (parsedSignature.authenticity === 'forged')
+          authenticity = 'forged'
+
         const signature = new Signature(
           parsedSignature.name,
-          parsedSignature.dataPoints
+          parsedSignature.dataPoints,
+          authenticity,
+          parsedSignature.origin
         )
         signature.signer = signer
         signer.addSignatures(signature)

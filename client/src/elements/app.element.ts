@@ -50,6 +50,7 @@ export class AppElement extends LitElement {
       height: 100%;
       display: grid;
       grid-template-rows: min-content 1fr;
+      grid-template-columns: 100%;
     }
 
     main {
@@ -57,6 +58,7 @@ export class AppElement extends LitElement {
       bottom: 0;
       display: grid;
       grid-template-rows: 40% 60%;
+      grid-template-columns: 100%;
       gap: 6px;
       height: calc(100vh - 69px);
       transition: bottom 0.5s ease-in-out;
