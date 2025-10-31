@@ -128,6 +128,12 @@ export class SignatureListElement extends LitElement {
       width: auto;
     }
 
+    .col-name {
+      max-width: 150px;
+      text-overflow: ellipsis;
+      overflow-x: clip;
+    }
+
     .col-length,
     .col-authenticity,
     .col-verification,
@@ -165,24 +171,6 @@ export class SignatureListElement extends LitElement {
       gap: 4px;
       align-items: center;
     }
-
-    //.table-wrapper::after {
-    //  content: ' ';
-    //  display: block;
-    //  min-height: 40px;
-    //  position: sticky;
-    //  bottom: -8px;
-    //  background: -webkit-linear-gradient(
-    //    bottom,
-    //    var(--md-sys-color-surface, #fef7ff),
-    //    transparent 40px
-    //  );
-    //  background: linear-gradient(
-    //    0,
-    //    var(--md-sys-color-surface, #fef7ff),
-    //    transparent 40px
-    //  );
-    //}
   `
 
   private readonly verifiers: ReadonlyArray<VerifierOption> = [
@@ -337,7 +325,7 @@ export class SignatureListElement extends LitElement {
                   ></color-input-element>
                 </td>
 
-                <td class="col-name">${s.name}</td>
+                <td class="col-name" title="${s.name}">${s.name}</td>
 
                 <td class="col-signer">
                   ${s.signer?.name ?? 'Unknown Signer'}

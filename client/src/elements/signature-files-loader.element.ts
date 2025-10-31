@@ -118,7 +118,6 @@ export class SignatureFilesLoaderElement extends LitElement {
             id="loader-file-input"
             name="loader-file-input"
             multiple
-            required
             @change="${(e: Event) => {
               const target = e.target as unknown as HTMLInputElement
               this.files = target.files
@@ -159,9 +158,9 @@ export class SignatureFilesLoaderElement extends LitElement {
 
     try {
       const signers: Signer[] = []
-
-      for (let i = 0; i < this.files.length; i++) {
-        const file = this.files.item(i)
+      const files = this.files
+      for (let i = 0; i < files.length; i++) {
+        const file = files.item(i)
         if (file === null) continue
         const { signers: newSigners } =
           (await this.selectedLoader?.parser.parse(file, [

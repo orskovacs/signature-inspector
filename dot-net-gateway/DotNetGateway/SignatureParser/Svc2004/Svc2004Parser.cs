@@ -39,10 +39,17 @@ public class Svc2004Parser : ISignatureParser
                     );
                 }
 
-                signatures.Add(new ExportTypes.Signature(s.ID, dataPoints));
+                var authenticity = s.Origin switch
+                {
+                    Origin.Genuine => "genuine",
+                    Origin.Forged => "forged",
+                    _ => "unknown"
+                };
+
+                signatures.Add(new ExportTypes.Signature(s.ID, authenticity, "SVC2004", dataPoints));
             }
 
-            signers.Add(new ExportTypes.Signer($"SVC2004 U{loadedSigner.ID}", signatures));
+            signers.Add(new ExportTypes.Signer($"U{loadedSigner.ID}", signatures));
         }
 
         return signers;
