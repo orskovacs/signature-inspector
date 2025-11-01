@@ -1,5 +1,5 @@
 import { DotNetInteropManager } from '../dot-net-interop/dot-net-interop-manager.ts'
-import { SignatureDto } from './dot-net-backed-signature-verifier.ts'
+import { SignatureDto } from '../model/dto/signature-dto.ts'
 
 type MessageData = {
   messageId: ReturnType<typeof crypto.randomUUID>
