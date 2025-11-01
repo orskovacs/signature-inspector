@@ -2,6 +2,7 @@ import { SignatureVerifier } from './signature-verifier.ts'
 import { Signature } from '../model/signature.ts'
 import { BackgroundTask } from '../worker/background-task.ts'
 import { signatureToDto } from '../model/dto/signature-dto.ts'
+import { VerificationStatus } from '../model/verification-status.ts'
 
 export abstract class DotNetBackedSignatureVerifier
   implements SignatureVerifier
@@ -34,13 +35,15 @@ export abstract class DotNetBackedSignatureVerifier
     ).execute()
   }
 
-  public async testSignature(signature: Signature): Promise<boolean> {
+  public async testSignature(
+    signature: Signature
+  ): Promise<VerificationStatus> {
     const message = {
       method: 'test',
       signature: signatureToDto(signature),
     }
 
-    return new BackgroundTask<typeof message, boolean>(
+    return new BackgroundTask<typeof message, VerificationStatus>(
       this.worker,
       message
     ).execute()

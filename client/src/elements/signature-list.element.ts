@@ -431,14 +431,13 @@ export class SignatureListElement extends LitElement {
       this.signatures.forEach((s, i) => {
         if (!s.forTraining) {
           testPromises.push(
-            verifier.testSignature(s).then((isGenuine) => {
-              this.dispatchEvent(
-                new SetSignatureVerificationStatusEvent(
-                  i,
-                  isGenuine ? 'genuine' : 'forged'
+            verifier
+              .testSignature(s)
+              .then((status) =>
+                this.dispatchEvent(
+                  new SetSignatureVerificationStatusEvent(i, status)
                 )
               )
-            })
           )
         }
       })
