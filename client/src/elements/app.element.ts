@@ -31,6 +31,10 @@ import {
   LoadingSpinnerElement,
 } from './loading-spinner.element.ts'
 import { UUID } from '../utils/types.ts'
+import {
+  DisplayErrorEvent,
+  ErrorNotificationElement,
+} from './error-notification.element.ts'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -105,6 +109,9 @@ export class AppElement extends LitElement {
   @query('#loading-spinner')
   private loadingSpinnerElement!: LoadingSpinnerElement
 
+  @query('#error-notification')
+  private errorNotificationElement!: ErrorNotificationElement
+
   private loadings: Set<UUID> = new Set()
 
   private get isAppEmpty(): boolean {
@@ -115,6 +122,8 @@ export class AppElement extends LitElement {
     super.connectedCallback()
 
     this.addExitAlert()
+
+    this.addEventListener(DisplayErrorEvent.key, this.handleDisplayError)
 
     this.addEventListener(BeginLoadingEvent.key, this.handleBeginLoading)
     this.addEventListener(EndLoadingEvent.key, this.handleEndLoading)
@@ -185,6 +194,9 @@ export class AppElement extends LitElement {
     return html` <loading-spinner-element
         id="loading-spinner"
       ></loading-spinner-element>
+      <error-notification-element
+        id="error-notification"
+      ></error-notification-element>
       <header-element class="${this.isAppEmpty && 'center'}"></header-element>
       <main class="${this.isAppEmpty && 'hidden'}">
         <signature-list-element></signature-list-element>
@@ -317,6 +329,10 @@ export class AppElement extends LitElement {
     this.pushSignatures(
       ...this.signersContext.signers[e.detail.signerIndex].signatures
     )
+  }
+
+  private handleDisplayError(e: DisplayErrorEvent): void {
+    this.errorNotificationElement.addError(e.detail.error)
   }
 
   private handleBeginLoading(e: BeginLoadingEvent): void {
