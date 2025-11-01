@@ -1,41 +1,47 @@
 import { SignatureVerifier } from './signature-verifier.ts'
-import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
-import { SignatureVerifierImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
 import { Signature } from '../model/signature.ts'
+import { BackgroundTask } from '../worker/background-task.ts'
 
 export abstract class DotNetBackedSignatureVerifier
-  extends DotNetBackedObject<SignatureVerifierImport>
   implements SignatureVerifier
 {
-  private readonly _dotNetId: Promise<string>
+  private readonly worker: Worker
 
   protected abstract get classifierId(): string
 
   protected constructor() {
-    super('SignatureVerifierExport')
-
-    this._dotNetId = this.dotNetImport.then((manager) =>
-      manager.InitializeNewVerifier(this.classifierId)
+    this.worker = new Worker(
+      new URL('dot-net-backed-signature-verifier.worker.js', import.meta.url),
+      { type: 'module' }
     )
   }
 
   public async trainUsingSignatures(signatures: Signature[]): Promise<void> {
-    let manager = await this.dotNetImport
-    let id = await this._dotNetId
-    let signatureDataArray = signatures.map((s) => this.signatureToData(s))
-    let signaturesJson = JSON.stringify(signatureDataArray)
-    await manager.TrainUsingSignatures(id, signaturesJson)
+    const message = {
+      method: 'train',
+      classifierId: this.classifierId,
+      signatures: signatures.map((s) => this.signatureToDto(s)),
+    }
+
+    return new BackgroundTask<typeof message, void>(
+      this.worker,
+      message
+    ).execute()
   }
 
   public async testSignature(signature: Signature): Promise<boolean> {
-    let manager = await this.dotNetImport
-    let id = await this._dotNetId
-    let signatureData = this.signatureToData(signature)
-    let signatureJson = JSON.stringify(signatureData)
-    return await manager.TestSignature(id, signatureJson)
+    const message = {
+      method: 'test',
+      signature: this.signatureToDto(signature),
+    }
+
+    return new BackgroundTask<typeof message, boolean>(
+      this.worker,
+      message
+    ).execute()
   }
 
-  private signatureToData(signature: Signature): SignatureData {
+  private signatureToDto(signature: Signature): SignatureDto {
     return {
       id: signature.id,
       name: signature.name,
@@ -46,7 +52,7 @@ export abstract class DotNetBackedSignatureVerifier
   }
 }
 
-type SignatureData = {
+export type SignatureDto = {
   id: string
   name: string
   authenticity: Signature['authenticity']
