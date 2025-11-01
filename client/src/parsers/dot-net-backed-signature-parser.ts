@@ -6,17 +6,15 @@ import { SignatureDataPoint } from 'signature-field'
 import { BackgroundTask } from '../worker/background-task.ts'
 
 export abstract class DotNetBackedSignatureParser implements SignatureParser {
-  private static worker: Worker
+  private readonly worker: Worker
 
   protected abstract get loaderId(): string
 
   protected constructor() {
-    if (DotNetBackedSignatureParser.worker === undefined) {
-      DotNetBackedSignatureParser.worker = new Worker(
-        new URL('dot-net-backed-signature-parser.worker.js', import.meta.url),
-        { type: 'module' }
-      )
-    }
+    this.worker = new Worker(
+      new URL('dot-net-backed-signature-parser.worker.js', import.meta.url),
+      { type: 'module' }
+    )
   }
 
   public async parse(
@@ -34,7 +32,7 @@ export abstract class DotNetBackedSignatureParser implements SignatureParser {
     }
 
     const signersJson = await new BackgroundTask<typeof message, string>(
-      DotNetBackedSignatureParser.worker,
+      this.worker,
       message
     ).execute()
 

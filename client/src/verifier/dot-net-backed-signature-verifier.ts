@@ -5,17 +5,15 @@ import { BackgroundTask } from '../worker/background-task.ts'
 export abstract class DotNetBackedSignatureVerifier
   implements SignatureVerifier
 {
-  private static worker: Worker
+  private readonly worker: Worker
 
   protected abstract get classifierId(): string
 
   protected constructor() {
-    if (DotNetBackedSignatureVerifier.worker === undefined) {
-      DotNetBackedSignatureVerifier.worker = new Worker(
-        new URL('dot-net-backed-signature-verifier.worker.js', import.meta.url),
-        { type: 'module' }
-      )
-    }
+    this.worker = new Worker(
+      new URL('dot-net-backed-signature-verifier.worker.js', import.meta.url),
+      { type: 'module' }
+    )
   }
 
   public async trainUsingSignatures(signatures: Signature[]): Promise<void> {
@@ -26,7 +24,7 @@ export abstract class DotNetBackedSignatureVerifier
     }
 
     return new BackgroundTask<typeof message, void>(
-      DotNetBackedSignatureVerifier.worker,
+      this.worker,
       message
     ).execute()
   }
@@ -38,7 +36,7 @@ export abstract class DotNetBackedSignatureVerifier
     }
 
     return new BackgroundTask<typeof message, boolean>(
-      DotNetBackedSignatureVerifier.worker,
+      this.worker,
       message
     ).execute()
   }
