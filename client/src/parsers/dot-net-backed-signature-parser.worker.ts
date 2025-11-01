@@ -1,5 +1,6 @@
 import { DotNetInteropManager } from '../dot-net-interop/dot-net-interop-manager.ts'
 import { arrayBufferToBase64 } from '../utils/file.util.ts'
+import { SignerDto } from '../model/dto/signer-dto.ts'
 
 type MessageData = {
   messageId: ReturnType<typeof crypto.randomUUID>
@@ -27,13 +28,15 @@ onmessage = async (e: MessageEvent<MessageData>) => {
     await initDotNetInterop()
     if (e.data.message.method === 'parse') {
       const id = initializeNewParser(e.data.message.loaderId)
-      const res = await parseFileContents(
+      const signerDtoArrayJson = await parseFileContents(
         id,
         await arrayBufferToBase64(e.data.message.arrayBuffer),
         e.data.message.signerIds
       )
 
-      postMessage({ messageId: e.data.messageId, message: res })
+      const signerDtoArray: Array<SignerDto> = JSON.parse(signerDtoArrayJson)
+
+      postMessage({ messageId: e.data.messageId, message: signerDtoArray })
     }
   } catch (err) {
     const error =

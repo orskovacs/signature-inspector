@@ -194,7 +194,7 @@ export class SignatureDatabaseImporter extends LitElement {
         : (this.signerInput?.value?.split(',').map((id) => id.trim()) ?? [])
 
     try {
-      const { signers: newSigners } = (await parser.parse(
+      const { newSigners } = (await parser.parse(
         this.file,
         existingSigners,
         signerIds

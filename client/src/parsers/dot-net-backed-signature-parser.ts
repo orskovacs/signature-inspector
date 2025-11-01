@@ -1,8 +1,8 @@
 import { ParseResult, SignatureParser } from './signature-parser.ts'
-import { Authenticity, Signature } from '../model/signature.ts'
 import { Signer } from '../model/signer.ts'
-import { SignatureDataPoint } from 'signature-field'
 import { BackgroundTask } from '../worker/background-task.ts'
+import { dtoToSigner, SignerDto } from '../model/dto/signer-dto.ts'
+import { dtoToSignature } from '../model/dto/signature-dto.ts'
 
 export abstract class DotNetBackedSignatureParser implements SignatureParser {
   private readonly worker: Worker
@@ -33,62 +33,39 @@ export abstract class DotNetBackedSignatureParser implements SignatureParser {
       signerIds,
     }
 
-    const signersJson = await new BackgroundTask<typeof message, string>(
-      this.worker,
-      message,
-      [arrayBuffer]
-    ).execute()
+    const signerDtoArray = await new BackgroundTask<
+      typeof message,
+      SignerDto[]
+    >(this.worker, message, [arrayBuffer]).execute()
 
-    const parsedSigners: Array<{
-      name: string
-      signatures: Array<{
-        name: string
-        authenticity: string
-        origin: string
-        dataPoints: SignatureDataPoint[]
-      }>
-    }> = JSON.parse(signersJson)
-
-    const existingSignersById: [string, Signer][] = existingSigners.map(
-      (signer) => [signer.name, signer]
-    )
-    const signers: Map<string, Signer> = new Map<string, Signer>(
-      existingSignersById
+    const existingSignersByName: Map<string, Signer> = new Map<string, Signer>(
+      existingSigners.map((signer) => [signer.name, signer])
     )
     const newSigners: Signer[] = []
-    const signatures: Signature[] = []
+    const signersWithNewSignatures: Signer[] = []
 
-    for (const parsedSigner of parsedSigners) {
-      let signer = existingSigners.find((s) => s.name === parsedSigner.name)
+    for (const signerDto of signerDtoArray) {
+      let existingSigner = existingSignersByName.get(signerDto.name)
 
-      if (signer === undefined) {
-        signer = new Signer(parsedSigner.name)
-        signers.set(signer.name, signer)
-        newSigners.push(signer)
+      if (existingSigner === undefined) {
+        existingSigner = newSigners.find((s) => s.name === signerDto.name)
       }
 
-      for (const parsedSignature of parsedSigner.signatures) {
-        let authenticity: Authenticity = 'unknown'
-        if (parsedSignature.authenticity === 'genuine') authenticity = 'genuine'
-        else if (parsedSignature.authenticity === 'forged')
-          authenticity = 'forged'
-
-        const signature = new Signature(
-          parsedSignature.name,
-          parsedSignature.dataPoints,
-          authenticity,
-          parsedSignature.origin
+      if (existingSigner === undefined) {
+        const signer = dtoToSigner(signerDto)
+        newSigners.push(signer)
+      } else {
+        const existingSignerNewSignatures = signerDto.signatures.map((dto) =>
+          dtoToSignature(dto, existingSigner)
         )
-        signature.signer = signer
-        signer.addSignatures(signature)
-
-        signatures.push(signature)
+        existingSigner.addSignatures(...existingSignerNewSignatures)
+        signersWithNewSignatures.push(existingSigner)
       }
     }
 
     return {
-      signatures,
-      signers: newSigners,
+      newSigners,
+      signersWithNewSignatures,
     }
   }
 }

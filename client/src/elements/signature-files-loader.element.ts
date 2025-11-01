@@ -162,11 +162,10 @@ export class SignatureFilesLoaderElement extends LitElement {
       for (let i = 0; i < files.length; i++) {
         const file = files.item(i)
         if (file === null) continue
-        const { signers: newSigners } =
-          (await this.selectedLoader?.parser.parse(file, [
-            ...this.signersContextData.signers,
-            ...signers,
-          ]))!
+        const { newSigners } = (await this.selectedLoader?.parser.parse(file, [
+          ...this.signersContextData.signers,
+          ...signers,
+        ]))!
         signers.push(...newSigners)
       }
 
