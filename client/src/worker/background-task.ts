@@ -13,16 +13,29 @@ export class BackgroundTask<T extends object, R> {
       }
 
       const onMessageHandler = (
-        e: MessageEvent<{ messageId: typeof messageId; message: R }>
+        e: MessageEvent<{
+          messageId: typeof messageId
+          message: R
+          error?: Error
+        }>
       ) => {
         if (messageId !== e.data.messageId) return
 
-        resolve(e.data.message)
+        if ('error' in e.data && e.data.error !== undefined) {
+          reject(e.data.error)
+        } else {
+          resolve(e.data.message)
+        }
+
         cleanup()
       }
 
       const onMessageErrorHandler = (e: MessageEvent) => {
-        reject(new Error(`Worker messageerror event: likely data deserialization failure. Event details: ${JSON.stringify(e.data)}`))
+        reject(
+          new Error(
+            `Worker messageerror event. Details: ${JSON.stringify(e.data)}`
+          )
+        )
         cleanup()
       }
 

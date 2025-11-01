@@ -34,9 +34,14 @@ onmessage = async (e: MessageEvent<MessageData>) => {
       postMessage({ messageId: e.data.messageId, message: res })
     }
   } catch (err) {
+    const error =
+      err instanceof Error
+        ? err
+        : new Error(typeof err === 'string' ? err : JSON.stringify(err))
+
     postMessage({
       messageId: e.data.messageId,
-      error: err instanceof Error ? err.message : String(err),
+      error,
     })
   }
 }
