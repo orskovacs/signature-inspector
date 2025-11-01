@@ -26,12 +26,19 @@ const testSignature = assemblyImports.SignatureVerifierExport.TestSignature
 let verifierId: string
 
 onmessage = async (e: MessageEvent<MessageData>) => {
-  if (e.data.message.method === 'train') {
-    await train(e.data.message.classifierId, e.data.message.signatures)
-    postMessage({ messageId: e.data.messageId, message: undefined })
-  } else if (e.data.message.method === 'test') {
-    const res = await test(e.data.message.signature)
-    postMessage({ messageId: e.data.messageId, message: res })
+  try {
+    if (e.data.message.method === 'train') {
+      await train(e.data.message.classifierId, e.data.message.signatures)
+      postMessage({ messageId: e.data.messageId, message: undefined })
+    } else if (e.data.message.method === 'test') {
+      const res = await test(e.data.message.signature)
+      postMessage({ messageId: e.data.messageId, message: res })
+    }
+  } catch (err) {
+    postMessage({
+      messageId: e.data.messageId,
+      error: err instanceof Error ? err.message : String(err),
+    })
   }
 }
 
