@@ -27,6 +27,10 @@ import { Signer } from '../model/signer.ts'
 import { SignatureVerifier } from '../verifier/signature-verifier.ts'
 import { MdOutlinedSelect } from '@material/web/all'
 import { DtwVerifier } from '../verifier/dtw-verifier.ts'
+import {
+  BeginLoadingEvent,
+  EndLoadingEvent,
+} from './loading-spinner.element.ts'
 
 @customElement('signature-list-element')
 export class SignatureListElement extends LitElement {
@@ -403,6 +407,8 @@ export class SignatureListElement extends LitElement {
   }
 
   private async onVerifyClick() {
+    const loadingId = crypto.randomUUID()
+    this.dispatchEvent(new BeginLoadingEvent(loadingId, 'Verifying Signatures'))
     this.dispatchEvent(new ResetTrainSignaturesEvent())
 
     const verifier: SignatureVerifier = (() => {
@@ -448,6 +454,7 @@ export class SignatureListElement extends LitElement {
       console.error(error)
     } finally {
       verifier.dispose()
+      this.dispatchEvent(new EndLoadingEvent(loadingId))
     }
   }
 }

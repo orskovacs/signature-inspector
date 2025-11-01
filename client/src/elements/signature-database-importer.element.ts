@@ -11,6 +11,10 @@ import {
 import { consume } from '@lit/context'
 import { MdDialog } from '@material/web/dialog/dialog'
 import { Svc2004ZipParser } from '../parsers/svc-2004-zip-parser.ts'
+import {
+  BeginLoadingEvent,
+  EndLoadingEvent,
+} from './loading-spinner.element.ts'
 
 @customElement('signature-database-importer-element')
 export class SignatureDatabaseImporter extends LitElement {
@@ -174,6 +178,11 @@ export class SignatureDatabaseImporter extends LitElement {
     )
       return
 
+    const loadingId = crypto.randomUUID()
+    this.dispatchEvent(
+      new BeginLoadingEvent(loadingId, 'Importing from Database')
+    )
+
     this.error = undefined
 
     const parser: SignatureParser = (() => {
@@ -205,6 +214,7 @@ export class SignatureDatabaseImporter extends LitElement {
       this.error = error
     } finally {
       parser.dispose()
+      this.dispatchEvent(new EndLoadingEvent(loadingId))
     }
   }
 
