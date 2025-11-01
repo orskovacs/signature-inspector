@@ -19,13 +19,21 @@ const parseFileContents =
 
 onmessage = async (e: MessageEvent<MessageData>) => {
   if (e.data.message.method === 'parse') {
-    const id = initializeNewParser(e.data.message.loaderId)
-    const res = await parseFileContents(
-      id,
-      e.data.message.fileBase64,
-      e.data.message.signerIds
-    )
+    try {
+      const id = initializeNewParser(e.data.message.loaderId)
+      const res = await parseFileContents(
+        id,
+        e.data.message.fileBase64,
+        e.data.message.signerIds
+      )
 
-    postMessage({ messageId: e.data.messageId, message: res })
+      postMessage({ messageId: e.data.messageId, message: res })
+    } catch (error) {
+      postMessage({
+        messageId: e.data.messageId,
+        error: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error && error.stack ? error.stack : undefined,
+      })
+    }
   }
 }
