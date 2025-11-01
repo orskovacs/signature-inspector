@@ -5,14 +5,14 @@ export class BackgroundTask<T extends object, R> {
   ) {}
 
   public execute(): Promise<R> {
-    return new Promise<R>(async (resolve, reject) => {
+    return new Promise<R>((resolve, reject) => {
       const messageId = crypto.randomUUID()
       const message = {
         messageId,
         message: this.message,
       }
 
-      const onMessageHandler = async (
+      const onMessageHandler = (
         e: MessageEvent<{ messageId: typeof messageId; message: R }>
       ) => {
         if (messageId !== e.data.messageId) return
@@ -21,7 +21,7 @@ export class BackgroundTask<T extends object, R> {
         cleanup()
       }
 
-      const onMessageErrorHandler = async (
+      const onMessageErrorHandler = (
         e: MessageEvent<{ messageId: typeof messageId }>
       ) => {
         if (messageId !== e.data.messageId) return
@@ -30,13 +30,19 @@ export class BackgroundTask<T extends object, R> {
         cleanup()
       }
 
+      const onErrorHandler = (e: ErrorEvent) => {
+        reject(e)
+      }
+
       const cleanup = () => {
         this.worker.removeEventListener('message', onMessageHandler)
         this.worker.removeEventListener('messageerror', onMessageErrorHandler)
+        this.worker.removeEventListener('error', onErrorHandler)
       }
 
       this.worker.addEventListener('message', onMessageHandler)
       this.worker.addEventListener('messageerror', onMessageErrorHandler)
+      this.worker.addEventListener('error', onErrorHandler)
 
       this.worker.postMessage(message)
     })
