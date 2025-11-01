@@ -1,11 +1,12 @@
 import { DotNetInteropManager } from '../dot-net-interop/dot-net-interop-manager.ts'
+import { arrayBufferToBase64 } from '../utils/file.util.ts'
 
 type MessageData = {
   messageId: ReturnType<typeof crypto.randomUUID>
   message: {
     method: 'parse'
     loaderId: string
-    fileBase64: string
+    arrayBuffer: ArrayBuffer
     signerIds: string[]
   }
 }
@@ -28,7 +29,7 @@ onmessage = async (e: MessageEvent<MessageData>) => {
       const id = initializeNewParser(e.data.message.loaderId)
       const res = await parseFileContents(
         id,
-        e.data.message.fileBase64,
+        await arrayBufferToBase64(e.data.message.arrayBuffer),
         e.data.message.signerIds
       )
 

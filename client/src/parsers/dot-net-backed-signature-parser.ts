@@ -1,6 +1,5 @@
 import { ParseResult, SignatureParser } from './signature-parser.ts'
 import { Authenticity, Signature } from '../model/signature.ts'
-import { fileToBase64 } from '../utils/file.util.ts'
 import { Signer } from '../model/signer.ts'
 import { SignatureDataPoint } from 'signature-field'
 import { BackgroundTask } from '../worker/background-task.ts'
@@ -26,18 +25,18 @@ export abstract class DotNetBackedSignatureParser implements SignatureParser {
     existingSigners: Signer[],
     signerIds: string[] = []
   ): Promise<ParseResult> {
-    let fileBase64 = await fileToBase64(file)
-
+    const arrayBuffer = await file.arrayBuffer()
     const message = {
       method: 'parse',
       loaderId: this.loaderId,
-      fileBase64,
+      arrayBuffer,
       signerIds,
     }
 
     const signersJson = await new BackgroundTask<typeof message, string>(
       this.worker,
-      message
+      message,
+      [arrayBuffer]
     ).execute()
 
     const parsedSigners: Array<{

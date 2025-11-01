@@ -1,7 +1,8 @@
 export class BackgroundTask<T extends object, R> {
   constructor(
     private readonly worker: Worker,
-    private readonly message: T
+    private readonly message: T,
+    private readonly transfer?: Transferable[]
   ) {}
 
   public execute(): Promise<R> {
@@ -54,7 +55,8 @@ export class BackgroundTask<T extends object, R> {
       this.worker.addEventListener('messageerror', onMessageErrorHandler)
       this.worker.addEventListener('error', onErrorHandler)
 
-      this.worker.postMessage(message)
+      if (this.transfer) this.worker.postMessage(message, this.transfer)
+      else this.worker.postMessage(message)
     })
   }
 }
