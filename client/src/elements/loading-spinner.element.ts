@@ -38,7 +38,9 @@ export class LoadingSpinnerElement extends LitElement {
       id="loading-spinner-dialog"
       type="alert"
       @cancel="${(e: Event) => e.preventDefault()}"
-      @keydown="${(e: KeyboardEvent) => e.preventDefault()}"
+      @keydown="${(e: KeyboardEvent) => {
+        if (e.key === 'Escape') e.preventDefault()
+      }}"
     >
       <div slot="content">
         <md-circular-progress
