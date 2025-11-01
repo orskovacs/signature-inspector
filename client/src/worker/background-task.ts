@@ -32,6 +32,7 @@ export class BackgroundTask<T extends object, R> {
 
       const onErrorHandler = (e: ErrorEvent) => {
         reject(e)
+        cleanup()
       }
 
       const cleanup = () => {
