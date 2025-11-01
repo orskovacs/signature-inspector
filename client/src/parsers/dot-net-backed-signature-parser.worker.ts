@@ -1,17 +1,31 @@
 import { DotNetInteropManager } from '../dot-net-interop/dot-net-interop-manager.ts'
 
-onmessage = async (
-  e: MessageEvent<{ loaderId: string; fileBase64: string; signerIds: string[] }>
-) => {
-  const assemblyImports = await DotNetInteropManager.instance.dotNetImports
+type MessageData = {
+  messageId: ReturnType<typeof crypto.randomUUID>
+  message: {
+    method: 'parse'
+    loaderId: string
+    fileBase64: string
+    signerIds: string[]
+  }
+}
 
-  const initializeNewParser =
-    assemblyImports.SignatureParserExport.InitializeNewParser
-  const parseFileContents =
-    assemblyImports.SignatureParserExport.ParseFileContents
+const assemblyImports = await DotNetInteropManager.instance.dotNetImports
 
-  const id = initializeNewParser(e.data.loaderId)
-  const res = await parseFileContents(id, e.data.fileBase64, e.data.signerIds)
+const initializeNewParser =
+  assemblyImports.SignatureParserExport.InitializeNewParser
+const parseFileContents =
+  assemblyImports.SignatureParserExport.ParseFileContents
 
-  postMessage(res)
+onmessage = async (e: MessageEvent<MessageData>) => {
+  if (e.data.message.method === 'parse') {
+    const id = initializeNewParser(e.data.message.loaderId)
+    const res = await parseFileContents(
+      id,
+      e.data.message.fileBase64,
+      e.data.message.signerIds
+    )
+
+    postMessage({ messageId: e.data.messageId, message: res })
+  }
 }

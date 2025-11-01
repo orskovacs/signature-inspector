@@ -3,9 +3,19 @@ import { Authenticity, Signature } from '../model/signature.ts'
 import { fileToBase64 } from '../utils/file.util.ts'
 import { Signer } from '../model/signer.ts'
 import { SignatureDataPoint } from 'signature-field'
+import { BackgroundTask } from '../worker/background-task.ts'
 
 export abstract class DotNetBackedSignatureParser implements SignatureParser {
+  private readonly worker: Worker
+
   protected abstract get loaderId(): string
+
+  protected constructor() {
+    this.worker = new Worker(
+      new URL('dot-net-backed-signature-parser.worker.js', import.meta.url),
+      { type: 'module' }
+    )
+  }
 
   public async parse(
     file: File,
@@ -14,26 +24,17 @@ export abstract class DotNetBackedSignatureParser implements SignatureParser {
   ): Promise<ParseResult> {
     let fileBase64 = await fileToBase64(file)
 
-    const signersJson = await new Promise<string>(async (resolve, reject) => {
-      const parserWorker = new Worker(
-        new URL('dot-net-backed-signature-parser.worker.js', import.meta.url),
-        { type: 'module' }
-      )
+    const message = {
+      method: 'parse',
+      loaderId: this.loaderId,
+      fileBase64,
+      signerIds,
+    }
 
-      parserWorker.postMessage({
-        loaderId: this.loaderId,
-        fileBase64,
-        signerIds,
-      })
-
-      parserWorker.onmessage = (e: MessageEvent<string>) => {
-        resolve(e.data)
-      }
-
-      parserWorker.onerror = (e) => {
-        reject(e)
-      }
-    })
+    const signersJson = await new BackgroundTask<typeof message, string>(
+      this.worker,
+      message
+    ).execute()
 
     const parsedSigners: Array<{
       name: string
