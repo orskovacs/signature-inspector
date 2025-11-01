@@ -55,10 +55,9 @@ export abstract class DotNetBackedSignatureParser implements SignatureParser {
         const signer = dtoToSigner(signerDto)
         newSigners.push(signer)
       } else {
-        const existingSignerNewSignatures = signerDto.signatures.map((dto) =>
+        signerDto.signatures.forEach((dto) =>
           dtoToSignature(dto, existingSigner)
         )
-        existingSigner.addSignatures(...existingSignerNewSignatures)
         signersWithNewSignatures.push(existingSigner)
       }
     }

@@ -197,7 +197,6 @@ export class SignatureCaptureElement extends LitElement {
     const signature = new Signature(name, dataPoints, authenticity, origin)
 
     if (this.selectedSigner !== null) {
-      signature.signer = this.selectedSigner
       this.selectedSigner.addSignatures(signature)
     }
 

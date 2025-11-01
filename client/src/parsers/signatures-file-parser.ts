@@ -49,16 +49,12 @@ export class SignaturesFileParser implements SignatureParser {
         name = element.name
       }
 
-      const signature = new Signature(
+      return new Signature(
         String(name),
         element.dataPoints,
         authenticity,
         origin
       )
-
-      signature.signer = signer
-
-      return signature
     })
 
     signer.addSignatures(...signatures)

@@ -56,7 +56,6 @@ export class Svc2004Parser implements SignatureParser {
       isNewSigner = true
     }
 
-    signature.signer = signer
     signer.addSignatures(signature)
 
     return {

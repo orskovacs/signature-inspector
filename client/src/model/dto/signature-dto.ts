@@ -34,7 +34,6 @@ export function dtoToSignature(dto: SignatureDto, signer: Signer): Signature {
     dto.authenticity,
     dto.origin
   )
-  signature.signer = signer
   signer.addSignatures(signature)
   return signature
 }

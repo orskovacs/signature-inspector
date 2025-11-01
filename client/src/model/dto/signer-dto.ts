@@ -23,9 +23,7 @@ export function dtoToSigner(dto: SignerDto) {
   const signer = new Signer(dto.name)
 
   for (const signatureDto of dto.signatures) {
-    const signature = dtoToSignature(signatureDto, signer)
-    signature.signer = signer
-    signer.addSignatures(signature)
+    dtoToSignature(signatureDto, signer)
   }
 
   return signer
