@@ -1,25 +1,24 @@
-import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
 import { ParseResult, SignatureParser } from './signature-parser.ts'
 import { Authenticity, Signature } from '../model/signature.ts'
-import { SignatureParserImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
 import { fileToBase64 } from '../utils/file.util.ts'
 import { Signer } from '../model/signer.ts'
 import { SignatureDataPoint } from 'signature-field'
+import { BackgroundTask } from '../worker/background-task.ts'
 
-export abstract class DotNetBackedSignatureParser
-  extends DotNetBackedObject<SignatureParserImport>
-  implements SignatureParser
-{
-  private readonly _dotNetId: Promise<string>
+export abstract class DotNetBackedSignatureParser implements SignatureParser {
+  private readonly worker: Worker
 
   protected abstract get loaderId(): string
 
   protected constructor() {
-    super('SignatureParserExport')
-
-    this._dotNetId = this.dotNetImport.then((manager) =>
-      manager.InitializeNewParser(this.loaderId)
+    this.worker = new Worker(
+      new URL('dot-net-backed-signature-parser.worker.js', import.meta.url),
+      { type: 'module' }
     )
+  }
+
+  public dispose(): void {
+    this.worker.terminate()
   }
 
   public async parse(
@@ -27,10 +26,19 @@ export abstract class DotNetBackedSignatureParser
     existingSigners: Signer[],
     signerIds: string[] = []
   ): Promise<ParseResult> {
-    let manager = await this.dotNetImport
-    let id = await this._dotNetId
     let fileBase64 = await fileToBase64(file)
-    let signersJson = await manager.ParseFileContents(id, fileBase64, signerIds)
+
+    const message = {
+      method: 'parse',
+      loaderId: this.loaderId,
+      fileBase64,
+      signerIds,
+    }
+
+    const signersJson = await new BackgroundTask<typeof message, string>(
+      this.worker,
+      message
+    ).execute()
 
     const parsedSigners: Array<{
       name: string

@@ -3,7 +3,6 @@ import { css, html, LitElement, nothing } from 'lit'
 import { DeepSignZipParser } from '../parsers/deep-sign-zip-parser.ts'
 import { SignatureParser } from '../parsers/signature-parser.ts'
 import { MdOutlinedSelect } from '@material/web/all'
-import { Signer } from '../model/signer.ts'
 import {
   PushSignersEvent,
   signersContext,
@@ -12,11 +11,6 @@ import {
 import { consume } from '@lit/context'
 import { MdDialog } from '@material/web/dialog/dialog'
 import { Svc2004ZipParser } from '../parsers/svc-2004-zip-parser.ts'
-
-interface ImporterOption {
-  name: string
-  parser: SignatureParser
-}
 
 @customElement('signature-database-importer-element')
 export class SignatureDatabaseImporter extends LitElement {
@@ -46,16 +40,13 @@ export class SignatureDatabaseImporter extends LitElement {
     }
   `
 
-  private readonly importers: ReadonlyArray<ImporterOption> = [
-    { name: 'SVC 2004', parser: new Svc2004ZipParser() },
-    { name: 'DeepSignDB', parser: new DeepSignZipParser() },
-  ]
+  private readonly importers = ['SVC 2004', 'DeepSignDB'] as const
 
   @consume({ context: signersContext, subscribe: true })
   private signersContextData!: SignersContextData
 
   @state()
-  private selectedImporter: ImporterOption = this.importers[0]
+  private selectedImporter: (typeof this.importers)[number] = this.importers[0]
 
   @state()
   private error: any = undefined
@@ -102,7 +93,7 @@ export class SignatureDatabaseImporter extends LitElement {
                 html` <md-select-option
                   .selected="${index === 0}"
                   value="${index}"
-                  >${p.name}
+                  >${p}
                 </md-select-option>`
             )}
           </md-outlined-select>
@@ -152,7 +143,7 @@ export class SignatureDatabaseImporter extends LitElement {
 
   private get signerIdOptions() {
     let ids: string[] = []
-    switch (this.selectedImporter.name) {
+    switch (this.selectedImporter) {
       case 'SVC 2004':
         ids = Array.from({ length: 40 }, (_, i) =>
           String(i + 1).padStart(2, '0')
@@ -185,22 +176,35 @@ export class SignatureDatabaseImporter extends LitElement {
 
     this.error = undefined
 
+    const parser: SignatureParser = (() => {
+      switch (this.selectedImporter) {
+        case 'SVC 2004':
+          return new Svc2004ZipParser()
+        case 'DeepSignDB':
+          return new DeepSignZipParser()
+        default:
+          throw new Error('Unknown parser')
+      }
+    })()
+
+    const existingSigners = [...this.signersContextData.signers]
+    const signerIds =
+      this.signerInput?.value === ''
+        ? []
+        : (this.signerInput?.value?.split(',').map((id) => id.trim()) ?? [])
+
     try {
-      const signers: Signer[] = []
+      const { signers: newSigners } = (await parser.parse(
+        this.file,
+        existingSigners,
+        signerIds
+      ))!
 
-      const { signers: newSigners } =
-        (await this.selectedImporter?.parser.parse(
-          this.file,
-          [...this.signersContextData.signers, ...signers],
-          this.signerInput?.value === ''
-            ? []
-            : (this.signerInput?.value?.split(',').map((id) => id.trim()) ?? [])
-        ))!
-      signers.push(...newSigners)
-
-      this.dispatchEvent(new PushSignersEvent(signers))
+      this.dispatchEvent(new PushSignersEvent(newSigners))
     } catch (error) {
       this.error = error
+    } finally {
+      parser.dispose()
     }
   }
 

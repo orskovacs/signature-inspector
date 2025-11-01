@@ -9,6 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PublishTrimmed>True</PublishTrimmed>
     <TrimMode>partial</TrimMode>
+    <WasmBundlerFriendlyBootConfig>true</WasmBundlerFriendlyBootConfig>
   </PropertyGroup>
 
   <ItemGroup>

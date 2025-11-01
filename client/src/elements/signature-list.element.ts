@@ -173,10 +173,7 @@ export class SignatureListElement extends LitElement {
     }
   `
 
-  private readonly verifiers: ReadonlyArray<VerifierOption> = [
-    { name: 'EB-DBA LS-DTW', verifier: new EbDbaLsDtwVerifier() },
-    { name: 'DTW', verifier: new DtwVerifier() },
-  ]
+  private readonly verifiers = ['EB-DBA LS-DTW', 'DTW'] as const
 
   @consume({ context: signersContext, subscribe: true })
   private signersContext!: SignersContextData
@@ -185,7 +182,7 @@ export class SignatureListElement extends LitElement {
   private signatures!: Signature[]
 
   @state()
-  private selectedVerifier: SignatureVerifier = this.verifiers[0].verifier
+  private selectedVerifier: (typeof this.verifiers)[number] = this.verifiers[0]
 
   private get selectedSigner(): Signer | null {
     const selectedSignerIndex = this.signersContext.selectedSignerIndex
@@ -252,18 +249,17 @@ export class SignatureListElement extends LitElement {
                   label="Verifier"
                   @change="${(e: Event) => {
                     const target = e.target as unknown as MdOutlinedSelect
-                    this.selectedVerifier =
-                      this.verifiers[target.selectedIndex].verifier
+                    this.selectedVerifier = this.verifiers[target.selectedIndex]
                   }}"
                 >
                   ${this.verifiers.map(
                     (v, i) =>
                       html`<md-select-option
                         value="${i}"
-                        display-text="${v.name}"
+                        display-text="${v}"
                         ?selected="${i === 0}"
                       >
-                        <div slot="headline">${v.name}</div>
+                        <div slot="headline">${v}</div>
                       </md-select-option>`
                   )}
                 </md-outlined-select>
@@ -406,40 +402,53 @@ export class SignatureListElement extends LitElement {
     </div>`
   }
 
-  private onVerifyClick() {
+  private async onVerifyClick() {
     this.dispatchEvent(new ResetTrainSignaturesEvent())
-    const verifier = this.selectedVerifier
-    verifier.trainUsingSignatures(this.signaturesForTraining).then(() => {
+
+    const verifier: SignatureVerifier = (() => {
+      switch (this.selectedVerifier) {
+        case 'EB-DBA LS-DTW':
+          return new EbDbaLsDtwVerifier()
+        case 'DTW':
+          return new DtwVerifier()
+        default:
+          throw new Error('Unknown verifier')
+      }
+    })()
+
+    try {
+      await verifier.trainUsingSignatures(this.signaturesForTraining)
+
       const selectedSignaturesIndexes: number[] = []
       this.signatures.forEach((s, i) => {
-        if (s.forTraining) {
-          selectedSignaturesIndexes.push(i)
-        }
+        if (s.forTraining) selectedSignaturesIndexes.push(i)
       })
-
       this.dispatchEvent(
         new SetSignaturesForTrainingByIndexEvent(selectedSignaturesIndexes)
       )
 
+      const testPromises: Promise<void>[] = []
       this.signatures.forEach((s, i) => {
         if (!s.forTraining) {
-          verifier.testSignature(s).then((isGenuine) => {
-            this.dispatchEvent(
-              new SetSignatureVerificationStatusEvent(
-                i,
-                isGenuine ? 'genuine' : 'forged'
+          testPromises.push(
+            verifier.testSignature(s).then((isGenuine) => {
+              this.dispatchEvent(
+                new SetSignatureVerificationStatusEvent(
+                  i,
+                  isGenuine ? 'genuine' : 'forged'
+                )
               )
-            )
-          })
+            })
+          )
         }
       })
 
+      await Promise.all(testPromises)
       this.dispatchEvent(new UnselectAllSignaturesEvent())
-    })
+    } catch (error) {
+      console.error(error)
+    } finally {
+      verifier.dispose()
+    }
   }
-}
-
-type VerifierOption = {
-  name: string
-  verifier: SignatureVerifier
 }
