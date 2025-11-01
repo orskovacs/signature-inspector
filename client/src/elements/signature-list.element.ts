@@ -446,6 +446,7 @@ export class SignatureListElement extends LitElement {
       await Promise.all(testPromises)
       this.dispatchEvent(new UnselectAllSignaturesEvent())
     } catch (error) {
+      console.error(error)
     } finally {
       verifier.dispose()
     }
