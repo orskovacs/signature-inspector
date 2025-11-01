@@ -402,7 +402,7 @@ export class SignatureListElement extends LitElement {
     </div>`
   }
 
-  private onVerifyClick() {
+  private async onVerifyClick() {
     this.dispatchEvent(new ResetTrainSignaturesEvent())
 
     const verifier: SignatureVerifier = (() => {
@@ -417,20 +417,20 @@ export class SignatureListElement extends LitElement {
     })()
 
     try {
-      verifier.trainUsingSignatures(this.signaturesForTraining).then(() => {
-        const selectedSignaturesIndexes: number[] = []
-        this.signatures.forEach((s, i) => {
-          if (s.forTraining) {
-            selectedSignaturesIndexes.push(i)
-          }
-        })
+      await verifier.trainUsingSignatures(this.signaturesForTraining)
 
-        this.dispatchEvent(
-          new SetSignaturesForTrainingByIndexEvent(selectedSignaturesIndexes)
-        )
+      const selectedSignaturesIndexes: number[] = []
+      this.signatures.forEach((s, i) => {
+        if (s.forTraining) selectedSignaturesIndexes.push(i)
+      })
+      this.dispatchEvent(
+        new SetSignaturesForTrainingByIndexEvent(selectedSignaturesIndexes)
+      )
 
-        this.signatures.forEach((s, i) => {
-          if (!s.forTraining) {
+      const testPromises: Promise<void>[] = []
+      this.signatures.forEach((s, i) => {
+        if (!s.forTraining) {
+          testPromises.push(
             verifier.testSignature(s).then((isGenuine) => {
               this.dispatchEvent(
                 new SetSignatureVerificationStatusEvent(
@@ -439,11 +439,13 @@ export class SignatureListElement extends LitElement {
                 )
               )
             })
-          }
-        })
-
-        this.dispatchEvent(new UnselectAllSignaturesEvent())
+          )
+        }
       })
+
+      await Promise.all(testPromises)
+      this.dispatchEvent(new UnselectAllSignaturesEvent())
+    } catch (error) {
     } finally {
       verifier.dispose()
     }

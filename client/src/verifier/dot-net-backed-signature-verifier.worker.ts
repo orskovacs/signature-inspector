@@ -15,18 +15,17 @@ type MessageData = {
       }
 }
 
-const assemblyImports = await DotNetInteropManager.instance.dotNetImports
-
-const initializeNewVerifier =
-  assemblyImports.SignatureVerifierExport.InitializeNewVerifier
-const trainUsingSignatures =
-  assemblyImports.SignatureVerifierExport.TrainUsingSignatures
-const testSignature = assemblyImports.SignatureVerifierExport.TestSignature
-
+let assemblyImports: Awaited<
+  typeof DotNetInteropManager.instance.dotNetImports
+> | null = null
+let initializeNewVerifier: (classifierId: string) => string
+let trainUsingSignatures: (id: string, signaturesJson: string) => Promise<void>
+let testSignature: (id: string, signatureJson: string) => Promise<boolean>
 let verifierId: string
 
 onmessage = async (e: MessageEvent<MessageData>) => {
   try {
+    await initDotNetInterop()
     if (e.data.message.method === 'train') {
       await train(e.data.message.classifierId, e.data.message.signatures)
       postMessage({ messageId: e.data.messageId, message: undefined })
@@ -54,4 +53,15 @@ async function train(
 async function test(signatureDto: SignatureDto): Promise<boolean> {
   const signatureJson = JSON.stringify(signatureDto)
   return await testSignature(verifierId, signatureJson)
+}
+
+async function initDotNetInterop(): Promise<void> {
+  if (assemblyImports !== null) return
+
+  assemblyImports = await DotNetInteropManager.instance.dotNetImports
+  initializeNewVerifier =
+    assemblyImports.SignatureVerifierExport.InitializeNewVerifier
+  trainUsingSignatures =
+    assemblyImports.SignatureVerifierExport.TrainUsingSignatures
+  testSignature = assemblyImports.SignatureVerifierExport.TestSignature
 }

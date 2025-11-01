@@ -10,16 +10,21 @@ type MessageData = {
   }
 }
 
-const assemblyImports = await DotNetInteropManager.instance.dotNetImports
+let assemblyImports: Awaited<
+  typeof DotNetInteropManager.instance.dotNetImports
+> | null = null
 
-const initializeNewParser =
-  assemblyImports.SignatureParserExport.InitializeNewParser
-const parseFileContents =
-  assemblyImports.SignatureParserExport.ParseFileContents
+let initializeNewParser: (loaderId: string) => string
+let parseFileContents: (
+  id: string,
+  fileContents: string,
+  signerIds: string[]
+) => Promise<string>
 
 onmessage = async (e: MessageEvent<MessageData>) => {
-  if (e.data.message.method === 'parse') {
-    try {
+  try {
+    await initDotNetInterop()
+    if (e.data.message.method === 'parse') {
       const id = initializeNewParser(e.data.message.loaderId)
       const res = await parseFileContents(
         id,
@@ -28,12 +33,21 @@ onmessage = async (e: MessageEvent<MessageData>) => {
       )
 
       postMessage({ messageId: e.data.messageId, message: res })
-    } catch (error) {
-      postMessage({
-        messageId: e.data.messageId,
-        error: error instanceof Error ? error.message : String(error),
-        stack: error instanceof Error && error.stack ? error.stack : undefined,
-      })
     }
+  } catch (error) {
+    postMessage({
+      messageId: e.data.messageId,
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error && error.stack ? error.stack : undefined,
+    })
   }
+}
+
+async function initDotNetInterop(): Promise<void> {
+  if (assemblyImports !== null) return
+
+  assemblyImports = await DotNetInteropManager.instance.dotNetImports
+  initializeNewParser =
+    assemblyImports.SignatureParserExport.InitializeNewParser
+  parseFileContents = assemblyImports.SignatureParserExport.ParseFileContents
 }

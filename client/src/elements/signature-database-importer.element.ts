@@ -3,7 +3,6 @@ import { css, html, LitElement, nothing } from 'lit'
 import { DeepSignZipParser } from '../parsers/deep-sign-zip-parser.ts'
 import { SignatureParser } from '../parsers/signature-parser.ts'
 import { MdOutlinedSelect } from '@material/web/all'
-import { Signer } from '../model/signer.ts'
 import {
   PushSignersEvent,
   signersContext,
@@ -188,19 +187,20 @@ export class SignatureDatabaseImporter extends LitElement {
       }
     })()
 
-    try {
-      const signers: Signer[] = []
+    const existingSigners = [...this.signersContextData.signers]
+    const signerIds =
+      this.signerInput?.value === ''
+        ? []
+        : (this.signerInput?.value?.split(',').map((id) => id.trim()) ?? [])
 
+    try {
       const { signers: newSigners } = (await parser.parse(
         this.file,
-        [...this.signersContextData.signers, ...signers],
-        this.signerInput?.value === ''
-          ? []
-          : (this.signerInput?.value?.split(',').map((id) => id.trim()) ?? [])
+        existingSigners,
+        signerIds
       ))!
-      signers.push(...newSigners)
 
-      this.dispatchEvent(new PushSignersEvent(signers))
+      this.dispatchEvent(new PushSignersEvent(newSigners))
     } catch (error) {
       this.error = error
     } finally {

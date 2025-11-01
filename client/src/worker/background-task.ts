@@ -21,12 +21,8 @@ export class BackgroundTask<T extends object, R> {
         cleanup()
       }
 
-      const onMessageErrorHandler = (
-        e: MessageEvent<{ messageId: typeof messageId }>
-      ) => {
-        if (messageId !== e.data.messageId) return
-
-        reject(e.data)
+      const onMessageErrorHandler = (_e: MessageEvent) => {
+        reject(new Error('Worker messageerror event'))
         cleanup()
       }
 
