@@ -17,6 +17,10 @@ export abstract class DotNetBackedSignatureParser implements SignatureParser {
     )
   }
 
+  public dispose(): void {
+    this.worker.terminate()
+  }
+
   public async parse(
     file: File,
     existingSigners: Signer[],

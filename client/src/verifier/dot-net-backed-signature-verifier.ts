@@ -16,6 +16,10 @@ export abstract class DotNetBackedSignatureVerifier
     )
   }
 
+  public dispose(): void {
+    this.worker.terminate()
+  }
+
   public async trainUsingSignatures(signatures: Signature[]): Promise<void> {
     const message = {
       method: 'train',

@@ -18,6 +18,8 @@ export class Svc2004Parser implements SignatureParser {
     }
   }
 
+  public dispose(): void {}
+
   async parse(file: File, existingSigners: Signer[]): Promise<ParseResult> {
     const fileContents = await file.text()
     const lines = fileContents.split('\n')
