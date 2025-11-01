@@ -21,8 +21,8 @@ export class BackgroundTask<T extends object, R> {
         cleanup()
       }
 
-      const onMessageErrorHandler = (_e: MessageEvent) => {
-        reject(new Error('Worker messageerror event'))
+      const onMessageErrorHandler = (e: MessageEvent) => {
+        reject(new Error(`Worker messageerror event: likely data deserialization failure. Event details: ${JSON.stringify(e.data)}`))
         cleanup()
       }
 
