@@ -1,6 +1,8 @@
 import { SignatureVerifier } from './signature-verifier.ts'
 import { Signature } from '../model/signature.ts'
 import { BackgroundTask } from '../worker/background-task.ts'
+import { signatureToDto } from '../model/dto/signature-dto.ts'
+import { VerificationStatus } from '../model/verification-status.ts'
 
 export abstract class DotNetBackedSignatureVerifier
   implements SignatureVerifier
@@ -24,7 +26,7 @@ export abstract class DotNetBackedSignatureVerifier
     const message = {
       method: 'train',
       classifierId: this.classifierId,
-      signatures: signatures.map((s) => this.signatureToDto(s)),
+      signatures: signatures.map((s) => signatureToDto(s)),
     }
 
     return new BackgroundTask<typeof message, void>(
@@ -33,33 +35,17 @@ export abstract class DotNetBackedSignatureVerifier
     ).execute()
   }
 
-  public async testSignature(signature: Signature): Promise<boolean> {
+  public async testSignature(
+    signature: Signature
+  ): Promise<VerificationStatus> {
     const message = {
       method: 'test',
-      signature: this.signatureToDto(signature),
+      signature: signatureToDto(signature),
     }
 
-    return new BackgroundTask<typeof message, boolean>(
+    return new BackgroundTask<typeof message, VerificationStatus>(
       this.worker,
       message
     ).execute()
   }
-
-  private signatureToDto(signature: Signature): SignatureDto {
-    return {
-      id: signature.id,
-      name: signature.name,
-      authenticity: signature.authenticity,
-      origin: signature.origin,
-      dataPoints: signature.dataPoints,
-    }
-  }
-}
-
-export type SignatureDto = {
-  id: string
-  name: string
-  authenticity: Signature['authenticity']
-  origin: Signature['origin']
-  dataPoints: Signature['dataPoints']
 }

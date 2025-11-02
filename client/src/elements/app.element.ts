@@ -1,6 +1,6 @@
 import { provide } from '@lit/context'
 import { LitElement, css, html } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { customElement, query, state } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
   PushSignatureEvent,
@@ -25,6 +25,16 @@ import {
   SignersContextData,
 } from '../contexts/signers.context.ts'
 import { Signature } from '../model/signature.ts'
+import {
+  BeginLoadingEvent,
+  EndLoadingEvent,
+  LoadingSpinnerElement,
+} from './loading-spinner.element.ts'
+import { UUID } from '../utils/types.ts'
+import {
+  DisplayErrorEvent,
+  ErrorNotificationElement,
+} from './error-notification.element.ts'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -96,6 +106,14 @@ export class AppElement extends LitElement {
   @state()
   private signatures: Signature[] = []
 
+  @query('#loading-spinner')
+  private loadingSpinnerElement!: LoadingSpinnerElement
+
+  @query('#error-notification')
+  private errorNotificationElement!: ErrorNotificationElement
+
+  private loadings: Set<UUID> = new Set()
+
   private get isAppEmpty(): boolean {
     return this.signersContext.signers.length === 0
   }
@@ -104,6 +122,11 @@ export class AppElement extends LitElement {
     super.connectedCallback()
 
     this.addExitAlert()
+
+    this.addEventListener(DisplayErrorEvent.key, this.handleDisplayError)
+
+    this.addEventListener(BeginLoadingEvent.key, this.handleBeginLoading)
+    this.addEventListener(EndLoadingEvent.key, this.handleEndLoading)
 
     this.addEventListener(PushSignersEvent.key, this.handlePushSignersEvent)
     this.addEventListener(SelectSignerEvent.key, this.handleSelectSignerEvent)
@@ -168,9 +191,13 @@ export class AppElement extends LitElement {
   }
 
   render() {
-    return html`<header-element
-        class="${this.isAppEmpty && 'center'}"
-      ></header-element>
+    return html` <loading-spinner-element
+        id="loading-spinner"
+      ></loading-spinner-element>
+      <error-notification-element
+        id="error-notification"
+      ></error-notification-element>
+      <header-element class="${this.isAppEmpty && 'center'}"></header-element>
       <main class="${this.isAppEmpty && 'hidden'}">
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>
@@ -302,6 +329,22 @@ export class AppElement extends LitElement {
     this.pushSignatures(
       ...this.signersContext.signers[e.detail.signerIndex].signatures
     )
+  }
+
+  private handleDisplayError(e: DisplayErrorEvent): void {
+    this.errorNotificationElement.addError(e.detail.error)
+  }
+
+  private handleBeginLoading(e: BeginLoadingEvent): void {
+    this.loadings.add(e.detail.uuid)
+    this.loadingSpinnerElement.display(e.detail.label)
+  }
+
+  private handleEndLoading(e: EndLoadingEvent): void {
+    this.loadings.delete(e.detail.uuid)
+    if (this.loadings.size === 0) {
+      this.loadingSpinnerElement.hide()
+    }
   }
 
   private addExitAlert() {

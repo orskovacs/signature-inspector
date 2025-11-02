@@ -1,5 +1,6 @@
 import { createContext } from '@lit/context'
-import { Signature, VerificationStatus } from '../model/signature.ts'
+import { Signature } from '../model/signature.ts'
+import { VerificationStatus } from '../model/verification-status.ts'
 
 export const signaturesContext = createContext<Array<Signature>>(
   Symbol('signatures-context')

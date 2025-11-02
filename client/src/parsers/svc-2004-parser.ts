@@ -38,19 +38,17 @@ export class Svc2004Parser implements SignatureParser {
 
     const signerId = ids[0]
     const signatureId = ids[1]
-
+    const signerName = 'U' + `${signerId}`.padStart(2, '0')
     const signatureName = `${signatureId}`.padStart(2, '0')
-    const signatureAuthenticity = signatureId < 21 ? 'genuine' : 'forged'
 
     const signature = new Signature(
       signatureName,
       dataPoints,
-      signatureAuthenticity,
+      signatureId < 21 ? 'genuine' : 'forged',
       'SVC2004'
     )
 
     let isNewSigner = false
-    const signerName = 'U' + `${signerId}`.padStart(2, '0')
     let signer = existingSigners.find((s) => s.name === signerName)
 
     if (signer === undefined) {
@@ -58,12 +56,11 @@ export class Svc2004Parser implements SignatureParser {
       isNewSigner = true
     }
 
-    signature.signer = signer
     signer.addSignatures(signature)
 
     return {
-      signatures: [signature],
-      signers: isNewSigner ? [signer] : [],
+      newSigners: isNewSigner ? [signer] : [],
+      signersWithNewSignatures: !isNewSigner ? [signer] : [],
     }
   }
 }

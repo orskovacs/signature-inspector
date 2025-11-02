@@ -1,5 +1,6 @@
 import { DotNetInteropManager } from '../dot-net-interop/dot-net-interop-manager.ts'
-import { SignatureDto } from './dot-net-backed-signature-verifier.ts'
+import { SignatureDto } from '../model/dto/signature-dto.ts'
+import { VerificationStatus } from '../model/verification-status.ts'
 
 type MessageData = {
   messageId: ReturnType<typeof crypto.randomUUID>
@@ -30,7 +31,9 @@ onmessage = async (e: MessageEvent<MessageData>) => {
       await train(e.data.message.classifierId, e.data.message.signatures)
       postMessage({ messageId: e.data.messageId, message: undefined })
     } else if (e.data.message.method === 'test') {
-      const res = await test(e.data.message.signature)
+      const res: VerificationStatus = (await test(e.data.message.signature))
+        ? 'genuine'
+        : 'forged'
       postMessage({ messageId: e.data.messageId, message: res })
     }
   } catch (err) {

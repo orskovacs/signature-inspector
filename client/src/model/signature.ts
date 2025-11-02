@@ -1,6 +1,8 @@
 import { Signature as SignatureBase, SignatureDataPoint } from 'signature-field'
 import { Signer } from './signer.ts'
 import { getRandomColorHex } from '../utils/color.util.ts'
+import { VerificationStatus } from './verification-status.ts'
+import { Authenticity } from './authenticity.ts'
 
 export class Signature extends SignatureBase {
   private readonly _id: string
@@ -77,16 +79,8 @@ export class Signature extends SignatureBase {
   public get origin() {
     return this._origin
   }
-  
+
   public get id(): string {
     return this._id
   }
 }
-
-export type VerificationStatus =
-  | 'genuine'
-  | 'forged'
-  | 'unverified'
-  | 'training'
-export const authenticityValues = ['genuine', 'forged', 'unknown'] as const
-export type Authenticity = (typeof authenticityValues)[number]
