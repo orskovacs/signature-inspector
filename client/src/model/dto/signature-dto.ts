@@ -11,11 +11,7 @@ export type SignatureDto = {
 }
 
 export function signatureToDto(signature: Signature): SignatureDto {
-  if (
-    !(authenticityValues as unknown as string[]).includes(
-      signature.authenticity
-    )
-  )
+  if (!authenticityValues.includes(signature.authenticity))
     throw new Error(`Invalid authenticity type: ${signature.authenticity}`)
 
   return {
