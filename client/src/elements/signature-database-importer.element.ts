@@ -199,7 +199,13 @@ export class SignatureDatabaseImporter extends LitElement {
         signerIds
       ))!
 
-      this.dispatchEvent(new PushSignersEvent(newSigners))
+      if (newSigners.length === 0) {
+        const errorMessage = `No signers with ids [${signerIds.join(', ')}] were found`
+        const error = new Error(errorMessage)
+        this.dispatchEvent(new DisplayErrorEvent(error))
+      } else {
+        this.dispatchEvent(new PushSignersEvent(newSigners))
+      }
     } catch (error) {
       this.dispatchEvent(new DisplayErrorEvent(error as Error))
     } finally {
