@@ -191,17 +191,17 @@ export class AppElement extends LitElement {
   }
 
   render() {
-    return html` <loading-spinner-element
-        id="loading-spinner"
-      ></loading-spinner-element>
-      <error-notification-element
-        id="error-notification"
-      ></error-notification-element>
-      <header-element class="${this.isAppEmpty && 'center'}"></header-element>
-      <main class="${this.isAppEmpty && 'hidden'}">
+    return html` <header-element
+        class="${this.isAppEmpty ? 'center' : ''}"
+      ></header-element>
+      <main class="${this.isAppEmpty ? 'hidden' : ''}">
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>
-      </main>`
+      </main>
+      <loading-spinner-element id="loading-spinner"></loading-spinner-element>
+      <error-notification-element
+        id="error-notification"
+      ></error-notification-element>`
   }
 
   private pushSignatures(...signatures: Signature[]): void {
