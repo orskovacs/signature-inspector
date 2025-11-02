@@ -8,8 +8,8 @@ export class VisualizerElement extends LitElement {
   static styles = css`
     :host {
       display: grid;
-      grid-template-rows: 48px auto;
-      grid-template-columns: auto auto;
+      grid-template-rows: 48px 1fr;
+      grid-template-columns: 1fr 180px;
     }
 
     div[role='tabpanel'] {
@@ -18,6 +18,10 @@ export class VisualizerElement extends LitElement {
       grid-column: 1 / 3;
       border-bottom-left-radius: inherit;
       border-bottom-right-radius: inherit;
+    }
+
+    div[role='tabpanel']#summary-panel {
+      overflow: auto;
     }
 
     md-tabs {
