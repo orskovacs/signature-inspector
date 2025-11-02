@@ -11,7 +11,7 @@ export abstract class DotNetBackedSignatureParser implements SignatureParser {
 
   protected constructor() {
     this.worker = new Worker(
-      new URL('dot-net-backed-signature-parser.worker.js', import.meta.url),
+      new URL('dot-net-backed-signature-parser.worker.ts', import.meta.url),
       { type: 'module' }
     )
   }
