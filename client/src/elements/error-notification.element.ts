@@ -29,6 +29,7 @@ export class ErrorNotificationElement extends LitElement {
       padding-inline: 24px;
       padding-block: 18px;
       margin-bottom: 12px;
+      white-space: pre-line;
     }
 
     .error-container p {
