@@ -1,23 +1,21 @@
 import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { ref } from 'lit/directives/ref.js'
 import { signaturesContext } from '../contexts/signatures.context'
-import { setupSignatureSummaryTable } from '../utils/chart.util'
 import { consume } from '@lit/context'
 import { Signature } from '../model/signature.ts'
 
 @customElement('table-summary-element')
 export class TableSummaryElement extends LitElement {
   static styles = css`
-    :host,
-    .chart-wrapper {
-      width: 100%;
-      height: 100%;
-    }
-
     thead {
       position: sticky;
       top: 0;
+    }
+
+    google-chart {
+      width: 100%;
+      height: 100%;
+      color: #1d1b20;
     }
   `
 
@@ -35,19 +33,39 @@ export class TableSummaryElement extends LitElement {
       </div>`
     }
 
-    return html`<div
-      class="chart-wrapper"
-      ${setupChart(this.visibleSignatures[0])}
-    ></div>`
-  }
-}
+    const signature = this.visibleSignatures[0]
 
-function setupChart(signature: Signature) {
-  return ref((element) => {
-    if (!element) {
-      return
+    const options: google.visualization.TableOptions = {
+      showRowNumber: false,
+      width: '100%',
+      height: '100%',
     }
 
-    setupSignatureSummaryTable(element, signature)
-  })
+    const data: (number | string)[][] = [
+      [
+        'Timestamp',
+        'X Coordinate',
+        'Y Coordinate',
+        'Pressure',
+        'Altitude Angle',
+        'Azimuth Angle',
+      ],
+    ]
+
+    const rows = signature.dataPoints.map((p) => [
+      p.timeStamp,
+      p.xCoord,
+      p.yCoord,
+      p.pressure,
+      p.altitudeAngle,
+      p.azimuthAngle,
+    ])
+    data.push(...rows)
+
+    return html`<google-chart
+      type="table"
+      options=${JSON.stringify(options)}
+      data=${JSON.stringify(data)}
+    ></google-chart>`
+  }
 }
