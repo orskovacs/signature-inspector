@@ -1,5 +1,5 @@
 import { customElement, query, state } from 'lit/decorators.js'
-import { css, html, LitElement } from 'lit'
+import { css, html, LitElement, nothing } from 'lit'
 import { MdDialog } from '@material/web/dialog/dialog'
 
 @customElement('error-notification-element')
@@ -29,11 +29,15 @@ export class ErrorNotificationElement extends LitElement {
       padding-inline: 24px;
       padding-block: 18px;
       margin-bottom: 12px;
-      white-space: pre-line;
+    }
+
+    .error-container summary {
+      font-weight: bold;
     }
 
     .error-container p {
       font-family: monospace;
+      white-space: pre-line;
     }
   `
 
@@ -57,10 +61,10 @@ export class ErrorNotificationElement extends LitElement {
           (error) =>
             html`
               <details class="error-container">
-                <summary>${error?.name ?? 'Error'}: ${error?.message}</summary>
-                <p>${error?.stack}</p>
-                <p>${error?.cause}</p>
-                <p>${error}</p>
+                <summary>${error?.name.trim() ?? 'Error'}: ${error?.message.trim()}</summary>
+                ${error?.stack ? html`<p>${error?.stack.trim()}</p>` : nothing}
+                ${error?.cause ? html`<p>${error?.cause.toString().trim()}</p>` : nothing}
+                <p>${error.toString().trim()}</p>
               </details>
             </div>`
         )}
