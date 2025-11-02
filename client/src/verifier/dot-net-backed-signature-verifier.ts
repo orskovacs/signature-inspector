@@ -13,7 +13,7 @@ export abstract class DotNetBackedSignatureVerifier
 
   protected constructor() {
     this.worker = new Worker(
-      new URL('dot-net-backed-signature-verifier.worker.js', import.meta.url),
+      new URL('dot-net-backed-signature-verifier.worker.ts', import.meta.url),
       { type: 'module' }
     )
   }

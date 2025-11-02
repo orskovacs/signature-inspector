@@ -7,6 +7,9 @@ export default {
       'top-level-await': true,
     },
   },
+  worker: {
+    format: 'es',
+  },
   server: {
     fs: {
       allow: ['..'],
