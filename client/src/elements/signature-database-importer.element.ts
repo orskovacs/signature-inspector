@@ -1,5 +1,5 @@
 import { customElement, query, state } from 'lit/decorators.js'
-import { css, html, LitElement, nothing } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { DeepSignZipParser } from '../parsers/deep-sign-zip-parser.ts'
 import { SignatureParser } from '../parsers/signature-parser.ts'
 import { MdOutlinedSelect } from '@material/web/all'
@@ -15,6 +15,7 @@ import {
   BeginLoadingEvent,
   EndLoadingEvent,
 } from './loading-spinner.element.ts'
+import { DisplayErrorEvent } from './error-notification.element.ts'
 
 @customElement('signature-database-importer-element')
 export class SignatureDatabaseImporter extends LitElement {
@@ -51,9 +52,6 @@ export class SignatureDatabaseImporter extends LitElement {
 
   @state()
   private selectedImporter: (typeof this.importers)[number] = this.importers[0]
-
-  @state()
-  private error: any = undefined
 
   @state()
   private file: File | null = null
@@ -122,12 +120,6 @@ export class SignatureDatabaseImporter extends LitElement {
             multiple
           />
           <datalist id="signers">${this.signerIdOptions}</datalist>
-
-          ${this.error === undefined
-            ? nothing
-            : html` <div class="error-container">
-                <div class="error-details">${this.error}</div>
-              </div>`}
         </form>
 
         <div slot="actions">
@@ -183,8 +175,6 @@ export class SignatureDatabaseImporter extends LitElement {
       new BeginLoadingEvent(loadingId, 'Importing from Database')
     )
 
-    this.error = undefined
-
     const parser: SignatureParser = (() => {
       switch (this.selectedImporter) {
         case 'SVC 2004':
@@ -211,7 +201,7 @@ export class SignatureDatabaseImporter extends LitElement {
 
       this.dispatchEvent(new PushSignersEvent(newSigners))
     } catch (error) {
-      this.error = error
+      this.dispatchEvent(new DisplayErrorEvent(error as Error))
     } finally {
       parser.dispose()
       this.dispatchEvent(new EndLoadingEvent(loadingId))
@@ -222,6 +212,5 @@ export class SignatureDatabaseImporter extends LitElement {
     this.fileInput!.value = ''
     this.file = null
     this.signerInput!.value = ''
-    this.error = undefined
   }
 }

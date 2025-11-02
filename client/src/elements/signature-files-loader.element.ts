@@ -1,4 +1,4 @@
-import { css, html, LitElement, nothing } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { customElement, query, state } from 'lit/decorators.js'
 import { SignaturesFileParser } from '../parsers/signatures-file-parser.ts'
 import { Svc2004Parser } from '../parsers/svc-2004-parser.ts'
@@ -13,6 +13,7 @@ import {
 } from '../contexts/signers.context.ts'
 import { consume } from '@lit/context'
 import { MdDialog } from '@material/web/dialog/dialog'
+import { DisplayErrorEvent } from './error-notification.element.ts'
 
 interface LoaderOption {
   name: string
@@ -67,9 +68,6 @@ export class SignatureFilesLoaderElement extends LitElement {
   @state()
   private files: FileList | null = null
 
-  @state()
-  private error: any = undefined
-
   @query('#dialog')
   private dialog!: MdDialog
 
@@ -123,12 +121,6 @@ export class SignatureFilesLoaderElement extends LitElement {
               this.files = target.files
             }}"
           />
-
-          ${this.error === undefined
-            ? nothing
-            : html` <div class="error-container">
-                <div class="error-details">${this.error}</div>
-              </div>`}
         </form>
 
         <div slot="actions">
@@ -154,8 +146,6 @@ export class SignatureFilesLoaderElement extends LitElement {
     )
       return
 
-    this.error = undefined
-
     try {
       const signers: Signer[] = []
       const files = this.files
@@ -176,13 +166,12 @@ export class SignatureFilesLoaderElement extends LitElement {
         )
       }
     } catch (error) {
-      this.error = error
+      this.dispatchEvent(new DisplayErrorEvent(error as Error))
     }
   }
 
   private onDialogClosed() {
     this.fileInput!.value = ''
     this.files = null
-    this.error = undefined
   }
 }

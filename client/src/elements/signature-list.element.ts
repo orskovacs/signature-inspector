@@ -31,6 +31,7 @@ import {
   BeginLoadingEvent,
   EndLoadingEvent,
 } from './loading-spinner.element.ts'
+import { DisplayErrorEvent } from './error-notification.element.ts'
 
 @customElement('signature-list-element')
 export class SignatureListElement extends LitElement {
@@ -451,7 +452,7 @@ export class SignatureListElement extends LitElement {
       await Promise.all(testPromises)
       this.dispatchEvent(new UnselectAllSignaturesEvent())
     } catch (error) {
-      console.error(error)
+      this.dispatchEvent(new DisplayErrorEvent(error as Error))
     } finally {
       verifier.dispose()
       this.dispatchEvent(new EndLoadingEvent(loadingId))
