@@ -35,9 +35,9 @@ body {
 }
 
 @media only screen and (min-width: 992px) {
-  body { width: 87%; }
+  body { width: 90%; }
 }
 
 @media only screen and (min-width: 1200px) {
-  body { width: 82%; }
+  body { width: 87%; }
 }

@@ -1,25 +1,23 @@
-import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
 import { ParseResult, SignatureParser } from './signature-parser.ts'
-import { Signature } from '../model/signature.ts'
-import { SignatureParserImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
-import { fileToBase64 } from '../utils/file.util.ts'
 import { Signer } from '../model/signer.ts'
-import { SignatureDataPoint } from 'signature-field'
+import { BackgroundTask } from '../worker/background-task.ts'
+import { dtoToSigner, SignerDto } from '../model/dto/signer-dto.ts'
+import { dtoToSignature } from '../model/dto/signature-dto.ts'
 
-export abstract class DotNetBackedSignatureParser
-  extends DotNetBackedObject<SignatureParserImport>
-  implements SignatureParser
-{
-  private readonly _dotNetId: Promise<string>
+export abstract class DotNetBackedSignatureParser implements SignatureParser {
+  private readonly worker: Worker
 
   protected abstract get loaderId(): string
 
   protected constructor() {
-    super('SignatureParserExport')
-
-    this._dotNetId = this.dotNetImport.then((manager) =>
-      manager.InitializeNewParser(this.loaderId)
+    this.worker = new Worker(
+      new URL('dot-net-backed-signature-parser.worker.ts', import.meta.url),
+      { type: 'module' }
     )
+  }
+
+  public dispose(): void {
+    this.worker.terminate()
   }
 
   public async parse(
@@ -27,49 +25,46 @@ export abstract class DotNetBackedSignatureParser
     existingSigners: Signer[],
     signerIds: string[] = []
   ): Promise<ParseResult> {
-    let manager = await this.dotNetImport
-    let id = await this._dotNetId
-    let fileBase64 = await fileToBase64(file)
-    let signersJson = await manager.ParseFileContents(id, fileBase64, signerIds)
+    const arrayBuffer = await file.arrayBuffer()
+    const message = {
+      method: 'parse',
+      loaderId: this.loaderId,
+      arrayBuffer,
+      signerIds,
+    }
 
-    const parsedSigners: Array<{
-      name: string
-      signatures: Array<{ name: string; dataPoints: SignatureDataPoint[] }>
-    }> = JSON.parse(signersJson)
+    const signerDtoArray = await new BackgroundTask<
+      typeof message,
+      SignerDto[]
+    >(this.worker, message, [arrayBuffer]).execute()
 
-    const existingSignersById: [string, Signer][] = existingSigners.map(
-      (signer) => [signer.name, signer]
-    )
-    const signers: Map<string, Signer> = new Map<string, Signer>(
-      existingSignersById
+    const existingSignersByName: Map<string, Signer> = new Map<string, Signer>(
+      existingSigners.map((signer) => [signer.name, signer])
     )
     const newSigners: Signer[] = []
-    const signatures: Signature[] = []
+    const signersWithNewSignatures: Signer[] = []
 
-    for (const parsedSigner of parsedSigners) {
-      let signer = existingSigners.find((s) => s.name === parsedSigner.name)
+    for (const signerDto of signerDtoArray) {
+      let existingSigner = existingSignersByName.get(signerDto.name)
 
-      if (signer === undefined) {
-        signer = new Signer(parsedSigner.name)
-        signers.set(signer.name, signer)
-        newSigners.push(signer)
+      if (existingSigner === undefined) {
+        existingSigner = newSigners.find((s) => s.name === signerDto.name)
       }
 
-      for (const parsedSignature of parsedSigner.signatures) {
-        const signature = new Signature(
-          parsedSignature.name,
-          parsedSignature.dataPoints
+      if (existingSigner === undefined) {
+        const signer = dtoToSigner(signerDto)
+        newSigners.push(signer)
+      } else {
+        signerDto.signatures.forEach((dto) =>
+          dtoToSignature(dto, existingSigner)
         )
-        signature.signer = signer
-        signer.addSignatures(signature)
-
-        signatures.push(signature)
+        signersWithNewSignatures.push(existingSigner)
       }
     }
 
     return {
-      signatures,
-      signers: newSigners,
+      newSigners,
+      signersWithNewSignatures,
     }
   }
 }

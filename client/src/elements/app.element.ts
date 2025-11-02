@@ -1,6 +1,6 @@
 import { provide } from '@lit/context'
 import { LitElement, css, html } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { customElement, query, state } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
   PushSignatureEvent,
@@ -25,6 +25,16 @@ import {
   SignersContextData,
 } from '../contexts/signers.context.ts'
 import { Signature } from '../model/signature.ts'
+import {
+  BeginLoadingEvent,
+  EndLoadingEvent,
+  LoadingSpinnerElement,
+} from './loading-spinner.element.ts'
+import { UUID } from '../utils/types.ts'
+import {
+  DisplayErrorEvent,
+  ErrorNotificationElement,
+} from './error-notification.element.ts'
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -44,10 +54,13 @@ export class AppElement extends LitElement {
       --md-menu-item-one-line-container-height: 40px;
       --md-outlined-text-field-top-space: var(--field-block-space);
       --md-outlined-text-field-bottom-space: var(--field-block-space);
+      --md-sys-color-surface-container: var(--md-sys-color-surface-variant);
+      --md-dialog-container-color: var(--md-sys-color-surface);
 
       height: 100%;
       display: grid;
       grid-template-rows: min-content 1fr;
+      grid-template-columns: 100%;
     }
 
     main {
@@ -55,6 +68,7 @@ export class AppElement extends LitElement {
       bottom: 0;
       display: grid;
       grid-template-rows: 40% 60%;
+      grid-template-columns: 100%;
       gap: 6px;
       height: calc(100vh - 69px);
       transition: bottom 0.5s ease-in-out;
@@ -92,12 +106,27 @@ export class AppElement extends LitElement {
   @state()
   private signatures: Signature[] = []
 
+  @query('#loading-spinner')
+  private loadingSpinnerElement!: LoadingSpinnerElement
+
+  @query('#error-notification')
+  private errorNotificationElement!: ErrorNotificationElement
+
+  private loadings: Set<UUID> = new Set()
+
   private get isAppEmpty(): boolean {
     return this.signersContext.signers.length === 0
   }
 
   override connectedCallback() {
     super.connectedCallback()
+
+    this.addExitAlert()
+
+    this.addEventListener(DisplayErrorEvent.key, this.handleDisplayError)
+
+    this.addEventListener(BeginLoadingEvent.key, this.handleBeginLoading)
+    this.addEventListener(EndLoadingEvent.key, this.handleEndLoading)
 
     this.addEventListener(PushSignersEvent.key, this.handlePushSignersEvent)
     this.addEventListener(SelectSignerEvent.key, this.handleSelectSignerEvent)
@@ -157,14 +186,22 @@ export class AppElement extends LitElement {
     )
   }
 
+  override disconnectedCallback() {
+    window.onbeforeunload = null
+  }
+
   render() {
-    return html`<header-element
-        class="${this.isAppEmpty && 'center'}"
+    return html` <header-element
+        class="${this.isAppEmpty ? 'center' : ''}"
       ></header-element>
-      <main class="${this.isAppEmpty && 'hidden'}">
+      <main class="${this.isAppEmpty ? 'hidden' : ''}">
         <signature-list-element></signature-list-element>
         <visualizer-element></visualizer-element>
-      </main>`
+      </main>
+      <loading-spinner-element id="loading-spinner"></loading-spinner-element>
+      <error-notification-element
+        id="error-notification"
+      ></error-notification-element>`
   }
 
   private pushSignatures(...signatures: Signature[]): void {
@@ -292,5 +329,34 @@ export class AppElement extends LitElement {
     this.pushSignatures(
       ...this.signersContext.signers[e.detail.signerIndex].signatures
     )
+  }
+
+  private handleDisplayError(e: DisplayErrorEvent): void {
+    this.errorNotificationElement.addError(e.detail.error)
+  }
+
+  private handleBeginLoading(e: BeginLoadingEvent): void {
+    this.loadings.add(e.detail.uuid)
+    this.loadingSpinnerElement.display(e.detail.label)
+  }
+
+  private handleEndLoading(e: EndLoadingEvent): void {
+    this.loadings.delete(e.detail.uuid)
+    if (this.loadings.size === 0) {
+      this.loadingSpinnerElement.hide()
+    }
+  }
+
+  private addExitAlert() {
+    if (!import.meta.env.DEV) {
+      window.onbeforeunload = (event) => {
+        if (this.signersContext.signers.length === 0) return
+
+        event.preventDefault()
+        const message = `Please keep in mind that Signature Inspector doesn't save your data.`
+        event.returnValue = message
+        return message
+      }
+    }
   }
 }

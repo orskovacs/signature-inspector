@@ -3,11 +3,7 @@ import { customElement, query } from 'lit/decorators.js'
 import { MdDialog } from '@material/web/dialog/dialog.ts'
 import { SignatureField } from 'signature-field'
 import { PushSignatureEvent } from '../contexts/signatures.context'
-import {
-  Authenticity,
-  authenticityValues,
-  Signature,
-} from '../model/signature.ts'
+import { Signature } from '../model/signature.ts'
 import { Signer } from '../model/signer.ts'
 import { consume } from '@lit/context'
 import {
@@ -20,6 +16,7 @@ import {
   MdOutlinedSelect,
   MdOutlinedTextField,
 } from '@material/web/all'
+import { Authenticity, authenticityValues } from '../model/authenticity.ts'
 
 @customElement('signature-capture-element')
 export class SignatureCaptureElement extends LitElement {
@@ -200,7 +197,6 @@ export class SignatureCaptureElement extends LitElement {
     const signature = new Signature(name, dataPoints, authenticity, origin)
 
     if (this.selectedSigner !== null) {
-      signature.signer = this.selectedSigner
       this.selectedSigner.addSignatures(signature)
     }
 

@@ -18,6 +18,8 @@ export class Svc2004Parser implements SignatureParser {
     }
   }
 
+  public dispose(): void {}
+
   async parse(file: File, existingSigners: Signer[]): Promise<ParseResult> {
     const fileContents = await file.text()
     const lines = fileContents.split('\n')
@@ -28,11 +30,25 @@ export class Svc2004Parser implements SignatureParser {
       dataPoints.push(Svc2004Parser.extractPointDataFromLine(lines[i]))
     }
 
-    const [signerId, signatureId] = file.name.split('S')
+    const ids = file.name
+      .replace('U', '')
+      .replace('.TXT', '')
+      .split('S')
+      .map((x) => Number.parseInt(x))
 
-    const signature = new Signature(`S${signatureId}`, dataPoints)
+    const signerId = ids[0]
+    const signatureId = ids[1]
+    const signerName = 'U' + `${signerId}`.padStart(2, '0')
+    const signatureName = `${signatureId}`.padStart(2, '0')
+
+    const signature = new Signature(
+      signatureName,
+      dataPoints,
+      signatureId < 21 ? 'genuine' : 'forged',
+      'SVC2004'
+    )
+
     let isNewSigner = false
-    const signerName = `SVC2004 ${signerId}`
     let signer = existingSigners.find((s) => s.name === signerName)
 
     if (signer === undefined) {
@@ -40,12 +56,11 @@ export class Svc2004Parser implements SignatureParser {
       isNewSigner = true
     }
 
-    signature.signer = signer
     signer.addSignatures(signature)
 
     return {
-      signatures: [signature],
-      signers: isNewSigner ? [signer] : [],
+      newSigners: isNewSigner ? [signer] : [],
+      signersWithNewSignatures: !isNewSigner ? [signer] : [],
     }
   }
 }

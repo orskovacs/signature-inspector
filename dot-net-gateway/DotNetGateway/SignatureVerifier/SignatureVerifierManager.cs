@@ -1,6 +1,8 @@
 using EbDbaLsDtw;
 using Newtonsoft.Json;
+using SigStat.Common;
 using SigStat.Common.Pipeline;
+using SigStat.Common.PipelineItems.Classifiers;
 
 namespace DotNetGateway.SignatureVerifier;
 
@@ -17,11 +19,35 @@ public class SignatureVerifierManager
     public string InitializeNewVerifier(string classifierId)
     {
         IClassifier? classifier = null;
-        if (classifierId == "EbDbaLsDtw")
+        switch (classifierId)
         {
-            classifier = new EbDbaLsDtwClassifier(distances =>
-                distances.Average() + distances.StandardDeviation() * 1.25);
+            case "EbDbaLsDtw":
+                classifier = new EbDbaLsDtwClassifier(ThresholdCalculator);
+                break;
+                
+                double ThresholdCalculator(List<double> distances) => 
+                    distances.Average() + distances.StandardDeviation() * 1.25;
+            case "Dtw":
+            {
+                List<FeatureDescriptor> features =
+                [
+                    OriginalFeatures.NormalizedX,
+                    OriginalFeatures.NormalizedY,
+                    DerivedFeatures.PathTangentAngle,
+                    DerivedFeatures.PathVelocityMagnitude,
+                    DerivedFeatures.LogCurvatureRadius,
+                    DerivedFeatures.TotalAccelerationMagnitude
+                ];
+                var dtwClassifier = new DtwClassifier
+                {
+                    Features = features,
+                };
+            
+                classifier = dtwClassifier;
+                break;
+            }
         }
+
         if (classifier is null)
         {
             throw new ApplicationException("Invalid classifier id");

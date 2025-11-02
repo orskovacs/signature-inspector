@@ -1,4 +1,4 @@
-import { css, html, LitElement, nothing } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { customElement, query, state } from 'lit/decorators.js'
 import { SignaturesFileParser } from '../parsers/signatures-file-parser.ts'
 import { Svc2004Parser } from '../parsers/svc-2004-parser.ts'
@@ -13,6 +13,7 @@ import {
 } from '../contexts/signers.context.ts'
 import { consume } from '@lit/context'
 import { MdDialog } from '@material/web/dialog/dialog'
+import { DisplayErrorEvent } from './error-notification.element.ts'
 
 interface LoaderOption {
   name: string
@@ -67,9 +68,6 @@ export class SignatureFilesLoaderElement extends LitElement {
   @state()
   private files: FileList | null = null
 
-  @state()
-  private error: any = undefined
-
   @query('#dialog')
   private dialog!: MdDialog
 
@@ -118,18 +116,11 @@ export class SignatureFilesLoaderElement extends LitElement {
             id="loader-file-input"
             name="loader-file-input"
             multiple
-            required
             @change="${(e: Event) => {
               const target = e.target as unknown as HTMLInputElement
               this.files = target.files
             }}"
           />
-
-          ${this.error === undefined
-            ? nothing
-            : html` <div class="error-container">
-                <div class="error-details">${this.error}</div>
-              </div>`}
         </form>
 
         <div slot="actions">
@@ -155,19 +146,16 @@ export class SignatureFilesLoaderElement extends LitElement {
     )
       return
 
-    this.error = undefined
-
     try {
       const signers: Signer[] = []
-
-      for (let i = 0; i < this.files.length; i++) {
-        const file = this.files.item(i)
+      const files = this.files
+      for (let i = 0; i < files.length; i++) {
+        const file = files.item(i)
         if (file === null) continue
-        const { signers: newSigners } =
-          (await this.selectedLoader?.parser.parse(file, [
-            ...this.signersContextData.signers,
-            ...signers,
-          ]))!
+        const { newSigners } = (await this.selectedLoader?.parser.parse(file, [
+          ...this.signersContextData.signers,
+          ...signers,
+        ]))!
         signers.push(...newSigners)
       }
 
@@ -178,13 +166,12 @@ export class SignatureFilesLoaderElement extends LitElement {
         )
       }
     } catch (error) {
-      this.error = error
+      this.dispatchEvent(new DisplayErrorEvent(error as Error))
     }
   }
 
   private onDialogClosed() {
     this.fileInput!.value = ''
     this.files = null
-    this.error = undefined
   }
 }

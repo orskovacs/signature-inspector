@@ -1,5 +1,5 @@
 import { LitElement, css, html, nothing } from 'lit'
-import { customElement } from 'lit/decorators.js'
+import { customElement, state } from 'lit/decorators.js'
 import {
   HideAllSignaturesEvent,
   RemoveAllSignaturesEvent,
@@ -24,16 +24,28 @@ import {
   SignersContextData,
 } from '../contexts/signers.context.ts'
 import { Signer } from '../model/signer.ts'
+import { SignatureVerifier } from '../verifier/signature-verifier.ts'
+import { MdOutlinedSelect } from '@material/web/all'
+import { DtwVerifier } from '../verifier/dtw-verifier.ts'
+import {
+  BeginLoadingEvent,
+  EndLoadingEvent,
+} from './loading-spinner.element.ts'
+import { DisplayErrorEvent } from './error-notification.element.ts'
 
 @customElement('signature-list-element')
 export class SignatureListElement extends LitElement {
   static styles = css`
     :host {
-      --md-list-item-top-space: 0;
-      --md-list-item-bottom-space: 0;
-      --md-list-item-one-line-container-height: 0;
+      --md-outlined-field-leading-space: 16px;
 
       overflow: clip;
+    }
+
+    .col-verification {
+      --md-filled-tonal-icon-button-icon-size: 20px;
+      --md-filled-tonal-icon-button-container-height: 30px;
+      --md-filled-tonal-icon-button-container-width: 30px;
     }
 
     .suggestion {
@@ -101,8 +113,7 @@ export class SignatureListElement extends LitElement {
 
     th.col-verification,
     th.col-actions {
-      font-variant: initial;
-      padding-inline: 0;
+      padding-inline: 8px;
     }
 
     .col-visibility,
@@ -122,6 +133,12 @@ export class SignatureListElement extends LitElement {
       width: auto;
     }
 
+    .col-name {
+      max-width: 150px;
+      text-overflow: ellipsis;
+      overflow-x: clip;
+    }
+
     .col-length,
     .col-authenticity,
     .col-verification,
@@ -131,6 +148,11 @@ export class SignatureListElement extends LitElement {
 
     td.col-color {
       padding: 0;
+    }
+
+    th.col-verification,
+    th.col-actions {
+      font-variant: initial;
     }
 
     th > label {
@@ -144,30 +166,28 @@ export class SignatureListElement extends LitElement {
       margin-bottom: 6px;
     }
 
-    //.table-wrapper::after {
-    //  content: ' ';
-    //  display: block;
-    //  min-height: 40px;
-    //  position: sticky;
-    //  bottom: -8px;
-    //  background: -webkit-linear-gradient(
-    //    bottom,
-    //    var(--md-sys-color-surface, #fef7ff),
-    //    transparent 40px
-    //  );
-    //  background: linear-gradient(
-    //    0,
-    //    var(--md-sys-color-surface, #fef7ff),
-    //    transparent 40px
-    //  );
-    //}
+    th.col-verification {
+      text-align: left;
+      padding-block: 8px;
+    }
+
+    th.col-verification > div {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
   `
+
+  private readonly verifiers = ['EB-DBA LS-DTW', 'DTW'] as const
 
   @consume({ context: signersContext, subscribe: true })
   private signersContext!: SignersContextData
 
   @consume({ context: signaturesContext, subscribe: true })
   private signatures!: Signature[]
+
+  @state()
+  private selectedVerifier: (typeof this.verifiers)[number] = this.verifiers[0]
 
   private get selectedSigner(): Signer | null {
     const selectedSignerIndex = this.signersContext.selectedSignerIndex
@@ -228,13 +248,33 @@ export class SignatureListElement extends LitElement {
               ></md-checkbox>
             </th>
             <th class="col-verification">
-              <md-filled-tonal-button
-                ?disabled=${this.signaturesForTrainingCount === 0}
-                @click=${this.onTrainClick}
-              >
-                Train
-                <train-model-icon slot="icon"></train-model-icon>
-              </md-filled-tonal-button>
+              <div>
+                <md-outlined-select
+                  id="verifier-selector"
+                  label="Verifier"
+                  @change="${(e: Event) => {
+                    const target = e.target as unknown as MdOutlinedSelect
+                    this.selectedVerifier = this.verifiers[target.selectedIndex]
+                  }}"
+                >
+                  ${this.verifiers.map(
+                    (v, i) =>
+                      html`<md-select-option
+                        value="${i}"
+                        display-text="${v}"
+                        ?selected="${i === 0}"
+                      >
+                        <div slot="headline">${v}</div>
+                      </md-select-option>`
+                  )}
+                </md-outlined-select>
+                <md-filled-tonal-icon-button
+                  ?disabled=${this.signaturesForTrainingCount === 0}
+                  @click=${this.onVerifyClick}
+                >
+                  <md-icon>verified</md-icon>
+                </md-filled-tonal-icon-button>
+              </div>
             </th>
             <th class="col-actions">
               <md-filled-tonal-button
@@ -285,15 +325,15 @@ export class SignatureListElement extends LitElement {
                     }}"
                   ></color-input-element>
                 </td>
-                
-                <td class="col-name">${s.name}</td>
-                
+
+                <td class="col-name" title="${s.name}">${s.name}</td>
+
                 <td class="col-signer">
                   ${s.signer?.name ?? 'Unknown Signer'}
                 </td>
-                
+
                 <td class="col-origin">${s.origin ?? 'Unknown'}</td>
-                
+
                 <td class="col-length">${s.dataPoints.length}</td>
 
                 <td class="col-authenticity">
@@ -325,30 +365,30 @@ export class SignatureListElement extends LitElement {
                     }}
                   ></md-checkbox>
                 </td>
-                
+
                 <td class="col-verification">
-                    ${(() => {
-                      switch (s.verificationStatus) {
-                        case 'training':
-                          return html`<span class="verification-training">
-                            Trained&nbsp;on
-                          </span>`
-                        case 'genuine':
-                          return html`<span class="verification-genuine">
-                            Genuine
-                          </span>`
-                        case 'forged':
-                          return html`<span class="verification-forged">
-                            Forged
-                          </span>`
-                        case 'unverified':
-                          return html`<span class="verification-unverified">
-                            Unverified
-                          </span>`
-                      }
-                    })()}
+                  ${(() => {
+                    switch (s.verificationStatus) {
+                      case 'training':
+                        return html`<span class="verification-training">
+                          Trained&nbsp;on
+                        </span>`
+                      case 'genuine':
+                        return html`<span class="verification-genuine">
+                          Genuine
+                        </span>`
+                      case 'forged':
+                        return html`<span class="verification-forged">
+                          Forged
+                        </span>`
+                      case 'unverified':
+                        return html`<span class="verification-unverified">
+                          Unverified
+                        </span>`
+                    }
+                  })()}
                 </td>
-                
+
                 <td class="col-actions">
                   <md-text-button
                     @click=${() => {
@@ -367,35 +407,55 @@ export class SignatureListElement extends LitElement {
     </div>`
   }
 
-  private onTrainClick() {
+  private async onVerifyClick() {
+    const loadingId = crypto.randomUUID()
+    this.dispatchEvent(new BeginLoadingEvent(loadingId, 'Verifying Signatures'))
     this.dispatchEvent(new ResetTrainSignaturesEvent())
-    const verifier = new EbDbaLsDtwVerifier()
-    verifier.trainUsingSignatures(this.signaturesForTraining).then(() => {
+
+    const verifier: SignatureVerifier = (() => {
+      switch (this.selectedVerifier) {
+        case 'EB-DBA LS-DTW':
+          return new EbDbaLsDtwVerifier()
+        case 'DTW':
+          return new DtwVerifier()
+        default:
+          throw new Error('Unknown verifier')
+      }
+    })()
+
+    try {
+      await verifier.trainUsingSignatures(this.signaturesForTraining)
+
       const selectedSignaturesIndexes: number[] = []
       this.signatures.forEach((s, i) => {
-        if (s.forTraining) {
-          selectedSignaturesIndexes.push(i)
-        }
+        if (s.forTraining) selectedSignaturesIndexes.push(i)
       })
-
       this.dispatchEvent(
         new SetSignaturesForTrainingByIndexEvent(selectedSignaturesIndexes)
       )
 
+      const testPromises: Promise<void>[] = []
       this.signatures.forEach((s, i) => {
         if (!s.forTraining) {
-          verifier.testSignature(s).then((isGenuine) => {
-            this.dispatchEvent(
-              new SetSignatureVerificationStatusEvent(
-                i,
-                isGenuine ? 'genuine' : 'forged'
+          testPromises.push(
+            verifier
+              .testSignature(s)
+              .then((status) =>
+                this.dispatchEvent(
+                  new SetSignatureVerificationStatusEvent(i, status)
+                )
               )
-            )
-          })
+          )
         }
       })
 
+      await Promise.all(testPromises)
       this.dispatchEvent(new UnselectAllSignaturesEvent())
-    })
+    } catch (error) {
+      this.dispatchEvent(new DisplayErrorEvent(error as Error))
+    } finally {
+      verifier.dispose()
+      this.dispatchEvent(new EndLoadingEvent(loadingId))
+    }
   }
 }

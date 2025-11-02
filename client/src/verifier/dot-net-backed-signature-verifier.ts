@@ -1,43 +1,51 @@
 import { SignatureVerifier } from './signature-verifier.ts'
-import { DotNetBackedObject } from '../dot-net-interop/dot-net-backed-object.ts'
-import { SignatureVerifierImport } from '../dot-net-interop/dot-net-assembly-exports.ts'
 import { Signature } from '../model/signature.ts'
+import { BackgroundTask } from '../worker/background-task.ts'
+import { signatureToDto } from '../model/dto/signature-dto.ts'
+import { VerificationStatus } from '../model/verification-status.ts'
 
 export abstract class DotNetBackedSignatureVerifier
-  extends DotNetBackedObject<SignatureVerifierImport>
   implements SignatureVerifier
 {
-  private readonly _dotNetId: Promise<string>
+  private readonly worker: Worker
 
   protected abstract get classifierId(): string
 
   protected constructor() {
-    super("SignatureVerifierExport")
-
-    this._dotNetId = this.dotNetImport.then((manager) =>
-      manager.InitializeNewVerifier(this.classifierId)
+    this.worker = new Worker(
+      new URL('dot-net-backed-signature-verifier.worker.ts', import.meta.url),
+      { type: 'module' }
     )
   }
 
-  public async trainUsingSignatures(signatures: Signature[]): Promise<void> {
-    let manager = await this.dotNetImport
-    let id = await this._dotNetId
-    let signatureDataArray = signatures.map((s) => ({
-      timeStamp: s.creationTimeStamp,
-      dataPoints: s.dataPoints,
-    }))
-    let signaturesJson = JSON.stringify(signatureDataArray)
-    await manager.TrainUsingSignatures(id, signaturesJson)
+  public dispose(): void {
+    this.worker.terminate()
   }
 
-  public async testSignature(signature: Signature): Promise<boolean> {
-    let manager = await this.dotNetImport
-    let id = await this._dotNetId
-    let signatureData = {
-      timeStamp: signature.creationTimeStamp,
-      dataPoints: signature.dataPoints,
+  public async trainUsingSignatures(signatures: Signature[]): Promise<void> {
+    const message = {
+      method: 'train',
+      classifierId: this.classifierId,
+      signatures: signatures.map((s) => signatureToDto(s)),
     }
-    let signatureJson = JSON.stringify(signatureData)
-    return await manager.TestSignature(id, signatureJson)
+
+    return new BackgroundTask<typeof message, void>(
+      this.worker,
+      message
+    ).execute()
+  }
+
+  public async testSignature(
+    signature: Signature
+  ): Promise<VerificationStatus> {
+    const message = {
+      method: 'test',
+      signature: signatureToDto(signature),
+    }
+
+    return new BackgroundTask<typeof message, VerificationStatus>(
+      this.worker,
+      message
+    ).execute()
   }
 }

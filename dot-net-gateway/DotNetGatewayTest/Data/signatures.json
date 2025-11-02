@@ -1,0 +1,6442 @@
+[
+  {
+    "id": "ecd4bca2-73ee-4d70-a00a-f78961263457",
+    "name": "01",
+    "authenticity": "unknown",
+    "origin": null,
+    "dataPoints": [
+      {
+        "timeStamp": 0,
+        "xCoord": 2502,
+        "yCoord": 4267,
+        "pressure": 245,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 1,
+        "xCoord": 2554,
+        "yCoord": 4355,
+        "pressure": 304,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 2,
+        "xCoord": 2534,
+        "yCoord": 4428,
+        "pressure": 292,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 3,
+        "xCoord": 2527,
+        "yCoord": 4449,
+        "pressure": 304,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 4,
+        "xCoord": 2519,
+        "yCoord": 4435,
+        "pressure": 334,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 5,
+        "xCoord": 2512,
+        "yCoord": 4435,
+        "pressure": 369,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 6,
+        "xCoord": 2503,
+        "yCoord": 4435,
+        "pressure": 392,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 7,
+        "xCoord": 2493,
+        "yCoord": 4422,
+        "pressure": 414,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 8,
+        "xCoord": 2485,
+        "yCoord": 4391,
+        "pressure": 455,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 9,
+        "xCoord": 2477,
+        "yCoord": 4345,
+        "pressure": 488,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 10,
+        "xCoord": 2472,
+        "yCoord": 4264,
+        "pressure": 512,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 11,
+        "xCoord": 2467,
+        "yCoord": 4166,
+        "pressure": 527,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 12,
+        "xCoord": 2467,
+        "yCoord": 4056,
+        "pressure": 536,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 13,
+        "xCoord": 2467,
+        "yCoord": 3930,
+        "pressure": 542,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 14,
+        "xCoord": 2476,
+        "yCoord": 3780,
+        "pressure": 545,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 15,
+        "xCoord": 2490,
+        "yCoord": 3613,
+        "pressure": 556,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 16,
+        "xCoord": 2509,
+        "yCoord": 3454,
+        "pressure": 561,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 17,
+        "xCoord": 2533,
+        "yCoord": 3283,
+        "pressure": 567,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 18,
+        "xCoord": 2561,
+        "yCoord": 3100,
+        "pressure": 560,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 19,
+        "xCoord": 2593,
+        "yCoord": 2914,
+        "pressure": 570,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 20,
+        "xCoord": 2632,
+        "yCoord": 2743,
+        "pressure": 560,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 21,
+        "xCoord": 2670,
+        "yCoord": 2607,
+        "pressure": 566,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 22,
+        "xCoord": 2707,
+        "yCoord": 2495,
+        "pressure": 566,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 23,
+        "xCoord": 2754,
+        "yCoord": 2399,
+        "pressure": 569,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 24,
+        "xCoord": 2815,
+        "yCoord": 2323,
+        "pressure": 569,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 25,
+        "xCoord": 2885,
+        "yCoord": 2261,
+        "pressure": 575,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 26,
+        "xCoord": 2962,
+        "yCoord": 2229,
+        "pressure": 594,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 27,
+        "xCoord": 3043,
+        "yCoord": 2229,
+        "pressure": 605,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 28,
+        "xCoord": 3131,
+        "yCoord": 2246,
+        "pressure": 620,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 29,
+        "xCoord": 3216,
+        "yCoord": 2296,
+        "pressure": 638,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 30,
+        "xCoord": 3295,
+        "yCoord": 2367,
+        "pressure": 638,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 31,
+        "xCoord": 3372,
+        "yCoord": 2451,
+        "pressure": 649,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 32,
+        "xCoord": 3446,
+        "yCoord": 2553,
+        "pressure": 652,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 33,
+        "xCoord": 3517,
+        "yCoord": 2685,
+        "pressure": 652,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 34,
+        "xCoord": 3587,
+        "yCoord": 2836,
+        "pressure": 656,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 35,
+        "xCoord": 3655,
+        "yCoord": 3023,
+        "pressure": 656,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 36,
+        "xCoord": 3713,
+        "yCoord": 3235,
+        "pressure": 658,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 37,
+        "xCoord": 3763,
+        "yCoord": 3463,
+        "pressure": 652,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 38,
+        "xCoord": 3786,
+        "yCoord": 3662,
+        "pressure": 647,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 39,
+        "xCoord": 3786,
+        "yCoord": 3848,
+        "pressure": 650,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1190,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 40,
+        "xCoord": 3776,
+        "yCoord": 4026,
+        "pressure": 649,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1180,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 41,
+        "xCoord": 3755,
+        "yCoord": 4155,
+        "pressure": 652,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1180,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 42,
+        "xCoord": 3738,
+        "yCoord": 4225,
+        "pressure": 662,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 43,
+        "xCoord": 3728,
+        "yCoord": 4257,
+        "pressure": 670,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 44,
+        "xCoord": 3728,
+        "yCoord": 4257,
+        "pressure": 668,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 45,
+        "xCoord": 3728,
+        "yCoord": 4247,
+        "pressure": 666,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 46,
+        "xCoord": 3734,
+        "yCoord": 4163,
+        "pressure": 685,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 47,
+        "xCoord": 3747,
+        "yCoord": 4029,
+        "pressure": 685,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 48,
+        "xCoord": 3759,
+        "yCoord": 3857,
+        "pressure": 685,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 49,
+        "xCoord": 3764,
+        "yCoord": 3672,
+        "pressure": 691,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 50,
+        "xCoord": 3764,
+        "yCoord": 3478,
+        "pressure": 699,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 51,
+        "xCoord": 3764,
+        "yCoord": 3295,
+        "pressure": 702,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 52,
+        "xCoord": 3759,
+        "yCoord": 3120,
+        "pressure": 690,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 53,
+        "xCoord": 3759,
+        "yCoord": 2983,
+        "pressure": 696,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 54,
+        "xCoord": 3759,
+        "yCoord": 2869,
+        "pressure": 717,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 55,
+        "xCoord": 3765,
+        "yCoord": 2761,
+        "pressure": 727,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 56,
+        "xCoord": 3774,
+        "yCoord": 2672,
+        "pressure": 750,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 57,
+        "xCoord": 3787,
+        "yCoord": 2596,
+        "pressure": 765,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 58,
+        "xCoord": 3810,
+        "yCoord": 2541,
+        "pressure": 774,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 59,
+        "xCoord": 3843,
+        "yCoord": 2496,
+        "pressure": 791,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 60,
+        "xCoord": 3886,
+        "yCoord": 2458,
+        "pressure": 790,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 61,
+        "xCoord": 3936,
+        "yCoord": 2430,
+        "pressure": 797,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 62,
+        "xCoord": 3989,
+        "yCoord": 2409,
+        "pressure": 803,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 63,
+        "xCoord": 4043,
+        "yCoord": 2393,
+        "pressure": 802,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 64,
+        "xCoord": 4102,
+        "yCoord": 2379,
+        "pressure": 806,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 65,
+        "xCoord": 4161,
+        "yCoord": 2364,
+        "pressure": 812,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 66,
+        "xCoord": 4211,
+        "yCoord": 2352,
+        "pressure": 821,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 67,
+        "xCoord": 4255,
+        "yCoord": 2343,
+        "pressure": 832,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 68,
+        "xCoord": 4294,
+        "yCoord": 2337,
+        "pressure": 830,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 69,
+        "xCoord": 4326,
+        "yCoord": 2332,
+        "pressure": 832,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 70,
+        "xCoord": 4354,
+        "yCoord": 2332,
+        "pressure": 818,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 71,
+        "xCoord": 4382,
+        "yCoord": 2332,
+        "pressure": 822,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 72,
+        "xCoord": 4413,
+        "yCoord": 2332,
+        "pressure": 825,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 73,
+        "xCoord": 4451,
+        "yCoord": 2346,
+        "pressure": 828,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 74,
+        "xCoord": 4495,
+        "yCoord": 2379,
+        "pressure": 825,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 75,
+        "xCoord": 4546,
+        "yCoord": 2426,
+        "pressure": 821,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 76,
+        "xCoord": 4596,
+        "yCoord": 2483,
+        "pressure": 827,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 77,
+        "xCoord": 4644,
+        "yCoord": 2558,
+        "pressure": 818,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 78,
+        "xCoord": 4686,
+        "yCoord": 2668,
+        "pressure": 812,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 79,
+        "xCoord": 4723,
+        "yCoord": 2801,
+        "pressure": 817,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 80,
+        "xCoord": 4756,
+        "yCoord": 2967,
+        "pressure": 817,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 81,
+        "xCoord": 4778,
+        "yCoord": 3156,
+        "pressure": 811,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 82,
+        "xCoord": 4800,
+        "yCoord": 3361,
+        "pressure": 809,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 83,
+        "xCoord": 4814,
+        "yCoord": 3562,
+        "pressure": 802,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 84,
+        "xCoord": 4823,
+        "yCoord": 3744,
+        "pressure": 796,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 85,
+        "xCoord": 4823,
+        "yCoord": 3913,
+        "pressure": 796,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 86,
+        "xCoord": 4813,
+        "yCoord": 4035,
+        "pressure": 796,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 87,
+        "xCoord": 4800,
+        "yCoord": 4116,
+        "pressure": 799,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 88,
+        "xCoord": 4790,
+        "yCoord": 4169,
+        "pressure": 799,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 89,
+        "xCoord": 4783,
+        "yCoord": 4190,
+        "pressure": 797,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 90,
+        "xCoord": 4783,
+        "yCoord": 4196,
+        "pressure": 785,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 91,
+        "xCoord": 4783,
+        "yCoord": 4196,
+        "pressure": 797,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 92,
+        "xCoord": 4783,
+        "yCoord": 4169,
+        "pressure": 796,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 93,
+        "xCoord": 4783,
+        "yCoord": 4080,
+        "pressure": 794,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 94,
+        "xCoord": 4783,
+        "yCoord": 3947,
+        "pressure": 794,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 95,
+        "xCoord": 4794,
+        "yCoord": 3767,
+        "pressure": 794,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 96,
+        "xCoord": 4799,
+        "yCoord": 3578,
+        "pressure": 785,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 97,
+        "xCoord": 4799,
+        "yCoord": 3384,
+        "pressure": 787,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 98,
+        "xCoord": 4805,
+        "yCoord": 3192,
+        "pressure": 785,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 99,
+        "xCoord": 4810,
+        "yCoord": 3037,
+        "pressure": 787,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 100,
+        "xCoord": 4822,
+        "yCoord": 2907,
+        "pressure": 787,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 101,
+        "xCoord": 4843,
+        "yCoord": 2786,
+        "pressure": 785,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 102,
+        "xCoord": 4874,
+        "yCoord": 2664,
+        "pressure": 788,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 103,
+        "xCoord": 4923,
+        "yCoord": 2575,
+        "pressure": 788,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 104,
+        "xCoord": 4982,
+        "yCoord": 2508,
+        "pressure": 783,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 105,
+        "xCoord": 5069,
+        "yCoord": 2447,
+        "pressure": 785,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 106,
+        "xCoord": 5174,
+        "yCoord": 2408,
+        "pressure": 783,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 107,
+        "xCoord": 5292,
+        "yCoord": 2385,
+        "pressure": 777,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 108,
+        "xCoord": 5415,
+        "yCoord": 2385,
+        "pressure": 771,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 109,
+        "xCoord": 5530,
+        "yCoord": 2412,
+        "pressure": 759,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 110,
+        "xCoord": 5627,
+        "yCoord": 2448,
+        "pressure": 755,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 111,
+        "xCoord": 5714,
+        "yCoord": 2507,
+        "pressure": 724,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 112,
+        "xCoord": 5788,
+        "yCoord": 2582,
+        "pressure": 700,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 113,
+        "xCoord": 5830,
+        "yCoord": 2669,
+        "pressure": 659,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 114,
+        "xCoord": 5851,
+        "yCoord": 2769,
+        "pressure": 647,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 115,
+        "xCoord": 5841,
+        "yCoord": 2865,
+        "pressure": 631,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 116,
+        "xCoord": 5804,
+        "yCoord": 2927,
+        "pressure": 625,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 117,
+        "xCoord": 5749,
+        "yCoord": 2969,
+        "pressure": 634,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 118,
+        "xCoord": 5693,
+        "yCoord": 2980,
+        "pressure": 649,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 119,
+        "xCoord": 5639,
+        "yCoord": 2968,
+        "pressure": 667,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 120,
+        "xCoord": 5590,
+        "yCoord": 2940,
+        "pressure": 711,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 121,
+        "xCoord": 5548,
+        "yCoord": 2879,
+        "pressure": 749,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 122,
+        "xCoord": 5529,
+        "yCoord": 2805,
+        "pressure": 773,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 123,
+        "xCoord": 5529,
+        "yCoord": 2722,
+        "pressure": 783,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 124,
+        "xCoord": 5547,
+        "yCoord": 2648,
+        "pressure": 805,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 125,
+        "xCoord": 5597,
+        "yCoord": 2585,
+        "pressure": 811,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 126,
+        "xCoord": 5665,
+        "yCoord": 2529,
+        "pressure": 806,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 127,
+        "xCoord": 5767,
+        "yCoord": 2478,
+        "pressure": 788,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 128,
+        "xCoord": 5914,
+        "yCoord": 2456,
+        "pressure": 758,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 129,
+        "xCoord": 6091,
+        "yCoord": 2456,
+        "pressure": 663,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 130,
+        "xCoord": 6285,
+        "yCoord": 2484,
+        "pressure": 371,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 131,
+        "xCoord": 4407,
+        "yCoord": 3190,
+        "pressure": 296,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 132,
+        "xCoord": 4398,
+        "yCoord": 3246,
+        "pressure": 420,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 133,
+        "xCoord": 4380,
+        "yCoord": 3263,
+        "pressure": 496,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 134,
+        "xCoord": 4380,
+        "yCoord": 3268,
+        "pressure": 539,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 135,
+        "xCoord": 4380,
+        "yCoord": 3268,
+        "pressure": 605,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 136,
+        "xCoord": 4388,
+        "yCoord": 3268,
+        "pressure": 650,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 137,
+        "xCoord": 4413,
+        "yCoord": 3268,
+        "pressure": 690,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 138,
+        "xCoord": 4451,
+        "yCoord": 3278,
+        "pressure": 721,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 139,
+        "xCoord": 4514,
+        "yCoord": 3278,
+        "pressure": 761,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 140,
+        "xCoord": 4609,
+        "yCoord": 3264,
+        "pressure": 759,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 141,
+        "xCoord": 4724,
+        "yCoord": 3245,
+        "pressure": 768,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 142,
+        "xCoord": 4832,
+        "yCoord": 3221,
+        "pressure": 767,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 143,
+        "xCoord": 4927,
+        "yCoord": 3197,
+        "pressure": 754,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 144,
+        "xCoord": 5012,
+        "yCoord": 3181,
+        "pressure": 694,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 145,
+        "xCoord": 5120,
+        "yCoord": 3169,
+        "pressure": 546,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      }
+    ]
+  },
+  {
+    "id": "a1f5d5ad-65d8-4bfb-92d8-f63c26e97d9c",
+    "name": "02",
+    "authenticity": "unknown",
+    "origin": null,
+    "dataPoints": [
+      {
+        "timeStamp": 0,
+        "xCoord": 2501,
+        "yCoord": 4142,
+        "pressure": 239,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 1,
+        "xCoord": 2501,
+        "yCoord": 4142,
+        "pressure": 247,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 2,
+        "xCoord": 2525,
+        "yCoord": 4184,
+        "pressure": 240,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 3,
+        "xCoord": 2525,
+        "yCoord": 4170,
+        "pressure": 249,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 4,
+        "xCoord": 2525,
+        "yCoord": 4138,
+        "pressure": 257,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 5,
+        "xCoord": 2525,
+        "yCoord": 4095,
+        "pressure": 286,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 6,
+        "xCoord": 2530,
+        "yCoord": 4034,
+        "pressure": 310,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 7,
+        "xCoord": 2530,
+        "yCoord": 3945,
+        "pressure": 336,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 8,
+        "xCoord": 2542,
+        "yCoord": 3838,
+        "pressure": 371,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 9,
+        "xCoord": 2557,
+        "yCoord": 3694,
+        "pressure": 386,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 10,
+        "xCoord": 2581,
+        "yCoord": 3556,
+        "pressure": 392,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 11,
+        "xCoord": 2607,
+        "yCoord": 3423,
+        "pressure": 410,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 12,
+        "xCoord": 2639,
+        "yCoord": 3254,
+        "pressure": 418,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 13,
+        "xCoord": 2678,
+        "yCoord": 3085,
+        "pressure": 436,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 14,
+        "xCoord": 2724,
+        "yCoord": 2932,
+        "pressure": 452,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 15,
+        "xCoord": 2772,
+        "yCoord": 2791,
+        "pressure": 458,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 16,
+        "xCoord": 2819,
+        "yCoord": 2674,
+        "pressure": 461,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 17,
+        "xCoord": 2884,
+        "yCoord": 2576,
+        "pressure": 463,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 18,
+        "xCoord": 2952,
+        "yCoord": 2492,
+        "pressure": 468,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 19,
+        "xCoord": 3027,
+        "yCoord": 2429,
+        "pressure": 465,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 20,
+        "xCoord": 3119,
+        "yCoord": 2380,
+        "pressure": 471,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 21,
+        "xCoord": 3222,
+        "yCoord": 2341,
+        "pressure": 467,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 22,
+        "xCoord": 3308,
+        "yCoord": 2341,
+        "pressure": 478,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 23,
+        "xCoord": 3382,
+        "yCoord": 2372,
+        "pressure": 491,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 24,
+        "xCoord": 3447,
+        "yCoord": 2418,
+        "pressure": 489,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 25,
+        "xCoord": 3506,
+        "yCoord": 2492,
+        "pressure": 489,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 26,
+        "xCoord": 3557,
+        "yCoord": 2593,
+        "pressure": 498,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 27,
+        "xCoord": 3603,
+        "yCoord": 2713,
+        "pressure": 498,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 28,
+        "xCoord": 3636,
+        "yCoord": 2873,
+        "pressure": 488,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 29,
+        "xCoord": 3658,
+        "yCoord": 3053,
+        "pressure": 488,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 30,
+        "xCoord": 3672,
+        "yCoord": 3246,
+        "pressure": 491,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 31,
+        "xCoord": 3692,
+        "yCoord": 3460,
+        "pressure": 494,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 32,
+        "xCoord": 3703,
+        "yCoord": 3609,
+        "pressure": 499,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 33,
+        "xCoord": 3709,
+        "yCoord": 3714,
+        "pressure": 504,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 34,
+        "xCoord": 3703,
+        "yCoord": 3782,
+        "pressure": 512,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 35,
+        "xCoord": 3695,
+        "yCoord": 3829,
+        "pressure": 543,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 36,
+        "xCoord": 3685,
+        "yCoord": 3861,
+        "pressure": 554,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 37,
+        "xCoord": 3685,
+        "yCoord": 3866,
+        "pressure": 550,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 38,
+        "xCoord": 3685,
+        "yCoord": 3866,
+        "pressure": 551,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 39,
+        "xCoord": 3685,
+        "yCoord": 3858,
+        "pressure": 559,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 40,
+        "xCoord": 3685,
+        "yCoord": 3785,
+        "pressure": 568,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 41,
+        "xCoord": 3698,
+        "yCoord": 3669,
+        "pressure": 570,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 42,
+        "xCoord": 3713,
+        "yCoord": 3533,
+        "pressure": 581,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 43,
+        "xCoord": 3737,
+        "yCoord": 3395,
+        "pressure": 592,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 44,
+        "xCoord": 3760,
+        "yCoord": 3247,
+        "pressure": 592,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 45,
+        "xCoord": 3781,
+        "yCoord": 3093,
+        "pressure": 599,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 46,
+        "xCoord": 3795,
+        "yCoord": 2959,
+        "pressure": 595,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 47,
+        "xCoord": 3809,
+        "yCoord": 2845,
+        "pressure": 597,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 48,
+        "xCoord": 3824,
+        "yCoord": 2745,
+        "pressure": 597,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 49,
+        "xCoord": 3840,
+        "yCoord": 2659,
+        "pressure": 600,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 50,
+        "xCoord": 3862,
+        "yCoord": 2593,
+        "pressure": 602,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 51,
+        "xCoord": 3890,
+        "yCoord": 2540,
+        "pressure": 602,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 52,
+        "xCoord": 3924,
+        "yCoord": 2502,
+        "pressure": 605,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 53,
+        "xCoord": 3972,
+        "yCoord": 2478,
+        "pressure": 609,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 54,
+        "xCoord": 4030,
+        "yCoord": 2463,
+        "pressure": 614,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 55,
+        "xCoord": 4091,
+        "yCoord": 2472,
+        "pressure": 614,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 56,
+        "xCoord": 4155,
+        "yCoord": 2503,
+        "pressure": 616,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 57,
+        "xCoord": 4221,
+        "yCoord": 2548,
+        "pressure": 613,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 58,
+        "xCoord": 4285,
+        "yCoord": 2619,
+        "pressure": 609,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 59,
+        "xCoord": 4345,
+        "yCoord": 2717,
+        "pressure": 606,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 60,
+        "xCoord": 4403,
+        "yCoord": 2834,
+        "pressure": 603,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 61,
+        "xCoord": 4455,
+        "yCoord": 2960,
+        "pressure": 595,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 62,
+        "xCoord": 4497,
+        "yCoord": 3105,
+        "pressure": 595,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 63,
+        "xCoord": 4532,
+        "yCoord": 3262,
+        "pressure": 592,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 64,
+        "xCoord": 4559,
+        "yCoord": 3419,
+        "pressure": 589,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 65,
+        "xCoord": 4573,
+        "yCoord": 3529,
+        "pressure": 589,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 66,
+        "xCoord": 4573,
+        "yCoord": 3608,
+        "pressure": 594,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 67,
+        "xCoord": 4573,
+        "yCoord": 3648,
+        "pressure": 592,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 68,
+        "xCoord": 4573,
+        "yCoord": 3682,
+        "pressure": 603,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 69,
+        "xCoord": 4573,
+        "yCoord": 3695,
+        "pressure": 605,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 70,
+        "xCoord": 4573,
+        "yCoord": 3695,
+        "pressure": 602,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 71,
+        "xCoord": 4573,
+        "yCoord": 3695,
+        "pressure": 602,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 72,
+        "xCoord": 4573,
+        "yCoord": 3695,
+        "pressure": 609,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 73,
+        "xCoord": 4588,
+        "yCoord": 3658,
+        "pressure": 619,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 74,
+        "xCoord": 4602,
+        "yCoord": 3606,
+        "pressure": 616,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 75,
+        "xCoord": 4609,
+        "yCoord": 3523,
+        "pressure": 630,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 76,
+        "xCoord": 4609,
+        "yCoord": 3416,
+        "pressure": 647,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 77,
+        "xCoord": 4600,
+        "yCoord": 3292,
+        "pressure": 652,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 78,
+        "xCoord": 4591,
+        "yCoord": 3162,
+        "pressure": 664,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 79,
+        "xCoord": 4582,
+        "yCoord": 3049,
+        "pressure": 666,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 80,
+        "xCoord": 4593,
+        "yCoord": 2948,
+        "pressure": 667,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 81,
+        "xCoord": 4608,
+        "yCoord": 2853,
+        "pressure": 666,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 82,
+        "xCoord": 4641,
+        "yCoord": 2761,
+        "pressure": 669,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 83,
+        "xCoord": 4733,
+        "yCoord": 2620,
+        "pressure": 669,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 84,
+        "xCoord": 4794,
+        "yCoord": 2581,
+        "pressure": 656,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 85,
+        "xCoord": 4862,
+        "yCoord": 2551,
+        "pressure": 656,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 86,
+        "xCoord": 4944,
+        "yCoord": 2539,
+        "pressure": 649,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 87,
+        "xCoord": 5023,
+        "yCoord": 2550,
+        "pressure": 646,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 88,
+        "xCoord": 5100,
+        "yCoord": 2576,
+        "pressure": 641,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 89,
+        "xCoord": 5190,
+        "yCoord": 2615,
+        "pressure": 637,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 90,
+        "xCoord": 5268,
+        "yCoord": 2670,
+        "pressure": 638,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 91,
+        "xCoord": 5339,
+        "yCoord": 2737,
+        "pressure": 645,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 92,
+        "xCoord": 5381,
+        "yCoord": 2802,
+        "pressure": 625,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 93,
+        "xCoord": 5393,
+        "yCoord": 2873,
+        "pressure": 616,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 94,
+        "xCoord": 5385,
+        "yCoord": 2948,
+        "pressure": 616,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 95,
+        "xCoord": 5366,
+        "yCoord": 3011,
+        "pressure": 616,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 96,
+        "xCoord": 5343,
+        "yCoord": 3054,
+        "pressure": 617,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 97,
+        "xCoord": 5316,
+        "yCoord": 3083,
+        "pressure": 622,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 98,
+        "xCoord": 5284,
+        "yCoord": 3083,
+        "pressure": 633,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 99,
+        "xCoord": 5246,
+        "yCoord": 3046,
+        "pressure": 644,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 100,
+        "xCoord": 5203,
+        "yCoord": 2994,
+        "pressure": 668,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 101,
+        "xCoord": 5176,
+        "yCoord": 2929,
+        "pressure": 687,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 102,
+        "xCoord": 5176,
+        "yCoord": 2852,
+        "pressure": 711,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 103,
+        "xCoord": 5194,
+        "yCoord": 2766,
+        "pressure": 733,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 104,
+        "xCoord": 5235,
+        "yCoord": 2669,
+        "pressure": 725,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 105,
+        "xCoord": 5310,
+        "yCoord": 2605,
+        "pressure": 731,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 106,
+        "xCoord": 5407,
+        "yCoord": 2563,
+        "pressure": 722,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 107,
+        "xCoord": 5520,
+        "yCoord": 2550,
+        "pressure": 694,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 108,
+        "xCoord": 5665,
+        "yCoord": 2541,
+        "pressure": 611,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 109,
+        "xCoord": 5831,
+        "yCoord": 2535,
+        "pressure": 362,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 110,
+        "xCoord": 4286,
+        "yCoord": 3268,
+        "pressure": 177,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 111,
+        "xCoord": 4274,
+        "yCoord": 3196,
+        "pressure": 496,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 112,
+        "xCoord": 4245,
+        "yCoord": 3267,
+        "pressure": 509,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 113,
+        "xCoord": 4234,
+        "yCoord": 3286,
+        "pressure": 509,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 114,
+        "xCoord": 4234,
+        "yCoord": 3270,
+        "pressure": 533,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 115,
+        "xCoord": 4239,
+        "yCoord": 3270,
+        "pressure": 572,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 116,
+        "xCoord": 4239,
+        "yCoord": 3265,
+        "pressure": 622,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 117,
+        "xCoord": 4245,
+        "yCoord": 3265,
+        "pressure": 672,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 118,
+        "xCoord": 4272,
+        "yCoord": 3256,
+        "pressure": 725,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 119,
+        "xCoord": 4316,
+        "yCoord": 3243,
+        "pressure": 753,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 120,
+        "xCoord": 4395,
+        "yCoord": 3231,
+        "pressure": 763,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 121,
+        "xCoord": 4492,
+        "yCoord": 3221,
+        "pressure": 763,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 122,
+        "xCoord": 4601,
+        "yCoord": 3221,
+        "pressure": 736,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 123,
+        "xCoord": 4745,
+        "yCoord": 3238,
+        "pressure": 537,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      }
+    ]
+  },
+  {
+    "id": "608c10a1-a745-48c1-9793-0f7e445b6501",
+    "name": "03",
+    "authenticity": "unknown",
+    "origin": null,
+    "dataPoints": [
+      {
+        "timeStamp": 0,
+        "xCoord": 2837,
+        "yCoord": 3990,
+        "pressure": 109,
+        "altitudeAngle": 450,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 1,
+        "xCoord": 2815,
+        "yCoord": 3965,
+        "pressure": 184,
+        "altitudeAngle": 460,
+        "azimuthAngle": 1200,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 2,
+        "xCoord": 2815,
+        "yCoord": 3988,
+        "pressure": 170,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 3,
+        "xCoord": 2801,
+        "yCoord": 3972,
+        "pressure": 171,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 4,
+        "xCoord": 2794,
+        "yCoord": 3931,
+        "pressure": 173,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 5,
+        "xCoord": 2789,
+        "yCoord": 3881,
+        "pressure": 193,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 6,
+        "xCoord": 2789,
+        "yCoord": 3808,
+        "pressure": 209,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 7,
+        "xCoord": 2789,
+        "yCoord": 3721,
+        "pressure": 245,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 8,
+        "xCoord": 2789,
+        "yCoord": 3622,
+        "pressure": 279,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 9,
+        "xCoord": 2804,
+        "yCoord": 3500,
+        "pressure": 312,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 10,
+        "xCoord": 2823,
+        "yCoord": 3363,
+        "pressure": 327,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 11,
+        "xCoord": 2848,
+        "yCoord": 3199,
+        "pressure": 333,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 12,
+        "xCoord": 2881,
+        "yCoord": 3035,
+        "pressure": 364,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 13,
+        "xCoord": 2921,
+        "yCoord": 2890,
+        "pressure": 364,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 14,
+        "xCoord": 2963,
+        "yCoord": 2759,
+        "pressure": 393,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 15,
+        "xCoord": 3007,
+        "yCoord": 2620,
+        "pressure": 404,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 16,
+        "xCoord": 3068,
+        "yCoord": 2524,
+        "pressure": 413,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 17,
+        "xCoord": 3140,
+        "yCoord": 2457,
+        "pressure": 444,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 18,
+        "xCoord": 3216,
+        "yCoord": 2398,
+        "pressure": 455,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 19,
+        "xCoord": 3297,
+        "yCoord": 2355,
+        "pressure": 478,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 20,
+        "xCoord": 3386,
+        "yCoord": 2324,
+        "pressure": 486,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 21,
+        "xCoord": 3480,
+        "yCoord": 2314,
+        "pressure": 491,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 22,
+        "xCoord": 3576,
+        "yCoord": 2328,
+        "pressure": 493,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 23,
+        "xCoord": 3676,
+        "yCoord": 2359,
+        "pressure": 498,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 24,
+        "xCoord": 3779,
+        "yCoord": 2422,
+        "pressure": 497,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 25,
+        "xCoord": 3864,
+        "yCoord": 2512,
+        "pressure": 509,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 26,
+        "xCoord": 3938,
+        "yCoord": 2619,
+        "pressure": 510,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 27,
+        "xCoord": 4007,
+        "yCoord": 2765,
+        "pressure": 512,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 28,
+        "xCoord": 4054,
+        "yCoord": 2928,
+        "pressure": 520,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 29,
+        "xCoord": 4085,
+        "yCoord": 3103,
+        "pressure": 514,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 30,
+        "xCoord": 4098,
+        "yCoord": 3303,
+        "pressure": 514,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 31,
+        "xCoord": 4098,
+        "yCoord": 3499,
+        "pressure": 512,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 32,
+        "xCoord": 4084,
+        "yCoord": 3659,
+        "pressure": 514,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 33,
+        "xCoord": 4067,
+        "yCoord": 3798,
+        "pressure": 520,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 34,
+        "xCoord": 4053,
+        "yCoord": 3879,
+        "pressure": 518,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1230,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 35,
+        "xCoord": 4044,
+        "yCoord": 3923,
+        "pressure": 540,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 36,
+        "xCoord": 4038,
+        "yCoord": 3942,
+        "pressure": 536,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 37,
+        "xCoord": 4038,
+        "yCoord": 3942,
+        "pressure": 537,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 38,
+        "xCoord": 4038,
+        "yCoord": 3911,
+        "pressure": 545,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 39,
+        "xCoord": 4046,
+        "yCoord": 3859,
+        "pressure": 546,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 40,
+        "xCoord": 4061,
+        "yCoord": 3763,
+        "pressure": 556,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 41,
+        "xCoord": 4083,
+        "yCoord": 3665,
+        "pressure": 561,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 42,
+        "xCoord": 4110,
+        "yCoord": 3564,
+        "pressure": 561,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 43,
+        "xCoord": 4136,
+        "yCoord": 3455,
+        "pressure": 575,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 44,
+        "xCoord": 4149,
+        "yCoord": 3319,
+        "pressure": 594,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 45,
+        "xCoord": 4154,
+        "yCoord": 3167,
+        "pressure": 592,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 46,
+        "xCoord": 4159,
+        "yCoord": 3021,
+        "pressure": 600,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 47,
+        "xCoord": 4165,
+        "yCoord": 2883,
+        "pressure": 599,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 48,
+        "xCoord": 4175,
+        "yCoord": 2750,
+        "pressure": 600,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 49,
+        "xCoord": 4193,
+        "yCoord": 2636,
+        "pressure": 611,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 50,
+        "xCoord": 4222,
+        "yCoord": 2551,
+        "pressure": 605,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 51,
+        "xCoord": 4262,
+        "yCoord": 2486,
+        "pressure": 610,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 52,
+        "xCoord": 4311,
+        "yCoord": 2420,
+        "pressure": 611,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 53,
+        "xCoord": 4367,
+        "yCoord": 2371,
+        "pressure": 616,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 54,
+        "xCoord": 4428,
+        "yCoord": 2333,
+        "pressure": 617,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 55,
+        "xCoord": 4495,
+        "yCoord": 2312,
+        "pressure": 620,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 56,
+        "xCoord": 4566,
+        "yCoord": 2312,
+        "pressure": 625,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 57,
+        "xCoord": 4638,
+        "yCoord": 2331,
+        "pressure": 625,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 58,
+        "xCoord": 4716,
+        "yCoord": 2379,
+        "pressure": 627,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 59,
+        "xCoord": 4799,
+        "yCoord": 2452,
+        "pressure": 627,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 60,
+        "xCoord": 4867,
+        "yCoord": 2543,
+        "pressure": 625,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 61,
+        "xCoord": 4923,
+        "yCoord": 2659,
+        "pressure": 628,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 62,
+        "xCoord": 4979,
+        "yCoord": 2806,
+        "pressure": 628,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 63,
+        "xCoord": 5023,
+        "yCoord": 2973,
+        "pressure": 631,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 64,
+        "xCoord": 5058,
+        "yCoord": 3132,
+        "pressure": 631,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 65,
+        "xCoord": 5077,
+        "yCoord": 3291,
+        "pressure": 633,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 66,
+        "xCoord": 5089,
+        "yCoord": 3420,
+        "pressure": 634,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 67,
+        "xCoord": 5095,
+        "yCoord": 3528,
+        "pressure": 638,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 68,
+        "xCoord": 5095,
+        "yCoord": 3612,
+        "pressure": 641,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 69,
+        "xCoord": 5095,
+        "yCoord": 3672,
+        "pressure": 647,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 70,
+        "xCoord": 5095,
+        "yCoord": 3717,
+        "pressure": 644,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 71,
+        "xCoord": 5095,
+        "yCoord": 3752,
+        "pressure": 652,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 72,
+        "xCoord": 5095,
+        "yCoord": 3766,
+        "pressure": 650,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 73,
+        "xCoord": 5095,
+        "yCoord": 3766,
+        "pressure": 649,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 74,
+        "xCoord": 5095,
+        "yCoord": 3766,
+        "pressure": 656,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 75,
+        "xCoord": 5095,
+        "yCoord": 3720,
+        "pressure": 661,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 76,
+        "xCoord": 5095,
+        "yCoord": 3652,
+        "pressure": 668,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 77,
+        "xCoord": 5095,
+        "yCoord": 3543,
+        "pressure": 664,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 78,
+        "xCoord": 5095,
+        "yCoord": 3412,
+        "pressure": 678,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 79,
+        "xCoord": 5086,
+        "yCoord": 3266,
+        "pressure": 685,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 80,
+        "xCoord": 5081,
+        "yCoord": 3128,
+        "pressure": 687,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 81,
+        "xCoord": 5081,
+        "yCoord": 3001,
+        "pressure": 687,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 82,
+        "xCoord": 5081,
+        "yCoord": 2881,
+        "pressure": 690,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 83,
+        "xCoord": 5097,
+        "yCoord": 2773,
+        "pressure": 690,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 84,
+        "xCoord": 5119,
+        "yCoord": 2680,
+        "pressure": 693,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 85,
+        "xCoord": 5148,
+        "yCoord": 2596,
+        "pressure": 690,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 86,
+        "xCoord": 5197,
+        "yCoord": 2529,
+        "pressure": 697,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 87,
+        "xCoord": 5259,
+        "yCoord": 2477,
+        "pressure": 690,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 88,
+        "xCoord": 5331,
+        "yCoord": 2434,
+        "pressure": 687,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 89,
+        "xCoord": 5424,
+        "yCoord": 2410,
+        "pressure": 687,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 90,
+        "xCoord": 5531,
+        "yCoord": 2405,
+        "pressure": 685,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 91,
+        "xCoord": 5627,
+        "yCoord": 2413,
+        "pressure": 682,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 92,
+        "xCoord": 5721,
+        "yCoord": 2438,
+        "pressure": 673,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 93,
+        "xCoord": 5814,
+        "yCoord": 2471,
+        "pressure": 665,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 94,
+        "xCoord": 5872,
+        "yCoord": 2510,
+        "pressure": 650,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 95,
+        "xCoord": 5908,
+        "yCoord": 2552,
+        "pressure": 646,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 96,
+        "xCoord": 5928,
+        "yCoord": 2594,
+        "pressure": 641,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 97,
+        "xCoord": 5928,
+        "yCoord": 2647,
+        "pressure": 619,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 98,
+        "xCoord": 5906,
+        "yCoord": 2709,
+        "pressure": 594,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 99,
+        "xCoord": 5876,
+        "yCoord": 2771,
+        "pressure": 570,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 100,
+        "xCoord": 5836,
+        "yCoord": 2830,
+        "pressure": 574,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 101,
+        "xCoord": 5796,
+        "yCoord": 2860,
+        "pressure": 581,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 102,
+        "xCoord": 5755,
+        "yCoord": 2872,
+        "pressure": 589,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 103,
+        "xCoord": 5720,
+        "yCoord": 2857,
+        "pressure": 588,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 104,
+        "xCoord": 5688,
+        "yCoord": 2815,
+        "pressure": 620,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 105,
+        "xCoord": 5662,
+        "yCoord": 2755,
+        "pressure": 636,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 106,
+        "xCoord": 5656,
+        "yCoord": 2682,
+        "pressure": 650,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 107,
+        "xCoord": 5661,
+        "yCoord": 2614,
+        "pressure": 671,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 108,
+        "xCoord": 5689,
+        "yCoord": 2549,
+        "pressure": 682,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 109,
+        "xCoord": 5743,
+        "yCoord": 2486,
+        "pressure": 699,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 110,
+        "xCoord": 5813,
+        "yCoord": 2430,
+        "pressure": 697,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 111,
+        "xCoord": 5903,
+        "yCoord": 2378,
+        "pressure": 702,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 112,
+        "xCoord": 6012,
+        "yCoord": 2311,
+        "pressure": 682,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 113,
+        "xCoord": 6134,
+        "yCoord": 2291,
+        "pressure": 595,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 114,
+        "xCoord": 6282,
+        "yCoord": 2303,
+        "pressure": 474,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 115,
+        "xCoord": 4786,
+        "yCoord": 3205,
+        "pressure": 309,
+        "altitudeAngle": 460,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 116,
+        "xCoord": 4826,
+        "yCoord": 3216,
+        "pressure": 367,
+        "altitudeAngle": 460,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 117,
+        "xCoord": 4826,
+        "yCoord": 3230,
+        "pressure": 386,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 118,
+        "xCoord": 4818,
+        "yCoord": 3217,
+        "pressure": 444,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 119,
+        "xCoord": 4835,
+        "yCoord": 3217,
+        "pressure": 517,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 120,
+        "xCoord": 4853,
+        "yCoord": 3217,
+        "pressure": 580,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 121,
+        "xCoord": 4886,
+        "yCoord": 3217,
+        "pressure": 625,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 122,
+        "xCoord": 4929,
+        "yCoord": 3201,
+        "pressure": 671,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 123,
+        "xCoord": 4988,
+        "yCoord": 3180,
+        "pressure": 690,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 124,
+        "xCoord": 5053,
+        "yCoord": 3154,
+        "pressure": 693,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 125,
+        "xCoord": 5138,
+        "yCoord": 3125,
+        "pressure": 670,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 126,
+        "xCoord": 5234,
+        "yCoord": 3096,
+        "pressure": 512,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      }
+    ]
+  },
+  {
+    "id": "ae2cb616-02a4-4a79-bf6c-5ef4931c4a4d",
+    "name": "04",
+    "authenticity": "unknown",
+    "origin": null,
+    "dataPoints": [
+      {
+        "timeStamp": 0,
+        "xCoord": 2943,
+        "yCoord": 4038,
+        "pressure": 49,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1210,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 1,
+        "xCoord": 2960,
+        "yCoord": 4010,
+        "pressure": 103,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 2,
+        "xCoord": 2943,
+        "yCoord": 4010,
+        "pressure": 119,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1220,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 3,
+        "xCoord": 2920,
+        "yCoord": 3958,
+        "pressure": 129,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1240,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 4,
+        "xCoord": 2906,
+        "yCoord": 3885,
+        "pressure": 134,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 5,
+        "xCoord": 2895,
+        "yCoord": 3797,
+        "pressure": 187,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 6,
+        "xCoord": 2895,
+        "yCoord": 3694,
+        "pressure": 207,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 7,
+        "xCoord": 2895,
+        "yCoord": 3583,
+        "pressure": 254,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 8,
+        "xCoord": 2914,
+        "yCoord": 3467,
+        "pressure": 296,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 9,
+        "xCoord": 2943,
+        "yCoord": 3310,
+        "pressure": 329,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 10,
+        "xCoord": 2989,
+        "yCoord": 3138,
+        "pressure": 333,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 11,
+        "xCoord": 3038,
+        "yCoord": 2956,
+        "pressure": 358,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 12,
+        "xCoord": 3095,
+        "yCoord": 2792,
+        "pressure": 387,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 13,
+        "xCoord": 3157,
+        "yCoord": 2661,
+        "pressure": 410,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 14,
+        "xCoord": 3220,
+        "yCoord": 2551,
+        "pressure": 417,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 15,
+        "xCoord": 3283,
+        "yCoord": 2458,
+        "pressure": 428,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 16,
+        "xCoord": 3356,
+        "yCoord": 2389,
+        "pressure": 440,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 17,
+        "xCoord": 3433,
+        "yCoord": 2336,
+        "pressure": 456,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 18,
+        "xCoord": 3518,
+        "yCoord": 2309,
+        "pressure": 465,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 19,
+        "xCoord": 3611,
+        "yCoord": 2309,
+        "pressure": 483,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 20,
+        "xCoord": 3712,
+        "yCoord": 2335,
+        "pressure": 491,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 21,
+        "xCoord": 3799,
+        "yCoord": 2386,
+        "pressure": 495,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 22,
+        "xCoord": 3877,
+        "yCoord": 2458,
+        "pressure": 498,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 23,
+        "xCoord": 3947,
+        "yCoord": 2544,
+        "pressure": 494,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 24,
+        "xCoord": 4007,
+        "yCoord": 2652,
+        "pressure": 497,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 25,
+        "xCoord": 4059,
+        "yCoord": 2796,
+        "pressure": 507,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 26,
+        "xCoord": 4099,
+        "yCoord": 2964,
+        "pressure": 515,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 27,
+        "xCoord": 4130,
+        "yCoord": 3133,
+        "pressure": 513,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 28,
+        "xCoord": 4155,
+        "yCoord": 3301,
+        "pressure": 526,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 29,
+        "xCoord": 4163,
+        "yCoord": 3469,
+        "pressure": 544,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 30,
+        "xCoord": 4163,
+        "yCoord": 3573,
+        "pressure": 562,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 31,
+        "xCoord": 4156,
+        "yCoord": 3644,
+        "pressure": 569,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 32,
+        "xCoord": 4144,
+        "yCoord": 3692,
+        "pressure": 588,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 33,
+        "xCoord": 4136,
+        "yCoord": 3720,
+        "pressure": 600,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 34,
+        "xCoord": 4136,
+        "yCoord": 3731,
+        "pressure": 609,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 35,
+        "xCoord": 4136,
+        "yCoord": 3731,
+        "pressure": 602,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 36,
+        "xCoord": 4136,
+        "yCoord": 3731,
+        "pressure": 606,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 37,
+        "xCoord": 4136,
+        "yCoord": 3688,
+        "pressure": 613,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 38,
+        "xCoord": 4136,
+        "yCoord": 3624,
+        "pressure": 617,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1250,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 39,
+        "xCoord": 4146,
+        "yCoord": 3508,
+        "pressure": 611,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 40,
+        "xCoord": 4157,
+        "yCoord": 3370,
+        "pressure": 616,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 41,
+        "xCoord": 4169,
+        "yCoord": 3218,
+        "pressure": 625,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 42,
+        "xCoord": 4180,
+        "yCoord": 3078,
+        "pressure": 628,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 43,
+        "xCoord": 4194,
+        "yCoord": 2948,
+        "pressure": 631,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 44,
+        "xCoord": 4211,
+        "yCoord": 2826,
+        "pressure": 633,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 45,
+        "xCoord": 4232,
+        "yCoord": 2705,
+        "pressure": 633,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 46,
+        "xCoord": 4260,
+        "yCoord": 2612,
+        "pressure": 633,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 47,
+        "xCoord": 4303,
+        "yCoord": 2539,
+        "pressure": 636,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 48,
+        "xCoord": 4355,
+        "yCoord": 2481,
+        "pressure": 634,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 49,
+        "xCoord": 4425,
+        "yCoord": 2443,
+        "pressure": 630,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 50,
+        "xCoord": 4501,
+        "yCoord": 2419,
+        "pressure": 617,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 51,
+        "xCoord": 4589,
+        "yCoord": 2419,
+        "pressure": 611,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1260,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 52,
+        "xCoord": 4692,
+        "yCoord": 2448,
+        "pressure": 608,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 53,
+        "xCoord": 4803,
+        "yCoord": 2489,
+        "pressure": 603,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 54,
+        "xCoord": 4886,
+        "yCoord": 2548,
+        "pressure": 600,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 55,
+        "xCoord": 4960,
+        "yCoord": 2628,
+        "pressure": 595,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 56,
+        "xCoord": 5028,
+        "yCoord": 2721,
+        "pressure": 597,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 57,
+        "xCoord": 5080,
+        "yCoord": 2842,
+        "pressure": 602,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 58,
+        "xCoord": 5117,
+        "yCoord": 2970,
+        "pressure": 599,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 59,
+        "xCoord": 5144,
+        "yCoord": 3102,
+        "pressure": 600,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 60,
+        "xCoord": 5154,
+        "yCoord": 3240,
+        "pressure": 606,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 61,
+        "xCoord": 5154,
+        "yCoord": 3373,
+        "pressure": 616,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 62,
+        "xCoord": 5154,
+        "yCoord": 3456,
+        "pressure": 620,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 63,
+        "xCoord": 5154,
+        "yCoord": 3509,
+        "pressure": 616,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 64,
+        "xCoord": 5149,
+        "yCoord": 3538,
+        "pressure": 625,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 65,
+        "xCoord": 5149,
+        "yCoord": 3561,
+        "pressure": 630,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 66,
+        "xCoord": 5154,
+        "yCoord": 3569,
+        "pressure": 628,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 67,
+        "xCoord": 5154,
+        "yCoord": 3569,
+        "pressure": 628,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 68,
+        "xCoord": 5162,
+        "yCoord": 3563,
+        "pressure": 633,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 69,
+        "xCoord": 5169,
+        "yCoord": 3525,
+        "pressure": 645,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 70,
+        "xCoord": 5182,
+        "yCoord": 3465,
+        "pressure": 641,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 71,
+        "xCoord": 5189,
+        "yCoord": 3364,
+        "pressure": 662,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 72,
+        "xCoord": 5189,
+        "yCoord": 3244,
+        "pressure": 663,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 73,
+        "xCoord": 5189,
+        "yCoord": 3112,
+        "pressure": 673,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 74,
+        "xCoord": 5183,
+        "yCoord": 2992,
+        "pressure": 679,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 75,
+        "xCoord": 5183,
+        "yCoord": 2879,
+        "pressure": 681,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 76,
+        "xCoord": 5192,
+        "yCoord": 2772,
+        "pressure": 679,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 77,
+        "xCoord": 5220,
+        "yCoord": 2669,
+        "pressure": 684,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 78,
+        "xCoord": 5258,
+        "yCoord": 2593,
+        "pressure": 685,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 79,
+        "xCoord": 5305,
+        "yCoord": 2534,
+        "pressure": 685,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 80,
+        "xCoord": 5377,
+        "yCoord": 2484,
+        "pressure": 685,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 81,
+        "xCoord": 5466,
+        "yCoord": 2446,
+        "pressure": 687,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 82,
+        "xCoord": 5563,
+        "yCoord": 2417,
+        "pressure": 679,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 83,
+        "xCoord": 5687,
+        "yCoord": 2404,
+        "pressure": 679,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 84,
+        "xCoord": 5828,
+        "yCoord": 2404,
+        "pressure": 678,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 85,
+        "xCoord": 5940,
+        "yCoord": 2420,
+        "pressure": 658,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 86,
+        "xCoord": 6036,
+        "yCoord": 2454,
+        "pressure": 637,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 87,
+        "xCoord": 6121,
+        "yCoord": 2495,
+        "pressure": 641,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 88,
+        "xCoord": 6178,
+        "yCoord": 2541,
+        "pressure": 617,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 89,
+        "xCoord": 6205,
+        "yCoord": 2598,
+        "pressure": 595,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 90,
+        "xCoord": 6211,
+        "yCoord": 2668,
+        "pressure": 548,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 91,
+        "xCoord": 6185,
+        "yCoord": 2747,
+        "pressure": 533,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 92,
+        "xCoord": 6142,
+        "yCoord": 2827,
+        "pressure": 539,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 93,
+        "xCoord": 6087,
+        "yCoord": 2868,
+        "pressure": 570,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 94,
+        "xCoord": 6037,
+        "yCoord": 2882,
+        "pressure": 599,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 95,
+        "xCoord": 5988,
+        "yCoord": 2864,
+        "pressure": 622,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 96,
+        "xCoord": 5943,
+        "yCoord": 2819,
+        "pressure": 638,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 97,
+        "xCoord": 5904,
+        "yCoord": 2756,
+        "pressure": 671,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 98,
+        "xCoord": 5890,
+        "yCoord": 2686,
+        "pressure": 691,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 99,
+        "xCoord": 5890,
+        "yCoord": 2621,
+        "pressure": 694,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 100,
+        "xCoord": 5913,
+        "yCoord": 2563,
+        "pressure": 707,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 101,
+        "xCoord": 5964,
+        "yCoord": 2512,
+        "pressure": 707,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 102,
+        "xCoord": 6035,
+        "yCoord": 2468,
+        "pressure": 696,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 103,
+        "xCoord": 6142,
+        "yCoord": 2446,
+        "pressure": 645,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 104,
+        "xCoord": 6288,
+        "yCoord": 2446,
+        "pressure": 522,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 105,
+        "xCoord": 6460,
+        "yCoord": 2460,
+        "pressure": 233,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 106,
+        "xCoord": 4915,
+        "yCoord": 3254,
+        "pressure": 362,
+        "altitudeAngle": 460,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 107,
+        "xCoord": 4948,
+        "yCoord": 3170,
+        "pressure": 443,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 108,
+        "xCoord": 4938,
+        "yCoord": 3196,
+        "pressure": 447,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 109,
+        "xCoord": 4904,
+        "yCoord": 3250,
+        "pressure": 465,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 110,
+        "xCoord": 4910,
+        "yCoord": 3250,
+        "pressure": 522,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 111,
+        "xCoord": 4923,
+        "yCoord": 3245,
+        "pressure": 563,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 112,
+        "xCoord": 4946,
+        "yCoord": 3238,
+        "pressure": 614,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 113,
+        "xCoord": 4993,
+        "yCoord": 3233,
+        "pressure": 659,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 114,
+        "xCoord": 5055,
+        "yCoord": 3228,
+        "pressure": 679,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 115,
+        "xCoord": 5136,
+        "yCoord": 3218,
+        "pressure": 699,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 116,
+        "xCoord": 5234,
+        "yCoord": 3207,
+        "pressure": 702,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 117,
+        "xCoord": 5343,
+        "yCoord": 3195,
+        "pressure": 664,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 118,
+        "xCoord": 5449,
+        "yCoord": 3177,
+        "pressure": 519,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      }
+    ]
+  },
+  {
+    "id": "82f860ca-8ae5-41a0-99ef-670cf2dec3cf",
+    "name": "05",
+    "authenticity": "unknown",
+    "origin": null,
+    "dataPoints": [
+      {
+        "timeStamp": 0,
+        "xCoord": 3378,
+        "yCoord": 3960,
+        "pressure": 249,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 1,
+        "xCoord": 3378,
+        "yCoord": 3960,
+        "pressure": 309,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 2,
+        "xCoord": 3378,
+        "yCoord": 3960,
+        "pressure": 257,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 3,
+        "xCoord": 3351,
+        "yCoord": 3975,
+        "pressure": 247,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 4,
+        "xCoord": 3341,
+        "yCoord": 3955,
+        "pressure": 250,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 5,
+        "xCoord": 3331,
+        "yCoord": 3928,
+        "pressure": 259,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 6,
+        "xCoord": 3319,
+        "yCoord": 3888,
+        "pressure": 287,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 7,
+        "xCoord": 3306,
+        "yCoord": 3826,
+        "pressure": 334,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 8,
+        "xCoord": 3297,
+        "yCoord": 3749,
+        "pressure": 387,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 9,
+        "xCoord": 3290,
+        "yCoord": 3649,
+        "pressure": 438,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 10,
+        "xCoord": 3290,
+        "yCoord": 3511,
+        "pressure": 472,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 11,
+        "xCoord": 3284,
+        "yCoord": 3347,
+        "pressure": 499,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 12,
+        "xCoord": 3284,
+        "yCoord": 3150,
+        "pressure": 512,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 13,
+        "xCoord": 3300,
+        "yCoord": 2962,
+        "pressure": 532,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 14,
+        "xCoord": 3322,
+        "yCoord": 2780,
+        "pressure": 538,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 15,
+        "xCoord": 3355,
+        "yCoord": 2611,
+        "pressure": 543,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 16,
+        "xCoord": 3397,
+        "yCoord": 2488,
+        "pressure": 550,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 17,
+        "xCoord": 3458,
+        "yCoord": 2396,
+        "pressure": 557,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 18,
+        "xCoord": 3531,
+        "yCoord": 2311,
+        "pressure": 561,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 19,
+        "xCoord": 3611,
+        "yCoord": 2265,
+        "pressure": 562,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 20,
+        "xCoord": 3706,
+        "yCoord": 2246,
+        "pressure": 567,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 21,
+        "xCoord": 3811,
+        "yCoord": 2257,
+        "pressure": 561,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 22,
+        "xCoord": 3912,
+        "yCoord": 2301,
+        "pressure": 568,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 23,
+        "xCoord": 4018,
+        "yCoord": 2367,
+        "pressure": 567,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 24,
+        "xCoord": 4129,
+        "yCoord": 2445,
+        "pressure": 568,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 25,
+        "xCoord": 4237,
+        "yCoord": 2535,
+        "pressure": 568,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 26,
+        "xCoord": 4326,
+        "yCoord": 2633,
+        "pressure": 570,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 27,
+        "xCoord": 4404,
+        "yCoord": 2767,
+        "pressure": 567,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 28,
+        "xCoord": 4465,
+        "yCoord": 2914,
+        "pressure": 564,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 29,
+        "xCoord": 4510,
+        "yCoord": 3069,
+        "pressure": 564,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 30,
+        "xCoord": 4543,
+        "yCoord": 3240,
+        "pressure": 568,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 31,
+        "xCoord": 4558,
+        "yCoord": 3400,
+        "pressure": 561,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 32,
+        "xCoord": 4558,
+        "yCoord": 3553,
+        "pressure": 561,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 33,
+        "xCoord": 4544,
+        "yCoord": 3647,
+        "pressure": 570,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 34,
+        "xCoord": 4530,
+        "yCoord": 3698,
+        "pressure": 570,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 35,
+        "xCoord": 4516,
+        "yCoord": 3720,
+        "pressure": 583,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 36,
+        "xCoord": 4504,
+        "yCoord": 3720,
+        "pressure": 592,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 37,
+        "xCoord": 4491,
+        "yCoord": 3688,
+        "pressure": 589,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 38,
+        "xCoord": 4482,
+        "yCoord": 3634,
+        "pressure": 605,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 39,
+        "xCoord": 4489,
+        "yCoord": 3524,
+        "pressure": 619,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 40,
+        "xCoord": 4507,
+        "yCoord": 3394,
+        "pressure": 622,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 41,
+        "xCoord": 4534,
+        "yCoord": 3252,
+        "pressure": 638,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 42,
+        "xCoord": 4556,
+        "yCoord": 3116,
+        "pressure": 644,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1270,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 43,
+        "xCoord": 4575,
+        "yCoord": 2987,
+        "pressure": 659,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 44,
+        "xCoord": 4586,
+        "yCoord": 2863,
+        "pressure": 656,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 45,
+        "xCoord": 4599,
+        "yCoord": 2734,
+        "pressure": 659,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 46,
+        "xCoord": 4616,
+        "yCoord": 2623,
+        "pressure": 662,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 47,
+        "xCoord": 4643,
+        "yCoord": 2525,
+        "pressure": 664,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 48,
+        "xCoord": 4689,
+        "yCoord": 2441,
+        "pressure": 661,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 49,
+        "xCoord": 4747,
+        "yCoord": 2374,
+        "pressure": 662,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 50,
+        "xCoord": 4820,
+        "yCoord": 2318,
+        "pressure": 665,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1280,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 51,
+        "xCoord": 4910,
+        "yCoord": 2299,
+        "pressure": 658,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 52,
+        "xCoord": 5010,
+        "yCoord": 2305,
+        "pressure": 652,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 53,
+        "xCoord": 5120,
+        "yCoord": 2329,
+        "pressure": 641,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 54,
+        "xCoord": 5233,
+        "yCoord": 2376,
+        "pressure": 638,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 55,
+        "xCoord": 5331,
+        "yCoord": 2438,
+        "pressure": 634,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 56,
+        "xCoord": 5417,
+        "yCoord": 2510,
+        "pressure": 625,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 57,
+        "xCoord": 5491,
+        "yCoord": 2601,
+        "pressure": 614,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 58,
+        "xCoord": 5550,
+        "yCoord": 2722,
+        "pressure": 616,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 59,
+        "xCoord": 5600,
+        "yCoord": 2862,
+        "pressure": 616,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 60,
+        "xCoord": 5638,
+        "yCoord": 3010,
+        "pressure": 616,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 61,
+        "xCoord": 5664,
+        "yCoord": 3157,
+        "pressure": 617,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1290,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 62,
+        "xCoord": 5682,
+        "yCoord": 3304,
+        "pressure": 611,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 63,
+        "xCoord": 5688,
+        "yCoord": 3389,
+        "pressure": 622,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 64,
+        "xCoord": 5688,
+        "yCoord": 3441,
+        "pressure": 641,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 65,
+        "xCoord": 5679,
+        "yCoord": 3470,
+        "pressure": 655,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 66,
+        "xCoord": 5679,
+        "yCoord": 3479,
+        "pressure": 650,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1310,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 67,
+        "xCoord": 5674,
+        "yCoord": 3479,
+        "pressure": 649,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 68,
+        "xCoord": 5674,
+        "yCoord": 3470,
+        "pressure": 650,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 69,
+        "xCoord": 5674,
+        "yCoord": 3427,
+        "pressure": 655,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 70,
+        "xCoord": 5669,
+        "yCoord": 3357,
+        "pressure": 661,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 71,
+        "xCoord": 5669,
+        "yCoord": 3270,
+        "pressure": 662,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1300,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 72,
+        "xCoord": 5669,
+        "yCoord": 3174,
+        "pressure": 679,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 73,
+        "xCoord": 5656,
+        "yCoord": 3073,
+        "pressure": 693,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 74,
+        "xCoord": 5641,
+        "yCoord": 2963,
+        "pressure": 690,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 75,
+        "xCoord": 5627,
+        "yCoord": 2841,
+        "pressure": 697,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 76,
+        "xCoord": 5613,
+        "yCoord": 2711,
+        "pressure": 707,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1320,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 77,
+        "xCoord": 5618,
+        "yCoord": 2604,
+        "pressure": 710,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 78,
+        "xCoord": 5634,
+        "yCoord": 2508,
+        "pressure": 710,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 79,
+        "xCoord": 5684,
+        "yCoord": 2419,
+        "pressure": 713,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 80,
+        "xCoord": 5740,
+        "yCoord": 2340,
+        "pressure": 711,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 81,
+        "xCoord": 5825,
+        "yCoord": 2277,
+        "pressure": 713,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1330,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 82,
+        "xCoord": 5927,
+        "yCoord": 2224,
+        "pressure": 713,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 83,
+        "xCoord": 6045,
+        "yCoord": 2188,
+        "pressure": 713,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 84,
+        "xCoord": 6161,
+        "yCoord": 2167,
+        "pressure": 694,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 85,
+        "xCoord": 6276,
+        "yCoord": 2157,
+        "pressure": 688,
+        "altitudeAngle": 520,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 86,
+        "xCoord": 6381,
+        "yCoord": 2162,
+        "pressure": 670,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 87,
+        "xCoord": 6457,
+        "yCoord": 2188,
+        "pressure": 658,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 88,
+        "xCoord": 6514,
+        "yCoord": 2229,
+        "pressure": 644,
+        "altitudeAngle": 530,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 89,
+        "xCoord": 6553,
+        "yCoord": 2286,
+        "pressure": 642,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 90,
+        "xCoord": 6569,
+        "yCoord": 2356,
+        "pressure": 613,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 91,
+        "xCoord": 6569,
+        "yCoord": 2435,
+        "pressure": 605,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 92,
+        "xCoord": 6550,
+        "yCoord": 2508,
+        "pressure": 605,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 93,
+        "xCoord": 6525,
+        "yCoord": 2562,
+        "pressure": 620,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 94,
+        "xCoord": 6497,
+        "yCoord": 2603,
+        "pressure": 624,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 95,
+        "xCoord": 6468,
+        "yCoord": 2618,
+        "pressure": 631,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 96,
+        "xCoord": 6434,
+        "yCoord": 2618,
+        "pressure": 638,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 97,
+        "xCoord": 6397,
+        "yCoord": 2603,
+        "pressure": 647,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 98,
+        "xCoord": 6365,
+        "yCoord": 2576,
+        "pressure": 647,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 99,
+        "xCoord": 6339,
+        "yCoord": 2546,
+        "pressure": 670,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 100,
+        "xCoord": 6333,
+        "yCoord": 2506,
+        "pressure": 688,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 101,
+        "xCoord": 6338,
+        "yCoord": 2457,
+        "pressure": 700,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 102,
+        "xCoord": 6359,
+        "yCoord": 2400,
+        "pressure": 717,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 103,
+        "xCoord": 6400,
+        "yCoord": 2342,
+        "pressure": 731,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 104,
+        "xCoord": 6455,
+        "yCoord": 2282,
+        "pressure": 730,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 105,
+        "xCoord": 6533,
+        "yCoord": 2231,
+        "pressure": 728,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 106,
+        "xCoord": 6635,
+        "yCoord": 2186,
+        "pressure": 728,
+        "altitudeAngle": 540,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 107,
+        "xCoord": 6752,
+        "yCoord": 2135,
+        "pressure": 727,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 108,
+        "xCoord": 6882,
+        "yCoord": 2121,
+        "pressure": 687,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 109,
+        "xCoord": 7020,
+        "yCoord": 2133,
+        "pressure": 647,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 110,
+        "xCoord": 7162,
+        "yCoord": 2156,
+        "pressure": 455,
+        "altitudeAngle": 550,
+        "azimuthAngle": 1380,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 111,
+        "xCoord": 5331,
+        "yCoord": 3158,
+        "pressure": 335,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 112,
+        "xCoord": 5297,
+        "yCoord": 3086,
+        "pressure": 384,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 113,
+        "xCoord": 5232,
+        "yCoord": 3139,
+        "pressure": 386,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 114,
+        "xCoord": 5222,
+        "yCoord": 3132,
+        "pressure": 389,
+        "altitudeAngle": 470,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 115,
+        "xCoord": 5222,
+        "yCoord": 3124,
+        "pressure": 399,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 116,
+        "xCoord": 5222,
+        "yCoord": 3113,
+        "pressure": 488,
+        "altitudeAngle": 480,
+        "azimuthAngle": 1340,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 117,
+        "xCoord": 5261,
+        "yCoord": 3099,
+        "pressure": 568,
+        "altitudeAngle": 490,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 118,
+        "xCoord": 5317,
+        "yCoord": 3080,
+        "pressure": 616,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1350,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 119,
+        "xCoord": 5408,
+        "yCoord": 3059,
+        "pressure": 647,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 120,
+        "xCoord": 5532,
+        "yCoord": 3034,
+        "pressure": 668,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 121,
+        "xCoord": 5677,
+        "yCoord": 3027,
+        "pressure": 667,
+        "altitudeAngle": 500,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 122,
+        "xCoord": 5842,
+        "yCoord": 3034,
+        "pressure": 608,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1370,
+        "height": 0,
+        "twist": 0
+      },
+      {
+        "timeStamp": 123,
+        "xCoord": 5970,
+        "yCoord": 3034,
+        "pressure": 256,
+        "altitudeAngle": 510,
+        "azimuthAngle": 1360,
+        "height": 0,
+        "twist": 0
+      }
+    ]
+  }
+]
