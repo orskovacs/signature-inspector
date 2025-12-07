@@ -9,19 +9,31 @@ export function getFeatureDataFromSignature(
   return signature.dataPoints.map((p) => p[feature])
 }
 
-export function standardize(data: number[]): number[] {
-  if (data.length === 0) return []
-  const sum = data.reduce((acc, curr) => acc + curr, 0)
-  const count = data.length
-  const mean = sum / count
-  const squaredDifferences = data.map((x) => (x - mean) * (x - mean))
-  const sumOfSquaredDifferences = squaredDifferences.reduce(
-    (acc, curr) => acc + curr,
-    0
+export function normalizeTimeSeries(timeSeries: number[]): number[] {
+  const tsFinite = timeSeries.filter(
+    (x) => !Number.isNaN(x) && Number.isFinite(x)
   )
-  const variance = sumOfSquaredDifferences / (count - 1)
-  const stdDev = Math.sqrt(variance)
+  const maxFinite = Math.max(...tsFinite)
+  const minFinite = Math.min(...tsFinite)
 
-  const zScoreData = data.map((x) => (x - mean) / stdDev)
-  return zScoreData
+  const ts = timeSeries.map((x) => {
+    if (Number.isNaN(x)) return 0
+    if (x === Infinity) return maxFinite
+    if (x === -Infinity) return minFinite
+    return x
+  })
+
+  // Calculate the sum
+  const sum = ts.reduce((acc, curr) => acc + curr)
+
+  // Calculate the mean
+  const mean = sum / ts.length
+
+  // Calculate the corrected empirical standard deviation
+  const stdDev = Math.sqrt(
+    ts.reduce((acc, curr) => acc + (curr - mean) * (curr - mean)) /
+      (ts.length - 1)
+  )
+
+  return ts.map((x) => (x - mean) / stdDev)
 }
