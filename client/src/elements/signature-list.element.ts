@@ -63,7 +63,8 @@ export class SignatureListElement extends LitElement {
 
     .table-wrapper {
       height: calc(100% + 8px);
-      overflow: scroll;
+      overflow: auto;
+      scrollbar-width: none;
     }
 
     table {
