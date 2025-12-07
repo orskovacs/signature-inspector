@@ -8,7 +8,7 @@ import { Signature } from '../model/signature.ts'
 import { GoogleChart } from '@google-web-components/google-chart'
 import {
   getFeatureDataFromSignature,
-  standardize,
+  normalizeTimeSeries,
 } from '../utils/signature.util.ts'
 import LineChartOptions = google.visualization.LineChartOptions
 
@@ -95,7 +95,7 @@ export class GraphElement extends LitElement {
         const rowData = [i]
         this.visibleSignatures.forEach((s) => {
           const featureData = this.normalizeData
-            ? standardize(getFeatureDataFromSignature(s, this.feature))
+            ? normalizeTimeSeries(getFeatureDataFromSignature(s, this.feature))
             : getFeatureDataFromSignature(s, this.feature)
 
           const dataPoint: number | undefined = featureData[i]
